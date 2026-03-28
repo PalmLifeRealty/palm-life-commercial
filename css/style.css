@@ -723,6 +723,69 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.04em;
 }
 
+/* Case study link on TR card */
+.tr-case-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.77rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--gold-lt);
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  transition: gap var(--t), color var(--t);
+}
+.tr-case-link:hover { gap: 10px; color: #fff; }
+.tr-case-link i { font-size: 0.65rem; transition: transform var(--t); }
+.tr-case-link:hover i { transform: translateX(3px); }
+
+/* ── 2×2 grid override ── */
+.tr-grid--2x2 {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+@media (max-width: 768px) { .tr-grid--2x2 { grid-template-columns: 1fr; } }
+
+/* ── Clickable card ── */
+.tr-card--link {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  cursor: pointer;
+  transition: border-color var(--t), background var(--t),
+              transform 0.32s cubic-bezier(0.25,0.46,0.45,0.94),
+              box-shadow 0.32s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.tr-card--link:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.38);
+  border-color: rgba(184,149,74,0.40);
+  background: rgba(255,255,255,0.06);
+}
+
+/* Arrow indicator — bottom-right on hover */
+.tr-card--link::after {
+  content: "→";
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  font-size: 0.9rem;
+  color: var(--gold-lt);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  pointer-events: none;
+}
+.tr-card--link:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Developed badge */
+.tr-outcome--developed { background: rgba(245,158,11,0.15); color: #fcd34d; }
+
 /* Quote card */
 .tr-card--quote {
   background: rgba(184,149,74,0.07);
