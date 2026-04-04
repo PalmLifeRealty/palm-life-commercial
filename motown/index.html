@@ -1,927 +1,1552 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Motown Luxury Storage - Investment Offering Memorandum</title>
-    <meta name="description" content="Premium RV and Boat Storage Investment Opportunity in Spring Hill, Florida - $8.5M Investment with 10.1% Cap Rate">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motown Luxury Storage - Investment Offering Memorandum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+  <style>
+    /* ===================== CSS VARIABLES ===================== */
+    :root {
+      --gold:       #C9A84C;
+      --gold-light: #E2C97E;
+      --gold-dark:  #9A6F28;
+      --navy:       #0A0F1E;
+      --navy-mid:   #111827;
+      --navy-card:  #161E30;
+      --navy-border:#1E2A40;
+      --white:      #FFFFFF;
+      --off-white:  #F5F0E8;
+      --gray-300:   #9CA3AF;
+      --gray-500:   #6B7280;
+      --success:    #22C55E;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Barlow', sans-serif;
+      --font-cond:    'Barlow Condensed', sans-serif;
+      --transition:   0.3s ease;
+      --shadow-gold:  0 0 40px rgba(201,168,76,0.15);
+      --shadow-card:  0 8px 40px rgba(0,0,0,0.4);
+    }
+
+    /* ===================== RESET & BASE ===================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--navy);
+      color: var(--off-white);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--gold); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--gold-light); }
+    ul { list-style: none; }
+
+    /* ===================== TYPOGRAPHY ===================== */
+    .section-label {
+      font-family: var(--font-cond);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.2; }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: var(--white); margin-bottom: 1.5rem; }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--white); margin-bottom: 0.75rem; }
+    h4 { font-size: 1rem; color: var(--gold-light); margin-bottom: 0.5rem; }
+    p { color: var(--gray-300); line-height: 1.75; }
+
+    /* ===================== LAYOUT ===================== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 6rem 0; }
+    .section-divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 1rem 0 2rem;
+    }
+
+    /* ===================== NAVBAR ===================== */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background var(--transition), backdrop-filter var(--transition);
+      background: transparent;
+    }
+    #navbar.scrolled {
+      background: rgba(10,15,30,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--navy-border);
+    }
+    .nav-brand {
+      font-family: var(--font-cond);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-family: var(--font-cond);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-300);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy) !important;
+      padding: 0.5rem 1.2rem;
+      font-weight: 700 !important;
+      transition: background var(--transition) !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+    /* ===================== HERO ===================== */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      overflow: hidden;
+      padding: 0;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #050810 0%, #0A1428 40%, #0F1E3A 70%, #0A0F1E 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      top: -200px; right: -200px;
+      border-radius: 50%;
+    }
+    .hero-glow-2 {
+      position: absolute;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(30,60,120,0.3) 0%, transparent 70%);
+      bottom: -100px; left: -100px;
+      border-radius: 50%;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-cond);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 40px; height: 1px;
+      background: var(--gold);
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.0;
+      margin-bottom: 1rem;
+    }
+    .hero-title span { color: var(--gold); }
+    .hero-subtitle {
+      font-family: var(--font-cond);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 400;
+      color: var(--gray-300);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    .hero-location {
+      font-family: var(--font-cond);
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      margin-bottom: 3rem;
+    }
+    .hero-stats {
+      display: flex; gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .hero-stat {}
+    .hero-stat-value {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-family: var(--font-cond);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-top: 0.3rem;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--font-cond);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-cta::after {
+      content: '→';
+      transition: transform var(--transition);
+    }
+    .hero-cta:hover {
+      background: var(--gold-light);
+      color: var(--navy);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.4);
+    }
+    .hero-cta:hover::after { transform: translateX(4px); }
+
+    .hero-badge {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      padding: 2rem;
+      text-align: center;
+      min-width: 200px;
+    }
+    .hero-badge-date {
+      font-family: var(--font-cond);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 0.5rem;
+    }
+    .hero-badge-month {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .hero-badge-year {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+    }
+    .hero-badge-label {
+      font-family: var(--font-cond);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-top: 0.5rem;
+    }
+
+    /* ===================== EXECUTIVE SUMMARY ===================== */
+    #executive-summary { background: var(--navy-mid); }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .summary-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .summary-feature {
+      border-left: 2px solid var(--gold);
+      padding-left: 1rem;
+    }
+    .summary-feature h4 { font-family: var(--font-cond); font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.3rem; }
+    .summary-feature p { font-size: 0.85rem; color: var(--gray-500); }
+    .summary-aside {}
+    .key-numbers {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      padding: 2.5rem;
+    }
+    .key-number-item {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--navy-border);
+    }
+    .key-number-item:last-child { border-bottom: none; }
+    .key-number-label { font-family: var(--font-cond); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); }
+    .key-number-value { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--gold); }
+
+    /* ===================== HIGHLIGHTS ===================== */
+    #highlights { background: var(--navy); }
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .highlight-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      padding: 2rem;
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .highlight-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .highlight-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.3); box-shadow: var(--shadow-gold); }
+    .highlight-card:hover::before { transform: scaleX(1); }
+    .highlight-card h3 { font-size: 1.1rem; color: var(--white); margin-bottom: 0.75rem; }
+    .highlight-card > p { font-size: 0.9rem; color: var(--gray-500); margin-bottom: 1.25rem; }
+    .highlight-list li {
+      font-size: 0.85rem;
+      color: var(--gray-300);
+      padding: 0.35rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .highlight-list li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: var(--gold);
+      font-size: 0.7rem;
+    }
+
+    /* ===================== PROPERTY ===================== */
+    #property { background: var(--navy-mid); }
+    .property-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .specs-table { width: 100%; border-collapse: collapse; }
+    .specs-table tr { border-bottom: 1px solid var(--navy-border); }
+    .specs-table td { padding: 1rem 0; font-size: 0.9rem; }
+    .specs-table td:first-child { color: var(--gray-500); font-family: var(--font-cond); letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.8rem; width: 40%; }
+    .specs-table td:last-child { color: var(--white); font-weight: 500; }
+
+    .unit-types { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+    .unit-type {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      padding: 1.5rem;
+    }
+    .unit-type h4 { font-family: var(--font-cond); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; color: var(--gold); margin-bottom: 0.75rem; }
+    .unit-type ul li { font-size: 0.85rem; color: var(--gray-300); padding: 0.25rem 0; padding-left: 1rem; position: relative; }
+    .unit-type ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .amenity-item {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+    .amenity-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .amenity-title { font-family: var(--font-cond); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.25rem; }
+    .amenity-desc { font-size: 0.75rem; color: var(--gray-500); }
+
+    .ownership-box {
+      background: var(--navy-card);
+      border: 1px solid var(--gold-dark);
+      padding: 2rem;
+      margin-top: 2.5rem;
+    }
+    .ownership-box h4 { color: var(--gold); font-family: var(--font-cond); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.9rem; margin-bottom: 1rem; }
+    .ownership-box strong { color: var(--white); }
+    .ownership-list { margin-top: 1rem; }
+    .ownership-list li { font-size: 0.85rem; color: var(--gray-300); padding: 0.3rem 0; padding-left: 1rem; position: relative; }
+    .ownership-list li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-size: 0.75rem; }
+
+    /* ===================== MARKET ===================== */
+    #market { background: var(--navy); }
+    .market-stats {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    .market-stat {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .market-stat-prefix { font-family: var(--font-cond); font-size: 0.9rem; color: var(--gold); vertical-align: super; margin-right: 2px; }
+    .market-stat-value {
+      font-family: var(--font-display);
+      font-size: 2.5rem; font-weight: 700;
+      color: var(--white);
+      display: inline;
+    }
+    .market-stat-suffix { font-family: var(--font-cond); font-size: 1.2rem; color: var(--gold); }
+    .market-stat-label { font-family: var(--font-cond); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-500); margin-top: 0.5rem; }
+
+    .market-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .chart-box { background: var(--navy-card); border: 1px solid var(--navy-border); padding: 2rem; }
+    .chart-box h4 { font-family: var(--font-cond); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; color: var(--gold); margin-bottom: 1.5rem; }
+    .chart-container { position: relative; height: 220px; }
+
+    .competitive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .competitive-box { background: var(--navy-card); border: 1px solid var(--navy-border); padding: 2rem; }
+    .competitive-box.motown { border-color: var(--gold-dark); position: relative; }
+    .motown-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: var(--navy);
+      font-family: var(--font-cond); font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.25rem 1rem;
+    }
+    .competitive-box h4 { font-family: var(--font-cond); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; color: var(--gray-300); margin-bottom: 1rem; }
+    .competitive-box.motown h4 { color: var(--gold); }
+    .comp-list li { font-size: 0.85rem; color: var(--gray-300); padding: 0.3rem 0; padding-left: 1.2rem; position: relative; }
+    .comp-list li::before { content: '✗'; position: absolute; left: 0; color: #EF4444; font-size: 0.7rem; }
+    .competitive-box.motown .comp-list li::before { content: '✓'; color: var(--success); }
+
+    /* ===================== LOCATION ===================== */
+    #location { background: var(--navy-mid); }
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .location-points { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+    .location-point { display: flex; gap: 1.25rem; align-items: flex-start; }
+    .location-point-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .location-point-text h4 { font-family: var(--font-cond); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.85rem; color: var(--white); margin-bottom: 0.25rem; }
+    .location-point-text p { font-size: 0.85rem; color: var(--gray-500); }
+
+    .nearby-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 0.75rem; }
+    .nearby-tag {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-cond);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      color: var(--gray-300);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .nearby-tag::before { content: '⊙'; color: var(--gold); }
+
+    /* ===================== FINANCIALS ===================== */
+    #financials { background: var(--navy); }
+    .financials-hero {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .fin-metric {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .fin-metric::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .fin-metric-value {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 700;
+      color: var(--gold);
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .fin-metric-label {
+      font-family: var(--font-cond);
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gray-500);
+    }
+
+    .financials-charts { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-bottom: 3rem; }
+    .fin-chart-box { background: var(--navy-card); border: 1px solid var(--navy-border); padding: 2rem; }
+    .fin-chart-box h4 { font-family: var(--font-cond); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; color: var(--gold); margin-bottom: 1.5rem; }
+    .fin-chart-container { position: relative; height: 250px; }
+
+    .unit-economics {
+      background: var(--navy-card); border: 1px solid var(--navy-border);
+      padding: 2.5rem; margin-bottom: 2rem;
+    }
+    .unit-economics h3 { font-family: var(--font-cond); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.9rem; color: var(--gold); margin-bottom: 1.5rem; }
+    .econ-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+    .econ-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--navy-border); }
+    .econ-row:last-child { border-bottom: none; }
+    .econ-label { font-size: 0.85rem; color: var(--gray-500); }
+    .econ-value { font-size: 0.9rem; color: var(--white); font-weight: 600; }
+
+    .fin-advantages { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    .fin-adv-item {
+      background: var(--navy-card); border: 1px solid var(--navy-border);
+      padding: 1.25rem;
+      display: flex; align-items: flex-start; gap: 0.75rem;
+    }
+    .fin-adv-check { color: var(--gold); font-size: 0.85rem; margin-top: 0.15rem; flex-shrink: 0; }
+    .fin-adv-text { font-size: 0.85rem; color: var(--gray-300); }
+
+    /* ===================== GALLERY ===================== */
+    #gallery { background: var(--navy-mid); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .gallery-item { position: relative; overflow: hidden; }
+    .gallery-item img {
+      width: 100%; aspect-ratio: 16/9;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(5,8,16,0.9));
+      padding: 1.5rem 1.25rem 1rem;
+    }
+    .gallery-caption h4 { font-family: var(--font-cond); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.2rem; }
+    .gallery-caption p { font-size: 0.8rem; color: var(--gray-300); }
+
+    .video-item {
+      background: var(--navy-card); border: 1px solid var(--navy-border);
+      padding: 1.5rem;
+    }
+    .video-placeholder {
+      width: 100%; aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #0A1428, #0F1E3A);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1rem;
+      position: relative; overflow: hidden;
+    }
+    .video-play {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.15);
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; color: var(--gold);
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .video-play:hover { background: rgba(201,168,76,0.3); }
+    .video-label { font-family: var(--font-cond); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-500); }
+
+    /* ===================== CONTACT ===================== */
+    #contact { background: var(--navy); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: start; }
+    .contact-info-item { margin-bottom: 2rem; }
+    .contact-info-label { font-family: var(--font-cond); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.35rem; }
+    .contact-info-value { font-size: 0.95rem; color: var(--white); }
+
+    .contact-receives {
+      background: var(--navy-card); border: 1px solid var(--navy-border);
+      padding: 1.75rem; margin-top: 2rem;
+    }
+    .contact-receives h4 { font-family: var(--font-cond); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; color: var(--gold); margin-bottom: 1rem; }
+    .contact-receives li { font-size: 0.85rem; color: var(--gray-300); padding: 0.35rem 0; padding-left: 1.2rem; position: relative; }
+    .contact-receives li::before { content: '→'; position: absolute; left: 0; color: var(--gold); }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-field label {
+      font-family: var(--font-cond);
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gray-500);
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color var(--transition);
+      width: 100%;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-color: var(--gold); }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: var(--gray-500); }
+    .form-field select option { background: var(--navy-card); }
+    .form-field textarea { min-height: 120px; resize: vertical; }
+    .form-checkbox { display: flex; align-items: flex-start; gap: 0.75rem; }
+    .form-checkbox input { width: auto; margin-top: 0.2rem; accent-color: var(--gold); }
+    .form-checkbox label { font-size: 0.8rem; color: var(--gray-500); cursor: pointer; }
+    .form-submit {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      font-family: var(--font-cond);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      background: var(--navy-card);
+      border-top: 1px solid var(--navy-border);
+      padding: 4rem 0 2rem;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--navy-border);
+      margin-bottom: 2rem;
+    }
+    .footer-brand { }
+    .footer-logo {
+      font-family: var(--font-cond);
+      font-size: 1.2rem; font-weight: 700; letter-spacing: 0.15em;
+      color: var(--gold); text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .footer-tagline { font-size: 0.8rem; color: var(--gray-500); margin-bottom: 1.5rem; }
+    .footer-col h5 {
+      font-family: var(--font-cond); font-size: 0.75rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col ul li a { font-size: 0.85rem; color: var(--gray-500); transition: color var(--transition); }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-address { font-size: 0.85rem; color: var(--gray-500); line-height: 1.8; }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; }
+    .footer-disclaimer { font-size: 0.72rem; color: var(--gray-500); max-width: 75%; line-height: 1.6; }
+    .footer-copy { font-family: var(--font-cond); font-size: 0.75rem; color: var(--gray-500); white-space: nowrap; }
+
+    /* ===================== SCROLL ANIMATIONS ===================== */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+    .fade-up-delay-5 { transition-delay: 0.5s; }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1024px) {
+      .highlights-grid { grid-template-columns: repeat(2,1fr); }
+      .financials-hero { grid-template-columns: repeat(2,1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .financials-charts { grid-template-columns: 1fr; }
+      .amenities-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-badge { display: none; }
+      .summary-grid, .property-grid, .market-charts, .competitive-grid,
+      .location-grid, .contact-grid, .econ-grid { grid-template-columns: 1fr; }
+      .highlights-grid, .financials-hero, .fin-advantages { grid-template-columns: 1fr; }
+      .hero-stats { flex-wrap: wrap; gap: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; }
+      .footer-disclaimer { max-width: 100%; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar" class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <i class="fas fa-warehouse"></i>
-                <span>MOTOWN LUXURY STORAGE</span>
+
+  <!-- ============================================================ NAV -->
+  <nav id="navbar">
+    <div class="nav-brand">Motown Luxury Storage</div>
+    <div class="nav-links">
+      <a href="#executive-summary">Overview</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#property">Property</a>
+      <a href="#market">Market</a>
+      <a href="#location">Location</a>
+      <a href="#financials">Financials</a>
+      <a href="#contact" class="nav-cta">Inquire</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================ HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-content">
+      <div>
+        <div class="hero-eyebrow">Investment Opportunity</div>
+        <h1 class="hero-title">MOTOWN<br><span>LUXURY</span><br>STORAGE</h1>
+        <p class="hero-subtitle">Premium RV &amp; Boat Storage Condominiums</p>
+        <p class="hero-location">Spring Hill, Florida</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-value" id="stat-investment">$8.5M</div>
+            <div class="hero-stat-label">Total Investment</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value" id="stat-cap">10.1%</div>
+            <div class="hero-stat-label">Market-Aligned Cap Rate</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value" id="stat-noi">$862K</div>
+            <div class="hero-stat-label">Annual NOI</div>
+          </div>
+        </div>
+        <a href="#executive-summary" class="hero-cta">View Details</a>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-date">Investment Date</div>
+        <div class="hero-badge-month">AUG</div>
+        <div class="hero-badge-year">2025</div>
+        <div class="hero-badge-label">Shovel Ready</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ EXECUTIVE SUMMARY -->
+  <section id="executive-summary">
+    <div class="container">
+      <div class="section-label">Investment Overview</div>
+      <div class="summary-grid">
+        <div>
+          <h2>Executive Summary</h2>
+          <div class="section-divider"></div>
+          <p style="margin-bottom:1rem;">Motown Luxury Storage presents an investment opportunity in the rapidly growing premium RV and boat storage market in Spring Hill, Florida. This permit ready, institutional-quality facility offers a rare combination of strong market fundamentals, premium amenities, and an innovative ownership model.</p>
+          <p style="margin-bottom:1rem;">Located strategically at the intersection of Trenton Avenue and US Highway 19, Motown provides unparalleled access to the recreational areas including Gulf Coast, Weeki Wachee River, numerous boat launches with prominent area car shows. The facility features climate-controlled enclosed units with private mezzanines and in-unit bathrooms, along with covered storage options for oversized vehicles—representing the highest standard of storage accommodations in the market.</p>
+          <p>With a 10.1% market-aligned cap rate and strong annual NOI of $862,396, this investment offers institutional investors an attractive risk-adjusted return in a high-demand, limited-supply asset class. The ownership condominium model provides long-term equity appreciation potential while eliminating typical rental volatility.</p>
+          <div class="summary-features">
+            <div class="summary-feature">
+              <h4>Permit Ready Development</h4>
+              <p>Approved with permits — shovel ready opportunity</p>
             </div>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="#hero" class="nav-link">Overview</a></li>
-                <li><a href="#executive-summary" class="nav-link">Executive Summary</a></li>
-                <li><a href="#highlights" class="nav-link">Highlights</a></li>
-                <li><a href="#property" class="nav-link">Property</a></li>
-                <li><a href="#market" class="nav-link">Market</a></li>
-                <li><a href="#location" class="nav-link">Location</a></li>
-                <li><a href="#financials" class="nav-link">Financials</a></li>
-                <li><a href="#contact" class="nav-link contact-btn">Contact</a></li>
+            <div class="summary-feature">
+              <h4>Strategic Location</h4>
+              <p>Prime position on US Highway 19 corridor</p>
+            </div>
+            <div class="summary-feature">
+              <h4>Premium Amenities</h4>
+              <p>Climate-controlled units with mezzanines &amp; bathrooms</p>
+            </div>
+            <div class="summary-feature">
+              <h4>Flexible Ownership</h4>
+              <p>Storage condos, rentals, or blend model</p>
+            </div>
+          </div>
+        </div>
+        <div class="summary-aside">
+          <div class="key-numbers">
+            <div class="key-number-item">
+              <span class="key-number-label">Total Investment</span>
+              <span class="key-number-value">$8.5M</span>
+            </div>
+            <div class="key-number-item">
+              <span class="key-number-label">Cap Rate</span>
+              <span class="key-number-value">10.1%</span>
+            </div>
+            <div class="key-number-item">
+              <span class="key-number-label">Annual NOI</span>
+              <span class="key-number-value">$862,396</span>
+            </div>
+            <div class="key-number-item">
+              <span class="key-number-label">Investment Date</span>
+              <span class="key-number-value" style="font-size:1.2rem;">Aug 2025</span>
+            </div>
+            <div class="key-number-item">
+              <span class="key-number-label">Occupancy Target</span>
+              <span class="key-number-value">90%</span>
+            </div>
+            <div class="key-number-item">
+              <span class="key-number-label">Status</span>
+              <span class="key-number-value" style="font-size:1rem; color:var(--success);">Permit Ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ HIGHLIGHTS -->
+  <section id="highlights">
+    <div class="container">
+      <div class="section-label">Key Differentiators</div>
+      <h2>Investment Highlights</h2>
+      <div class="section-divider"></div>
+      <div class="highlights-grid">
+        <div class="highlight-card fade-up">
+          <h3>Project Profile</h3>
+          <p>Low risk with downside protection from strong Florida demographics, tourism, and recreational vehicle ownership trends.</p>
+          <ul class="highlight-list">
+            <li>Strong demographic trends</li>
+            <li>Tourism-driven demand</li>
+            <li>Growing RV/boat ownership</li>
+          </ul>
+        </div>
+        <div class="highlight-card fade-up fade-up-delay-1">
+          <h3>Market Position</h3>
+          <p>First-to-market luxury storage condominiums in high-demand Spring Hill corridor with limited competitive supply.</p>
+          <ul class="highlight-list">
+            <li>First-to-market advantage</li>
+            <li>Limited competition</li>
+            <li>High-demand corridor</li>
+          </ul>
+        </div>
+        <div class="highlight-card fade-up fade-up-delay-2">
+          <h3>Premium Construction</h3>
+          <p>Permit in hand development built to the most stringent modern building standards, featuring superior weather resistance and durability.</p>
+          <ul class="highlight-list">
+            <li>Hurricane-rated construction</li>
+            <li>Commercial-grade materials</li>
+            <li>Future-proof utility systems</li>
+          </ul>
+        </div>
+        <div class="highlight-card fade-up fade-up-delay-3">
+          <h3>Strategic Location</h3>
+          <p>Prime position on US Highway 19 adjacent to Timber Pines, minutes from Gulf Coast Waters, Weeki Wachee River, and major boat launches.</p>
+          <ul class="highlight-list">
+            <li>Adjacent golf course community</li>
+            <li>Multiple nearby boat launches</li>
+            <li>Surrounded by prime retailers</li>
+          </ul>
+        </div>
+        <div class="highlight-card fade-up fade-up-delay-4">
+          <h3>Ownership Model</h3>
+          <p>Innovative condominium structure allows buyers to own their storage space, building equity while enjoying premium amenities and complete control.</p>
+          <ul class="highlight-list">
+            <li>Build long-term equity</li>
+            <li>No rental volatility</li>
+            <li>Complete control &amp; customization</li>
+          </ul>
+        </div>
+        <div class="highlight-card fade-up fade-up-delay-5">
+          <h3>Strong Returns</h3>
+          <p>Attractive institutional-quality returns with 10.1% market-aligned cap rate, strong NOI, and multiple exit strategies for investors.</p>
+          <ul class="highlight-list">
+            <li>10.1% Cap Rate</li>
+            <li>$862K Annual NOI</li>
+            <li>Multiple exit strategies</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ PROPERTY -->
+  <section id="property">
+    <div class="container">
+      <div class="section-label">Facility Details</div>
+      <h2>Property Overview</h2>
+      <div class="section-divider"></div>
+      <div class="property-grid">
+        <div>
+          <h3>Facility Specifications</h3>
+          <table class="specs-table">
+            <tr><td>Shovel Ready</td><td>Approved with Permits</td></tr>
+            <tr><td>Location</td><td>Trenton Ave &amp; US Highway 19</td></tr>
+            <tr><td>Property Type</td><td>Premium RV &amp; Boat Storage</td></tr>
+            <tr><td>Construction</td><td>Hurricane-Rated Standards</td></tr>
+          </table>
+
+          <div class="unit-types">
+            <div class="unit-type">
+              <h4>Climate-Controlled Enclosed</h4>
+              <ul>
+                <li>Air-conditioned interiors</li>
+                <li>Private mezzanines</li>
+                <li>In-unit bathrooms</li>
+                <li>Electrical hookups</li>
+                <li>Superior weather protection</li>
+              </ul>
+            </div>
+            <div class="unit-type">
+              <h4>Covered Storage</h4>
+              <ul>
+                <li>Oversized vehicle capacity</li>
+                <li>Weather-protected parking</li>
+                <li>Extra-wide drive aisles</li>
+                <li>Easy access and maneuverability</li>
+                <li>Cost-effective option</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="ownership-box">
+            <h4>Ownership Structure</h4>
+            <strong style="color:var(--white);font-family:var(--font-body);">Storage Condos or Rentals or Blend</strong>
+            <p style="font-size:0.85rem;margin-top:0.5rem;">Flexible investment model allowing for:</p>
+            <ul class="ownership-list">
+              <li>Pure condominium ownership</li>
+              <li>Traditional rental operations</li>
+              <li>Hybrid blend approach</li>
+              <li>Multiple exit strategies</li>
             </ul>
+          </div>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-badge">INVESTMENT OPPORTUNITY</div>
-            <h1 class="hero-title">MOTOWN LUXURY STORAGE</h1>
-            <p class="hero-subtitle">Premium RV & Boat Storage Condominiums</p>
-            <p class="hero-location">
-                <i class="fas fa-map-marker-alt"></i>
-                Spring Hill, Florida
-            </p>
-            
-            <div class="hero-stats">
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <div class="stat-value" data-target="8.5">0</div>
-                    <div class="stat-unit">M</div>
-                    <div class="stat-label">Total Investment</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="stat-value" data-target="10.1">0</div>
-                    <div class="stat-unit">%</div>
-                    <div class="stat-label">Market-Aligned Cap Rate</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <div class="stat-value" data-target="862">0</div>
-                    <div class="stat-unit">K</div>
-                    <div class="stat-label">Annual NOI</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <div class="stat-value">AUG</div>
-                    <div class="stat-unit">2025</div>
-                    <div class="stat-label">Investment Date</div>
-                </div>
+        <div>
+          <h3>Premium Amenities</h3>
+          <div class="amenities-grid">
+            <div class="amenity-item">
+              <div class="amenity-icon">🚿</div>
+              <div class="amenity-title">High-Pressure Wash</div>
+              <div class="amenity-desc">Professional washing stations</div>
             </div>
-            
-            <a href="#executive-summary" class="hero-cta">
-                View Details
-                <i class="fas fa-arrow-down"></i>
-            </a>
+            <div class="amenity-item">
+              <div class="amenity-icon">🚮</div>
+              <div class="amenity-title">RV Dump Station</div>
+              <div class="amenity-desc">Convenient waste disposal</div>
+            </div>
+            <div class="amenity-item">
+              <div class="amenity-icon">🛣️</div>
+              <div class="amenity-title">Wide Drive Aisles</div>
+              <div class="amenity-desc">Easy maneuvering space</div>
+            </div>
+            <div class="amenity-item">
+              <div class="amenity-icon">⚡</div>
+              <div class="amenity-title">Electrical Hookups</div>
+              <div class="amenity-desc">Power for all units</div>
+            </div>
+            <div class="amenity-item">
+              <div class="amenity-icon">🏗️</div>
+              <div class="amenity-title">Private Mezzanines</div>
+              <div class="amenity-desc">Extra storage space</div>
+            </div>
+            <div class="amenity-item">
+              <div class="amenity-icon">🚽</div>
+              <div class="amenity-title">In-Unit Bathrooms</div>
+              <div class="amenity-desc">Personal facilities</div>
+            </div>
+            <div class="amenity-item">
+              <div class="amenity-icon">📷</div>
+              <div class="amenity-title">24/7 Surveillance</div>
+              <div class="amenity-desc">Complete security coverage</div>
+            </div>
+            <div class="amenity-item">
+              <div class="amenity-icon">🔒</div>
+              <div class="amenity-title">Gated Access</div>
+              <div class="amenity-desc">Controlled entry system</div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Executive Summary -->
-    <section id="executive-summary" class="executive-summary">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">INVESTMENT OVERVIEW</span>
-                <h2 class="section-title">Executive Summary</h2>
-            </div>
-            
-            <div class="summary-content">
-                <div class="summary-text">
-                    <p class="lead-text">
-                        Motown Luxury Storage presents an investment opportunity in the rapidly growing premium RV and boat storage market in Spring Hill, Florida. This permit ready, institutional-quality facility offers a rare combination of strong market fundamentals, premium amenities, and an innovative ownership model.
-                    </p>
-                    <p>
-                        Located strategically at the intersection of Trenton Avenue and US Highway 19, Motown provides unparalleled access to the recreational areas including Gulf Coast, Weeki Wachee River, numerous boat launches with prominent area car shows. The facility features climate-controlled enclosed units with private mezzanines and in-unit bathrooms, along with covered storage options for oversized vehicles—representing the highest standard of storage accommodations in the market.
-                    </p>
-                    <p>
-                        With a 10.1% market-aligned cap rate and strong annual NOI of $862,396, this investment offers institutional investors an attractive risk-adjusted return in a high-demand, limited-supply asset class. The ownership condominium model provides long-term equity appreciation potential while eliminating typical rental volatility.
-                    </p>
-                </div>
-                
-                <div class="summary-highlights">
-                    <div class="highlight-box">
-                        <i class="fas fa-check-circle"></i>
-                        <h4>Permit Ready Development</h4>
-                        <p>Approved with permits - shovel ready opportunity</p>
-                    </div>
-                    <div class="highlight-box">
-                        <i class="fas fa-check-circle"></i>
-                        <h4>Strategic Location</h4>
-                        <p>Prime position on US Highway 19 corridor</p>
-                    </div>
-                    <div class="highlight-box">
-                        <i class="fas fa-check-circle"></i>
-                        <h4>Premium Amenities</h4>
-                        <p>Climate-controlled units with mezzanines & bathrooms</p>
-                    </div>
-                    <div class="highlight-box">
-                        <i class="fas fa-check-circle"></i>
-                        <h4>Flexible Ownership</h4>
-                        <p>Storage condos, rentals, or blend model</p>
-                    </div>
-                </div>
-            </div>
+  <!-- ============================================================ MARKET -->
+  <section id="market">
+    <div class="container">
+      <div class="section-label">Market Intelligence</div>
+      <h2>Market Analysis</h2>
+      <div class="section-divider"></div>
+      <p style="max-width:780px;">Spring Hill, Florida represents one of the fastest-growing markets in the Tampa Bay region, with strong demographic trends supporting premium storage demand. The area's proximity to Gulf Coast Waters, Weeki Wachee River, and multiple boat launches creates exceptional demand for high-quality RV and boat storage facilities.</p>
+
+      <div class="market-stats">
+        <div class="market-stat">
+          <div><span class="market-stat-value counter" data-target="182000" data-format="comma">0</span></div>
+          <div class="market-stat-label">Population</div>
         </div>
-    </section>
-
-    <!-- Investment Highlights -->
-    <section id="highlights" class="highlights">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">KEY DIFFERENTIATORS</span>
-                <h2 class="section-title">Investment Highlights</h2>
-            </div>
-            
-            <div class="highlights-grid">
-                <!-- Project Profile -->
-                <div class="highlight-card" data-aos="fade-up" data-aos-delay="0">
-                    <div class="card-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Project Profile</h3>
-                    <p class="card-description">
-                        Low risk with downside protection from strong Florida demographics, tourism, and recreational vehicle ownership trends.
-                    </p>
-                    <ul class="card-features">
-                        <li><i class="fas fa-check"></i> Strong demographic trends</li>
-                        <li><i class="fas fa-check"></i> Tourism-driven demand</li>
-                        <li><i class="fas fa-check"></i> Growing RV/boat ownership</li>
-                    </ul>
-                </div>
-                
-                <!-- Market Position -->
-                <div class="highlight-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3>Market Position</h3>
-                    <p class="card-description">
-                        First-to-market luxury storage condominiums in high-demand Spring Hill corridor with limited competitive supply.
-                    </p>
-                    <ul class="card-features">
-                        <li><i class="fas fa-check"></i> First-to-market advantage</li>
-                        <li><i class="fas fa-check"></i> Limited competition</li>
-                        <li><i class="fas fa-check"></i> High-demand corridor</li>
-                    </ul>
-                </div>
-                
-                <!-- Premium Construction -->
-                <div class="highlight-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-icon">
-                        <i class="fas fa-hard-hat"></i>
-                    </div>
-                    <h3>Premium Construction</h3>
-                    <p class="card-description">
-                        Permit in hand development opportunity built to the most stringent modern building standards, featuring superior weather resistance, durability, and utility infrastructure designed for long-term performance.
-                    </p>
-                    <ul class="card-features">
-                        <li><i class="fas fa-check"></i> Hurricane-rated construction</li>
-                        <li><i class="fas fa-check"></i> Commercial-grade materials</li>
-                        <li><i class="fas fa-check"></i> Future-proof utility systems</li>
-                    </ul>
-                </div>
-                
-                <!-- Strategic Location -->
-                <div class="highlight-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3>Strategic Location</h3>
-                    <p class="card-description">
-                        Prime position on US Highway 19 corridor adjacent to Timber Pines, mins from Gulf Coast Waters, Weeki Wachee River, and major boat launches and surrounded by essential services and retailers.
-                    </p>
-                    <ul class="card-features">
-                        <li><i class="fas fa-check"></i> Adjacent golf course community</li>
-                        <li><i class="fas fa-check"></i> Multiple nearby boat launches</li>
-                        <li><i class="fas fa-check"></i> Surrounded by prime retailers</li>
-                    </ul>
-                </div>
-                
-                <!-- Ownership Model -->
-                <div class="highlight-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="card-icon">
-                        <i class="fas fa-key"></i>
-                    </div>
-                    <h3>Ownership Model</h3>
-                    <p class="card-description">
-                        Innovative condominium structure allows buyers to own their storage space, building equity while enjoying premium amenities and complete control.
-                    </p>
-                    <ul class="card-features">
-                        <li><i class="fas fa-check"></i> Build long-term equity</li>
-                        <li><i class="fas fa-check"></i> No rental volatility</li>
-                        <li><i class="fas fa-check"></i> Complete control & customization</li>
-                    </ul>
-                </div>
-                
-                <!-- Strong Returns -->
-                <div class="highlight-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="card-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <h3>Strong Returns</h3>
-                    <p class="card-description">
-                        Attractive institutional-quality returns with 10.1% market-aligned cap rate, strong NOI, and multiple exit strategies for investors.
-                    </p>
-                    <ul class="card-features">
-                        <li><i class="fas fa-check"></i> 10.1% Cap Rate</li>
-                        <li><i class="fas fa-check"></i> $862K Annual NOI</li>
-                        <li><i class="fas fa-check"></i> Multiple exit strategies</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="market-stat">
+          <div><span class="market-stat-value counter" data-target="4.2" data-format="decimal">0</span><span class="market-stat-suffix">%</span></div>
+          <div class="market-stat-label">Annual Growth</div>
         </div>
-    </section>
-
-    <!-- Property Overview -->
-    <section id="property" class="property-overview">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">FACILITY DETAILS</span>
-                <h2 class="section-title">Property Overview</h2>
-            </div>
-            
-            <div class="property-grid">
-                <div class="property-details">
-                    <div class="detail-group">
-                        <h3><i class="fas fa-building"></i> Facility Specifications</h3>
-                        <div class="spec-grid">
-                            <div class="spec-item">
-                                <span class="spec-label">Shovel Ready:</span>
-                                <span class="spec-value">Approved with Permits</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Location:</span>
-                                <span class="spec-value">Trenton Ave & US Highway 19</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Property Type:</span>
-                                <span class="spec-value">Premium RV & Boat Storage</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Construction:</span>
-                                <span class="spec-value">Hurricane-Rated Standards</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="detail-group">
-                        <h3><i class="fas fa-layer-group"></i> Unit Types</h3>
-                        <div class="unit-types">
-                            <div class="unit-type">
-                                <div class="unit-icon">
-                                    <i class="fas fa-home"></i>
-                                </div>
-                                <h4>Climate-Controlled Enclosed</h4>
-                                <ul>
-                                    <li>Air-conditioned interiors</li>
-                                    <li>Private mezzanines</li>
-                                    <li>In-unit bathrooms</li>
-                                    <li>Electrical hookups</li>
-                                    <li>Superior weather protection</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="unit-type">
-                                <div class="unit-icon">
-                                    <i class="fas fa-warehouse"></i>
-                                </div>
-                                <h4>Covered Storage</h4>
-                                <ul>
-                                    <li>Oversized vehicle capacity</li>
-                                    <li>Weather-protected parking</li>
-                                    <li>Extra-wide drive aisles</li>
-                                    <li>Easy access and maneuverability</li>
-                                    <li>Cost-effective option</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="detail-group">
-                        <h3><i class="fas fa-handshake"></i> Ownership Structure</h3>
-                        <div class="ownership-info">
-                            <p class="ownership-model">
-                                <strong>Storage Condos or Rentals or Blend</strong>
-                            </p>
-                            <p>Flexible investment model allowing for:</p>
-                            <ul>
-                                <li>Pure condominium ownership</li>
-                                <li>Traditional rental operations</li>
-                                <li>Hybrid blend approach</li>
-                                <li>Multiple exit strategies</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="amenities-section">
-                    <h3><i class="fas fa-star"></i> Premium Amenities</h3>
-                    <div class="amenities-grid">
-                        <div class="amenity-card">
-                            <i class="fas fa-wind"></i>
-                            <h4>High-Pressure Wash</h4>
-                            <p>Professional washing stations</p>
-                        </div>
-                        <div class="amenity-card">
-                            <i class="fas fa-toilet"></i>
-                            <h4>RV Dump Station</h4>
-                            <p>Convenient waste disposal</p>
-                        </div>
-                        <div class="amenity-card">
-                            <i class="fas fa-road"></i>
-                            <h4>Wide Drive Aisles</h4>
-                            <p>Easy maneuvering space</p>
-                        </div>
-                        <div class="amenity-card">
-                            <i class="fas fa-plug"></i>
-                            <h4>Electrical Hookups</h4>
-                            <p>Power for all units</p>
-                        </div>
-                        <div class="amenity-card">
-                            <i class="fas fa-layer-group"></i>
-                            <h4>Private Mezzanines</h4>
-                            <p>Extra storage space</p>
-                        </div>
-                        <div class="amenity-card">
-                            <i class="fas fa-restroom"></i>
-                            <h4>In-Unit Bathrooms</h4>
-                            <p>Personal facilities</p>
-                        </div>
-                        <div class="amenity-card">
-                            <i class="fas fa-video"></i>
-                            <h4>24/7 Surveillance</h4>
-                            <p>Complete security coverage</p>
-                        </div>
-                        <div class="amenity-card">
-                            <i class="fas fa-lock"></i>
-                            <h4>Gated Access</h4>
-                            <p>Controlled entry system</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="market-stat">
+          <div><span class="market-stat-prefix">$</span><span class="market-stat-value counter" data-target="67" data-format="plain">0</span><span class="market-stat-suffix">K</span></div>
+          <div class="market-stat-label">Median Income</div>
         </div>
-    </section>
-
-    <!-- Market Analysis -->
-    <section id="market" class="market-analysis">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">MARKET INTELLIGENCE</span>
-                <h2 class="section-title">Market Analysis</h2>
-            </div>
-            
-            <div class="market-content">
-                <div class="market-overview">
-                    <h3>Spring Hill Market Overview</h3>
-                    <p>
-                        Spring Hill, Florida represents one of the fastest-growing markets in the Tampa Bay region, with strong demographic trends supporting premium storage demand. The area's proximity to Gulf Coast Waters, Weeki Wachee River, and multiple boat launches creates exceptional demand for high-quality RV and boat storage facilities.
-                    </p>
-                    
-                    <div class="market-stats">
-                        <div class="market-stat">
-                            <div class="stat-number" data-target="120000">0</div>
-                            <div class="stat-label">Population</div>
-                        </div>
-                        <div class="market-stat">
-                            <div class="stat-number" data-target="4.2">0</div>
-                            <div class="stat-unit">%</div>
-                            <div class="stat-label">Annual Growth</div>
-                        </div>
-                        <div class="market-stat">
-                            <div class="stat-number">$</div>
-                            <div class="stat-number" data-target="65">0</div>
-                            <div class="stat-unit">K</div>
-                            <div class="stat-label">Median Income</div>
-                        </div>
-                        <div class="market-stat">
-                            <div class="stat-number" data-target="35">0</div>
-                            <div class="stat-unit">%</div>
-                            <div class="stat-label">RV/Boat Ownership</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="charts-grid">
-                    <div class="chart-container">
-                        <h4>Population Growth Trend</h4>
-                        <canvas id="populationChart"></canvas>
-                    </div>
-                    
-                    <div class="chart-container">
-                        <h4>RV & Boat Ownership Comparison</h4>
-                        <canvas id="ownershipChart"></canvas>
-                    </div>
-                </div>
-                
-                <div class="competitive-landscape">
-                    <h3>Competitive Landscape</h3>
-                    <p>
-                        Motown Luxury Storage establishes a first-to-market position in the premium storage condominium segment within the Spring Hill corridor. Traditional storage facilities offer basic rental options, while Motown provides an ownership model with institutional-grade amenities.
-                    </p>
-                    
-                    <div class="competitive-grid">
-                        <div class="competitor-card">
-                            <h4>Traditional Storage Facilities</h4>
-                            <ul>
-                                <li><i class="fas fa-times"></i> Rental-only model</li>
-                                <li><i class="fas fa-times"></i> Basic amenities</li>
-                                <li><i class="fas fa-times"></i> No customization</li>
-                                <li><i class="fas fa-times"></i> Rising rates</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="competitor-card motown-advantage">
-                            <div class="advantage-badge">MOTOWN ADVANTAGE</div>
-                            <h4>Motown Luxury Storage</h4>
-                            <ul>
-                                <li><i class="fas fa-check"></i> Ownership or rental options</li>
-                                <li><i class="fas fa-check"></i> Premium amenities</li>
-                                <li><i class="fas fa-check"></i> Full customization</li>
-                                <li><i class="fas fa-check"></i> Equity building</li>
-                                <li><i class="fas fa-check"></i> Climate-controlled</li>
-                                <li><i class="fas fa-check"></i> Mezzanines & bathrooms</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="market-stat">
+          <div><span class="market-stat-value counter" data-target="28" data-format="plain">0</span><span class="market-stat-suffix">%</span></div>
+          <div class="market-stat-label">RV/Boat Ownership</div>
         </div>
-    </section>
+      </div>
 
-    <!-- Location & Demographics -->
-    <section id="location" class="location-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">STRATEGIC POSITIONING</span>
-                <h2 class="section-title">Location & Accessibility</h2>
-            </div>
-            
-            <div class="location-content">
-                <div class="location-highlights">
-                    <div class="location-feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-map-marked-alt"></i>
-                        </div>
-                        <h3>Prime Highway Access</h3>
-                        <p>Located at the intersection of Trenton Avenue and US Highway 19, providing exceptional visibility and accessibility for the entire Tampa Bay region.</p>
-                    </div>
-                    
-                    <div class="location-feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-water"></i>
-                        </div>
-                        <h3>Recreational Access</h3>
-                        <p>Minutes from Gulf Coast Waters, Weeki Wachee River, and numerous boat launches. Perfect for boating and RV enthusiasts.</p>
-                    </div>
-                    
-                    <div class="location-feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-golf-ball"></i>
-                        </div>
-                        <h3>Adjacent to Timber Pines</h3>
-                        <p>Next to premier golf course community with affluent demographics and high recreational vehicle ownership rates.</p>
-                    </div>
-                    
-                    <div class="location-feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-store"></i>
-                        </div>
-                        <h3>Essential Services Nearby</h3>
-                        <p>Surrounded by prime retailers including Winn-Dixie, Rural King, AutoZone, Advance Auto Parts, and Lowe's.</p>
-                    </div>
-                </div>
-                
-                <div class="nearby-attractions">
-                    <h3>Nearby Attractions & Services</h3>
-                    <div class="attractions-grid">
-                        <div class="attraction-item">
-                            <i class="fas fa-anchor"></i>
-                            <span>Multiple Boat Launches</span>
-                        </div>
-                        <div class="attraction-item">
-                            <i class="fas fa-swimming-pool"></i>
-                            <span>Gulf Coast Waters Access</span>
-                        </div>
-                        <div class="attraction-item">
-                            <i class="fas fa-fish"></i>
-                            <span>Weeki Wachee River</span>
-                        </div>
-                        <div class="attraction-item">
-                            <i class="fas fa-car"></i>
-                            <span>Car Shows & Events</span>
-                        </div>
-                        <div class="attraction-item">
-                            <i class="fas fa-tools"></i>
-                            <span>Auto Parts Stores</span>
-                        </div>
-                        <div class="attraction-item">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span>Grocery & Retail</span>
-                        </div>
-                        <div class="attraction-item">
-                            <i class="fas fa-utensils"></i>
-                            <span>Restaurants</span>
-                        </div>
-                        <div class="attraction-item">
-                            <i class="fas fa-gas-pump"></i>
-                            <span>Fuel Stations</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="market-charts">
+        <div class="chart-box">
+          <h4>Population Growth Trend</h4>
+          <div class="chart-container">
+            <canvas id="popChart"></canvas>
+          </div>
         </div>
-    </section>
-
-    <!-- Financial Overview -->
-    <section id="financials" class="financials">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">INVESTMENT PERFORMANCE</span>
-                <h2 class="section-title">Financial Overview</h2>
-            </div>
-            
-            <div class="financial-content">
-                <div class="key-metrics">
-                    <div class="metric-card">
-                        <div class="metric-icon">
-                            <i class="fas fa-coins"></i>
-                        </div>
-                        <div class="metric-value">$8.5M</div>
-                        <div class="metric-label">Total Investment</div>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <div class="metric-icon">
-                            <i class="fas fa-percentage"></i>
-                        </div>
-                        <div class="metric-value">10.1%</div>
-                        <div class="metric-label">Market-Aligned Cap Rate</div>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <div class="metric-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="metric-value">$862,396</div>
-                        <div class="metric-label">Annual NOI</div>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <div class="metric-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <div class="metric-value">Aug 2025</div>
-                        <div class="metric-label">Investment Date</div>
-                    </div>
-                </div>
-                
-                <div class="financial-charts">
-                    <div class="chart-container">
-                        <h4>5-Year NOI Projections</h4>
-                        <canvas id="noiChart"></canvas>
-                    </div>
-                    
-                    <div class="chart-container">
-                        <h4>Revenue Mix</h4>
-                        <canvas id="revenueChart"></canvas>
-                    </div>
-                </div>
-                
-                <div class="financial-highlights">
-                    <div class="highlight-section">
-                        <h3><i class="fas fa-money-check-alt"></i> Unit Economics</h3>
-                        <div class="economics-grid">
-                            <div class="econ-item">
-                                <span class="econ-label">Enclosed Unit Sales Price:</span>
-                                <span class="econ-value">$85,000 - $125,000</span>
-                            </div>
-                            <div class="econ-item">
-                                <span class="econ-label">Covered Storage Sales Price:</span>
-                                <span class="econ-value">$45,000 - $75,000</span>
-                            </div>
-                            <div class="econ-item">
-                                <span class="econ-label">Average Monthly Rental:</span>
-                                <span class="econ-value">$350 - $650</span>
-                            </div>
-                            <div class="econ-item">
-                                <span class="econ-label">Occupancy Target:</span>
-                                <span class="econ-value">90% Year 1</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="highlight-section">
-                        <h3><i class="fas fa-trophy"></i> Investment Advantages</h3>
-                        <ul class="advantage-list">
-                            <li><i class="fas fa-check-circle"></i> Permit ready - reduce development timeline risk</li>
-                            <li><i class="fas fa-check-circle"></i> Flexible exit strategies (sell-off, hold, or blend)</li>
-                            <li><i class="fas fa-check-circle"></i> Strong cash flow from rental operations</li>
-                            <li><i class="fas fa-check-circle"></i> Equity appreciation through unit sales</li>
-                            <li><i class="fas fa-check-circle"></i> Limited competitive supply in market</li>
-                            <li><i class="fas fa-check-circle"></i> Recession-resistant asset class</li>
-                            <li><i class="fas fa-check-circle"></i> Growing demographic trends support demand</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="chart-box">
+          <h4>RV &amp; Boat Ownership vs. State Average</h4>
+          <div class="chart-container">
+            <canvas id="rvChart"></canvas>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">VISUAL SHOWCASE</span>
-                <h2 class="section-title">Property Gallery</h2>
-            </div>
-            
-            <div class="gallery-grid">
-                <div class="gallery-item-wrapper">
-                    <div class="gallery-item gallery-video">
-                        <video 
-                            controls 
-                            playsinline 
-                            webkit-playsinline 
-                            x-webkit-airplay="allow"
-                            preload="auto"
-                            style="width: 100%; height: auto; max-height: 500px; background: #000;">
-                            <source src="videos/facility-flythrough.mp4" type="video/mp4">
-                            Your browser does not support the video tag. Please try a different browser.
-                        </video>
-                    </div>
-                    <div class="gallery-description">
-                        <p class="video-label"><i class="fas fa-play"></i> Play Video</p>
-                        <h4>Facility Flythrough</h4>
-                        <p>Explore the complete Motown Luxury Storage facility with climate-controlled units and covered storage areas.</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item-wrapper">
-                    <div class="gallery-item gallery-video">
-                        <video 
-                            controls 
-                            playsinline 
-                            webkit-playsinline 
-                            x-webkit-airplay="allow"
-                            preload="auto"
-                            style="width: 100%; height: auto; max-height: 500px; background: #000;">
-                            <source src="videos/trenton-site.mp4" type="video/mp4">
-                            Your browser does not support the video tag. Please try a different browser.
-                        </video>
-                    </div>
-                    <div class="gallery-description">
-                        <p class="video-label"><i class="fas fa-play"></i> Play Video</p>
-                        <h4>Trenton Site Overview</h4>
-                        <p>Prime location on US Highway 19 with excellent visibility and accessibility for the Spring Hill market.</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item-wrapper">
-                    <div class="gallery-item">
-                        <img src="images/image1.jpg" alt="Motown Storage - Facility Exterior View with Covered Storage">
-                    </div>
-                    <div class="gallery-description">
-                        <h4>Facility Exterior View</h4>
-                        <p>Modern climate-controlled units alongside covered storage for oversized RVs and boats with wide drive aisles.</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item-wrapper">
-                    <div class="gallery-item">
-                        <img src="images/image4.jpg" alt="Motown Storage - RV Washing Station">
-                    </div>
-                    <div class="gallery-description">
-                        <h4>RV Washing Station</h4>
-                        <p>High-pressure washing station with professional equipment for vehicle maintenance and detailing.</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item-wrapper">
-                    <div class="gallery-item">
-                        <img src="images/image2.jpg" alt="Motown Storage - Climate-Controlled Units and Wide Drive Aisles">
-                    </div>
-                    <div class="gallery-description">
-                        <h4>Climate-Controlled Storage Units</h4>
-                        <p>Premium enclosed units with air conditioning, private mezzanines, and in-unit bathrooms for ultimate convenience.</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item-wrapper">
-                    <div class="gallery-item">
-                        <img src="images/image3.jpg" alt="Motown Storage - Aerial View of Complete Facility">
-                    </div>
-                    <div class="gallery-description">
-                        <h4>Aerial Facility Overview</h4>
-                        <p>Complete bird's-eye view showcasing the full scope of the development and strategic site layout.</p>
-                    </div>
-                </div>
-            </div>
+      <h3 style="margin-top:3rem;margin-bottom:0.5rem;">Competitive Landscape</h3>
+      <p style="margin-bottom:2rem;max-width:700px;">Motown Luxury Storage establishes a first-to-market position in the premium storage condominium segment. Traditional storage facilities offer basic rental options, while Motown provides an ownership model with institutional-grade amenities.</p>
+      <div class="competitive-grid">
+        <div class="competitive-box">
+          <h4>Traditional Storage Facilities</h4>
+          <ul class="comp-list">
+            <li>Rental-only model</li>
+            <li>Basic amenities</li>
+            <li>No customization</li>
+            <li>Rising rates</li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">GET IN TOUCH</span>
-                <h2 class="section-title">Investment Inquiries</h2>
-                <p class="section-description">
-                    Qualified investors are invited to contact us for detailed investment materials, financial projections, and site visit scheduling.
-                </p>
-            </div>
-            
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Motown Luxury Storage</h3>
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Location</strong>
-                            <p>Trenton Avenue & US Highway 19<br>Spring Hill, FL 34609</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-globe"></i>
-                        <div>
-                            <strong>Website</strong>
-                            <p><a href="https://www.motownstorage.us" target="_blank">www.motownstorage.us</a></p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <strong>Investment Opportunity</strong>
-                            <p>August 2025</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-cta">
-                        <h4>Ready to Learn More?</h4>
-                        <p>Contact us to receive:</p>
-                        <ul>
-                            <li><i class="fas fa-file-pdf"></i> Detailed financial projections</li>
-                            <li><i class="fas fa-file-pdf"></i> Market feasibility study</li>
-                            <li><i class="fas fa-file-pdf"></i> Construction plans & specifications</li>
-                            <li><i class="fas fa-calendar"></i> Site visit scheduling</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="contact-form-container">
-                    <form id="contactForm" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="company">Company / Organization</label>
-                            <input type="text" id="company" name="company">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="investorType">Investor Type *</label>
-                            <select id="investorType" name="investorType" required>
-                                <option value="">Select investor type</option>
-                                <option value="institutional">Institutional Investor</option>
-                                <option value="private-equity">Private Equity</option>
-                                <option value="family-office">Family Office</option>
-                                <option value="high-net-worth">High Net Worth Individual</option>
-                                <option value="developer">Developer / Builder</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message / Questions</label>
-                            <textarea id="message" name="message" rows="5"></textarea>
-                        </div>
-                        
-                        <div class="form-group checkbox-group">
-                            <label>
-                                <input type="checkbox" name="accredited" required>
-                                <span>I am an accredited investor and understand this is a private placement opportunity.</span>
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">
-                            <span>Submit Inquiry</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                        
-                        <div id="formMessage" class="form-message"></div>
-                    </form>
-                </div>
-            </div>
+        <div class="competitive-box motown">
+          <div class="motown-badge">Motown Advantage</div>
+          <h4>Motown Luxury Storage</h4>
+          <ul class="comp-list">
+            <li>Ownership or rental options</li>
+            <li>Premium amenities</li>
+            <li>Full customization</li>
+            <li>Equity building</li>
+            <li>Climate-controlled</li>
+            <li>Mezzanines &amp; bathrooms</li>
+          </ul>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-brand">
-                        <i class="fas fa-warehouse"></i>
-                        <h3>MOTOWN LUXURY STORAGE</h3>
-                    </div>
-                    <p>Premium RV & Boat Storage Condominiums in Spring Hill, Florida</p>
-                    <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#executive-summary">Executive Summary</a></li>
-                        <li><a href="#highlights">Investment Highlights</a></li>
-                        <li><a href="#property">Property Overview</a></li>
-                        <li><a href="#market">Market Analysis</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Investment Info</h4>
-                    <ul>
-                        <li><a href="#financials">Financial Overview</a></li>
-                        <li><a href="#location">Location Details</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li><a href="https://www.motownstorage.us" target="_blank">Official Website</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>
-                        <i class="fas fa-map-marker-alt"></i>
-                        Trenton Avenue & US 19<br>Spring Hill, FL 34609
-                    </p>
-                    <p>
-                        <i class="fas fa-globe"></i>
-                        <a href="https://www.motownstorage.us" target="_blank">www.motownstorage.us</a>
-                    </p>
-                </div>
+  <!-- ============================================================ LOCATION -->
+  <section id="location">
+    <div class="container">
+      <div class="section-label">Strategic Positioning</div>
+      <h2>Location &amp; Accessibility</h2>
+      <div class="section-divider"></div>
+      <div class="location-grid">
+        <div>
+          <div class="location-points">
+            <div class="location-point">
+              <div class="location-point-icon">🛣️</div>
+              <div class="location-point-text">
+                <h4>Prime Highway Access</h4>
+                <p>Located at the intersection of Trenton Avenue and US Highway 19, providing exceptional visibility and accessibility for the entire Tampa Bay region.</p>
+              </div>
             </div>
-            
-            <div class="footer-bottom">
-                <div class="disclaimer">
-                    <p><strong>DISCLAIMER:</strong> This offering memorandum is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities. Any such offer or solicitation will be made only by means of a confidential private placement memorandum and in accordance with applicable securities laws. Past performance is not indicative of future results. Investment in real estate involves substantial risk and is suitable only for sophisticated investors who can afford to lose their entire investment. All financial projections and market data are estimates based on current information and are subject to change.</p>
-                </div>
-                <p class="copyright">
-                    &copy; 2025 Motown Luxury Storage. All rights reserved. | Investment Opportunity August 2025
-                </p>
+            <div class="location-point">
+              <div class="location-point-icon">⚓</div>
+              <div class="location-point-text">
+                <h4>Recreational Access</h4>
+                <p>Minutes from Gulf Coast Waters, Weeki Wachee River, and numerous boat launches. Perfect for boating and RV enthusiasts.</p>
+              </div>
             </div>
+            <div class="location-point">
+              <div class="location-point-icon">⛳</div>
+              <div class="location-point-text">
+                <h4>Adjacent to Timber Pines</h4>
+                <p>Next to premier golf course community with affluent demographics and high recreational vehicle ownership rates.</p>
+              </div>
+            </div>
+            <div class="location-point">
+              <div class="location-point-icon">🏪</div>
+              <div class="location-point-text">
+                <h4>Essential Services Nearby</h4>
+                <p>Surrounded by prime retailers including Winn-Dixie, Rural King, AutoZone, Advance Auto Parts, and Lowe's.</p>
+              </div>
+            </div>
+          </div>
         </div>
-    </footer>
+        <div>
+          <h3>Nearby Attractions &amp; Services</h3>
+          <div class="nearby-grid" style="margin-top:1.5rem;">
+            <div class="nearby-tag">Multiple Boat Launches</div>
+            <div class="nearby-tag">Gulf Coast Waters Access</div>
+            <div class="nearby-tag">Weeki Wachee River</div>
+            <div class="nearby-tag">Car Shows &amp; Events</div>
+            <div class="nearby-tag">Auto Parts Stores</div>
+            <div class="nearby-tag">Grocery &amp; Retail</div>
+            <div class="nearby-tag">Restaurants</div>
+            <div class="nearby-tag">Fuel Stations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+  <!-- ============================================================ FINANCIALS -->
+  <section id="financials">
+    <div class="container">
+      <div class="section-label">Investment Performance</div>
+      <h2>Financial Overview</h2>
+      <div class="section-divider"></div>
 
-    <!-- Custom JavaScript -->
-    <script src="js/main.js"></script>
+      <div class="financials-hero">
+        <div class="fin-metric">
+          <div class="fin-metric-value">$8.5M</div>
+          <div class="fin-metric-label">Total Investment</div>
+        </div>
+        <div class="fin-metric">
+          <div class="fin-metric-value">10.1%</div>
+          <div class="fin-metric-label">Market-Aligned Cap Rate</div>
+        </div>
+        <div class="fin-metric">
+          <div class="fin-metric-value">$862,396</div>
+          <div class="fin-metric-label">Annual NOI</div>
+        </div>
+        <div class="fin-metric">
+          <div class="fin-metric-value">Aug 2025</div>
+          <div class="fin-metric-label">Investment Date</div>
+        </div>
+      </div>
+
+      <div class="financials-charts">
+        <div class="fin-chart-box">
+          <h4>5-Year NOI Projections</h4>
+          <div class="fin-chart-container">
+            <canvas id="noiChart"></canvas>
+          </div>
+        </div>
+        <div class="fin-chart-box">
+          <h4>Revenue Mix</h4>
+          <div class="fin-chart-container">
+            <canvas id="revChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="unit-economics">
+        <h3>Unit Economics</h3>
+        <div class="econ-grid">
+          <div>
+            <div class="econ-row">
+              <span class="econ-label">Enclosed Unit Sales Price</span>
+              <span class="econ-value">$85,000 – $125,000</span>
+            </div>
+            <div class="econ-row">
+              <span class="econ-label">Covered Storage Sales Price</span>
+              <span class="econ-value">$45,000 – $75,000</span>
+            </div>
+          </div>
+          <div>
+            <div class="econ-row">
+              <span class="econ-label">Average Monthly Rental</span>
+              <span class="econ-value">$350 – $650</span>
+            </div>
+            <div class="econ-row">
+              <span class="econ-label">Occupancy Target</span>
+              <span class="econ-value">90% Year 1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fin-advantages">
+        <div class="fin-adv-item"><span class="fin-adv-check">✓</span><span class="fin-adv-text">Permit ready — reduce development timeline risk</span></div>
+        <div class="fin-adv-item"><span class="fin-adv-check">✓</span><span class="fin-adv-text">Flexible exit strategies (sell-off, hold, or blend)</span></div>
+        <div class="fin-adv-item"><span class="fin-adv-check">✓</span><span class="fin-adv-text">Strong cash flow from rental operations</span></div>
+        <div class="fin-adv-item"><span class="fin-adv-check">✓</span><span class="fin-adv-text">Equity appreciation through unit sales</span></div>
+        <div class="fin-adv-item"><span class="fin-adv-check">✓</span><span class="fin-adv-text">Limited competitive supply in market</span></div>
+        <div class="fin-adv-item"><span class="fin-adv-check">✓</span><span class="fin-adv-text">Recession-resistant asset class with growing demographic trends</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-label">Visual Showcase</div>
+      <h2>Property Gallery</h2>
+      <div class="section-divider"></div>
+
+      <div class="gallery-grid">
+        <div class="video-item">
+          <div class="video-placeholder">
+            <div class="video-play">▶</div>
+            <div class="video-label">Facility Flythrough</div>
+          </div>
+          <p style="font-size:0.8rem;color:var(--gray-500);margin-top:0.75rem;">Explore the complete Motown Luxury Storage facility with climate-controlled units and covered storage areas.</p>
+        </div>
+        <div class="video-item">
+          <div class="video-placeholder">
+            <div class="video-play">▶</div>
+            <div class="video-label">Trenton Site Overview</div>
+          </div>
+          <p style="font-size:0.8rem;color:var(--gray-500);margin-top:0.75rem;">Prime location on US Highway 19 with excellent visibility and accessibility for the Spring Hill market.</p>
+        </div>
+        <div class="gallery-item">
+          <img src="images/image1.jpg" alt="Motown Storage - Facility Exterior View with Covered Storage" loading="lazy" />
+          <div class="gallery-caption">
+            <h4>Facility Exterior View</h4>
+            <p>Modern climate-controlled units alongside covered storage for oversized RVs and boats.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/image4.jpg" alt="Motown Storage - RV Washing Station" loading="lazy" />
+          <div class="gallery-caption">
+            <h4>RV Washing Station</h4>
+            <p>High-pressure washing station with professional equipment for vehicle maintenance.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/image2.jpg" alt="Motown Storage - Climate-Controlled Units and Wide Drive Aisles" loading="lazy" />
+          <div class="gallery-caption">
+            <h4>Climate-Controlled Storage Units</h4>
+            <p>Premium enclosed units with air conditioning, private mezzanines, and in-unit bathrooms.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/image3.jpg" alt="Motown Storage - Aerial View of Complete Facility" loading="lazy" />
+          <div class="gallery-caption">
+            <h4>Aerial Facility Overview</h4>
+            <p>Complete bird's-eye view showcasing the full scope of the development and strategic site layout.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label">Get In Touch</div>
+      <h2>Investment Inquiries</h2>
+      <div class="section-divider"></div>
+      <p style="margin-bottom:3rem;">Qualified investors are invited to contact us for detailed investment materials, financial projections, and site visit scheduling.</p>
+
+      <div class="contact-grid">
+        <div>
+          <h3>Motown Luxury Storage</h3>
+          <div class="contact-info-item" style="margin-top:1.5rem;">
+            <div class="contact-info-label">Location</div>
+            <div class="contact-info-value">Trenton Avenue &amp; US Highway 19<br>Spring Hill, FL 34609</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Website</div>
+            <div class="contact-info-value"><a href="https://www.motownstorage.us" target="_blank">www.motownstorage.us</a></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Investment Opportunity</div>
+            <div class="contact-info-value">August 2025</div>
+          </div>
+          <div class="contact-receives">
+            <h4>Ready to Learn More? Contact us to receive:</h4>
+            <ul>
+              <li>Detailed financial projections</li>
+              <li>Market feasibility study</li>
+              <li>Construction plans &amp; specifications</li>
+              <li>Site visit scheduling</li>
+            </ul>
+          </div>
+        </div>
+
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="fullname">Full Name *</label>
+              <input type="text" id="fullname" name="fullname" placeholder="John Smith" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" />
+            </div>
+            <div class="form-field">
+              <label for="company">Company / Organization</label>
+              <input type="text" id="company" name="company" placeholder="Acme Capital LLC" />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="investor-type">Investor Type *</label>
+            <select id="investor-type" name="investor-type" required>
+              <option value="" disabled selected>Select investor type</option>
+              <option>Institutional Investor</option>
+              <option>Private Equity</option>
+              <option>Family Office</option>
+              <option>High Net Worth Individual</option>
+              <option>Developer / Builder</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="message">Message / Questions</label>
+            <textarea id="message" name="message" placeholder="Tell us about your investment interests..."></textarea>
+          </div>
+          <div class="form-checkbox">
+            <input type="checkbox" id="accredited" name="accredited" required />
+            <label for="accredited">I am an accredited investor and understand this is a private placement opportunity.</label>
+          </div>
+          <button type="submit" class="form-submit">Submit Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">Motown Luxury Storage</div>
+          <div class="footer-tagline">Premium RV &amp; Boat Storage Condominiums in Spring Hill, Florida</div>
+        </div>
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="#executive-summary">Executive Summary</a></li>
+            <li><a href="#highlights">Investment Highlights</a></li>
+            <li><a href="#property">Property Overview</a></li>
+            <li><a href="#market">Market Analysis</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Investment Info</h5>
+          <ul>
+            <li><a href="#financials">Financial Overview</a></li>
+            <li><a href="#location">Location Details</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="https://www.motownstorage.us" target="_blank">Official Website</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-address">
+            Trenton Avenue &amp; US 19<br>
+            Spring Hill, FL 34609<br><br>
+            <a href="https://www.motownstorage.us" target="_blank">www.motownstorage.us</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-disclaimer"><strong style="color:var(--gray-300);">DISCLAIMER:</strong> This offering memorandum is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities. Any such offer or solicitation will be made only by means of a confidential private placement memorandum and in accordance with applicable securities laws. Past performance is not indicative of future results. Investment in real estate involves substantial risk and is suitable only for sophisticated investors who can afford to lose their entire investment. All financial projections and market data are estimates based on current information and are subject to change.</p>
+        <div class="footer-copy">© 2025 Motown Luxury Storage. All rights reserved.<br>Investment Opportunity August 2025</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================ JAVASCRIPT -->
+  <script>
+    /* --- Navbar scroll behavior --- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* --- Scroll fade-up animations --- */
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    /* --- Counter animation --- */
+    function animateCounter(el) {
+      const target = parseFloat(el.dataset.target);
+      const format = el.dataset.format;
+      const duration = 2000;
+      const start = performance.now();
+      function step(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = target * eased;
+        if (format === 'comma') {
+          el.textContent = Math.round(value).toLocaleString();
+        } else if (format === 'decimal') {
+          el.textContent = value.toFixed(1);
+        } else {
+          el.textContent = Math.round(value);
+        }
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCounter(e.target);
+          counterObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    /* --- Charts --- */
+    const chartDefaults = {
+      color: '#9CA3AF',
+      borderColor: '#1E2A40',
+      font: { family: "'Barlow', sans-serif" }
+    };
+    Chart.defaults.color = chartDefaults.color;
+    Chart.defaults.borderColor = chartDefaults.borderColor;
+    Chart.defaults.font.family = chartDefaults.font.family;
+
+    const goldColor = '#C9A84C';
+    const goldFade = 'rgba(201,168,76,0.15)';
+
+    // Population Growth Chart
+    new Chart(document.getElementById('popChart'), {
+      type: 'line',
+      data: {
+        labels: ['2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+        datasets: [{
+          label: 'Population',
+          data: [155000, 160000, 165000, 170000, 175000, 179000, 182000],
+          borderColor: goldColor,
+          backgroundColor: goldFade,
+          fill: true,
+          tension: 0.4,
+          pointBackgroundColor: goldColor,
+          pointRadius: 4,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: 'rgba(255,255,255,0.05)' } },
+          y: {
+            grid: { color: 'rgba(255,255,255,0.05)' },
+            ticks: { callback: v => (v/1000).toFixed(0) + 'K' }
+          }
+        }
+      }
+    });
+
+    // RV Ownership Chart
+    new Chart(document.getElementById('rvChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Spring Hill', 'Florida Avg', 'National Avg'],
+        datasets: [{
+          label: 'RV/Boat Ownership %',
+          data: [28, 18, 12],
+          backgroundColor: [goldColor, 'rgba(201,168,76,0.5)', 'rgba(201,168,76,0.25)'],
+          borderRadius: 3,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false } },
+          y: {
+            grid: { color: 'rgba(255,255,255,0.05)' },
+            ticks: { callback: v => v + '%' },
+            max: 35
+          }
+        }
+      }
+    });
+
+    // NOI Projections Chart
+    new Chart(document.getElementById('noiChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+        datasets: [{
+          label: 'NOI',
+          data: [862396, 905516, 950792, 998331, 1048248],
+          backgroundColor: goldColor,
+          borderRadius: 4,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false } },
+          y: {
+            grid: { color: 'rgba(255,255,255,0.05)' },
+            ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'K' }
+          }
+        }
+      }
+    });
+
+    // Revenue Mix Chart
+    new Chart(document.getElementById('revChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Unit Sales', 'Rental Income', 'Ancillary'],
+        datasets: [{
+          data: [55, 35, 10],
+          backgroundColor: [goldColor, 'rgba(201,168,76,0.55)', 'rgba(201,168,76,0.25)'],
+          borderColor: '#161E30',
+          borderWidth: 3,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        cutout: '60%',
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { padding: 16, boxWidth: 12 }
+          }
+        }
+      }
+    });
+
+    /* --- Form submission --- */
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Inquiry Submitted ✓';
+      btn.style.background = '#22C55E';
+      btn.disabled = true;
+    }
+  </script>
 </body>
 </html>
