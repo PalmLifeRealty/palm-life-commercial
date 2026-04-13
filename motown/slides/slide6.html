@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Financial Projections</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            height: 100%;
+            color: #333;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            max-height: 720px;
+            position: relative;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+        .header-bar {
+            height: 6px;
+            background-color: #002244;
+        }
+        .accent-border {
+            border-bottom: 3px solid #ff9900;
+            width: 50px;
+            margin-bottom: 8px;
+        }
+        .metric-box {
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+            padding: 12px 16px;
+            width: 130px;
+        }
+        .compact-table {
+            font-size: 11px;
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .compact-table th, .compact-table td {
+            padding: 8px 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .chart-container {
+            position: relative;
+            height: 240px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Top header bar -->
+<div class="header-bar" data-object="true" data-object-type="shape" style="position: absolute; top: 0; left: 0; width: 1280px;"></div>
+<!-- Title section -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 40px; left: 64px; width: 1152px;">
+<h1 class="text-3xl font-bold text-gray-800 mb-2">Financial Projections</h1>
+<div class="accent-border"></div>
+</div>
+<!-- Left column: Key metrics and Chart -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 110px; left: 64px; width: 565px;">
+<!-- Key metrics boxes -->
+<div class="flex justify-between mb-8">
+<!-- Metric 1: NOI -->
+<div class="metric-box bg-blue-50">
+<p class="text-[11px] font-semibold text-blue-800 uppercase tracking-tight">NOI</p>
+<p class="text-xl font-bold text-blue-900">$736,513</p>
+<p class="text-[11px] text-blue-700">Annual</p>
+</div>
+<!-- Metric 2: Cap Rate -->
+<div class="metric-box bg-green-50">
+<p class="text-[11px] font-semibold text-green-800 uppercase tracking-tight">Cap Rate</p>
+<p class="text-xl font-bold text-green-700">8.67%</p>
+<p class="text-[11px] text-green-700">$8.5M inv</p>
+</div>
+<!-- Metric 3: Revenue -->
+<div class="metric-box bg-amber-50">
+<p class="text-[11px] font-semibold text-amber-800 uppercase tracking-tight">Revenue</p>
+<p class="text-xl font-bold text-amber-700">$985,014</p>
+<p class="text-[11px] text-amber-700">90% occ</p>
+</div>
+<!-- Metric 4: Expenses -->
+<div class="metric-box bg-purple-50">
+<p class="text-[11px] font-semibold text-purple-800 uppercase tracking-tight">Expenses</p>
+<p class="text-xl font-bold text-purple-700">$248,501</p>
+<p class="text-[11px] text-purple-700">25.2% ratio</p>
+</div>
+</div>
+<!-- Revenue Breakdown Chart -->
+<div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100 h-[340px]">
+<h3 class="text-sm font-semibold mb-4 text-gray-700">Revenue by Unit Type</h3>
+<div class="chart-container">
+<canvas id="revenueBreakdownChart"></canvas>
+</div>
+</div>
+</div>
+<!-- Right column: Financial Details -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 110px; left: 656px; width: 560px;">
+<!-- Revenue Calculation -->
+<div class="bg-white p-6 rounded-xl shadow-sm mb-6 border border-gray-100">
+<h3 class="text-sm font-bold mb-3 text-blue-900">Revenue Calculation</h3>
+<table class="compact-table">
+<colgroup>
+<col style="width: 30%;"/>
+<col style="width: 20%;"/>
+<col style="width: 20%;"/>
+<col style="width: 30%;"/>
+</colgroup>
+<thead>
+<tr class="bg-gray-100">
+<th class="text-[10px] font-bold text-left uppercase">Unit Type</th>
+<th class="text-[10px] font-bold text-center uppercase">Monthly</th>
+<th class="text-[10px] font-bold text-center uppercase">Units</th>
+<th class="text-[10px] font-bold text-right uppercase">Monthly Rev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-gray-50">
+<td class="font-medium">Premium</td>
+<td class="text-center">$1,400</td>
+<td class="text-center">30</td>
+<td class="text-right">$42,000</td>
+</tr>
+<tr class="border-b border-gray-50">
+<td class="font-medium">Standard</td>
+<td class="text-center">$1,200</td>
+<td class="text-center">10</td>
+<td class="text-right">$12,000</td>
+</tr>
+<tr class="border-b border-gray-50">
+<td class="font-medium">LG Canopy</td>
+<td class="text-center">$495</td>
+<td class="text-center">60</td>
+<td class="text-right">$29,700</td>
+</tr>
+<tr class="border-b border-gray-50">
+<td class="font-medium">SM Canopy</td>
+<td class="text-center">$395</td>
+<td class="text-center">19</td>
+<td class="text-right">$7,505</td>
+</tr>
+<tr class="bg-blue-50">
+<td class="font-bold text-blue-900">Monthly Total</td>
+<td></td>
+<td class="text-center font-bold">119</td>
+<td class="font-bold text-right text-blue-900">$91,205</td>
+</tr>
+<tr class="bg-blue-100">
+<td class="font-bold" colspan="3">Annual Revenue (at 90% Occupancy)</td>
+<td class="font-bold text-right text-blue-900">$985,014</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Expense Breakdown -->
+<div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100">
+<h3 class="text-sm font-bold mb-3 text-blue-900">Operating Expenses</h3>
+<table class="compact-table">
+<colgroup>
+<col style="width: 60%;"/>
+<col style="width: 40%;"/>
+</colgroup>
+<thead>
+<tr class="bg-gray-100">
+<th class="text-[10px] font-bold text-left uppercase">Category</th>
+<th class="text-[10px] font-bold text-right uppercase">Annual Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-gray-200">
+<td>Management (10%)</td>
+<td class="text-right">$98,501</td>
+</tr>
+<tr class="border-b border-gray-200">
+<td>Repairs &amp; Maintenance</td>
+<td class="text-right">$60,000</td>
+</tr>
+<tr class="border-b border-gray-200">
+<td>Utilities</td>
+<td class="text-right">$30,000</td>
+</tr>
+<tr class="border-b border-gray-200">
+<td>Property Taxes</td>
+<td class="text-right">$25,000</td>
+</tr>
+<tr class="border-b border-gray-200">
+<td>Admin &amp; Marketing</td>
+<td class="text-right">$25,000</td>
+</tr>
+<tr class="border-b border-gray-200">
+<td>Insurance</td>
+<td class="text-right">$10,000</td>
+</tr>
+<tr class="bg-purple-50">
+<td class="font-bold text-purple-900">Total Expenses</td>
+<td class="font-bold text-right text-purple-900">$248,501</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Footer -->
+<div class="px-16 flex justify-between items-center bg-white border-t border-gray-100" data-object="true" data-object-type="textbox" style="position: absolute; top: 660px; left: 0; width: 1280px; height: 60px;">
+<div class="text-[12px] text-gray-500 font-medium">Mo Town Storage Feasibility Study • August 2025</div>
+<div class="text-[12px] text-blue-900 font-bold uppercase tracking-widest">Market-Validated Financial Projections</div>
+</div>
+</div>
+<script>
+    window.addEventListener('load', function() {
+        const ctx = document.getElementById('revenueBreakdownChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Premium', 'Standard', 'LG Canopy', 'SM Canopy'],
+                datasets: [{
+                    data: [504000, 144000, 356400, 90060],
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.9)',
+                        'rgba(16, 185, 129, 0.9)',
+                        'rgba(245, 158, 11, 0.9)',
+                        'rgba(168, 85, 247, 0.9)'
+                    ],
+                    borderWidth: 3,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            padding: 25,
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            boxWidth: 8,
+                            font: {
+                                family: 'Montserrat',
+                                size: 12,
+                                weight: '600'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        padding: 12,
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed || 0;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = Math.round((value / total) * 100);
+                                return `${label}: $${value.toLocaleString()} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
