@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mo Town Storage - Market Feasibility Study</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+        
+        .viewer-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .slide-wrapper {
+            width: 1280px;
+            height: 720px;
+            max-width: 95vw;
+            max-height: calc(95vh - 80px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+            background: white;
+        }
+        
+        .slide-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #002244 0%, #003366 100%);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,34,68,0.4);
+        }
+        
+        .nav-btn:hover {
+            background: linear-gradient(135deg, #ff9900 0%, #ff7700 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,153,0,0.4);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .slide-counter {
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .slide-counter span {
+            color: #ff9900;
+            font-size: 18px;
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #002244 0%, #ff9900 100%);
+            transition: width 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .thumbnail-sidebar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            max-height: 80vh;
+            overflow-y: auto;
+            background: rgba(0,0,0,0.85);
+            padding: 15px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            display: none; /* Hidden by default, toggle with 'T' key */
+            z-index: 999;
+        }
+        
+        .thumbnail-sidebar.visible {
+            display: block;
+        }
+        
+        .thumbnail {
+            width: 100px;
+            height: 56px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            transition: all 0.3s;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #002244;
+            font-weight: 600;
+        }
+        
+        .thumbnail:hover {
+            border-color: #ff9900;
+            transform: scale(1.05);
+        }
+        
+        .thumbnail.active {
+            border-color: #ff9900;
+            box-shadow: 0 0 20px rgba(255,153,0,0.5);
+        }
+        
+        .help-overlay {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.85);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 13px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+            pointer-events: none;
+        }
+        
+        .help-overlay.visible {
+            opacity: 1;
+        }
+        
+        @media (max-width: 1024px) {
+            .thumbnail-sidebar {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Help Overlay -->
+    <div class="help-overlay" id="helpOverlay">
+        <strong>Keyboard Shortcuts:</strong><br>
+        → Next | ← Previous | F Fullscreen | T Thumbnails | ? Help
+    </div>
+    
+    <!-- Main Viewer -->
+    <div class="viewer-container">
+        <!-- Thumbnail Sidebar -->
+        <div class="thumbnail-sidebar" id="thumbnailSidebar">
+            <!-- Generated dynamically -->
+        </div>
+        
+        <!-- Slide Display -->
+        <div class="slide-wrapper">
+            <iframe id="slideFrame" class="slide-frame" src=""></iframe>
+        </div>
+    </div>
+    
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">
+            ◀ Previous
+        </button>
+        
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / 14
+        </div>
+        
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+            Next ▶
+        </button>
+        
+        <button class="nav-btn" onclick="toggleFullscreen()">
+            ⛶ Fullscreen
+        </button>
+    </div>
+
+    <script>
+        // Slide configuration
+        const slides = [
+            { file: 'slides/slide1.html', title: 'Cover' },
+            { file: 'slides/slide2.html', title: 'Executive Summary' },
+            { file: 'slides/slide3.html', title: 'Market Fundamentals' },
+            { file: 'slides/slide4.html', title: 'Facility Features' },
+            { file: 'slides/slide5.html', title: 'Unit Economics' },
+            { file: 'slides/slide6.html', title: 'Financial Projections' },
+            { file: 'slides/slide7.html', title: 'Risk Analysis' },
+            { file: 'slides/slide8.html', title: 'Investment Conclusion' },
+            { file: 'slides/slide9.html', title: 'Market Opportunity' },
+            { file: 'slides/slide10.html', title: 'Competitors' },
+            { file: 'slides/slide11.html', title: 'Risk Assessment' },
+            { file: 'slides/slide12.html', title: 'Appendix' },
+            { file: 'slides/slide13.html', title: 'Facility Showcase' },
+            { file: 'slides/slide14.html', title: 'Site Map' }
+        ];
+        
+        let currentIndex = 0;
+        
+        // Initialize
+        function init() {
+            loadSlide(0);
+            generateThumbnails();
+            updateProgress();
+        }
+        
+        // Load slide
+        function loadSlide(index) {
+            if (index < 0 || index >= slides.length) return;
+            
+            currentIndex = index;
+            document.getElementById('slideFrame').src = slides[index].file;
+            document.getElementById('currentSlide').textContent = index + 1;
+            
+            // Update button states
+            document.getElementById('prevBtn').disabled = (index === 0);
+            document.getElementById('nextBtn').disabled = (index === slides.length - 1);
+            
+            updateProgress();
+            updateThumbnails();
+        }
+        
+        // Navigation functions
+        function nextSlide() {
+            if (currentIndex < slides.length - 1) {
+                loadSlide(currentIndex + 1);
+            }
+        }
+        
+        function previousSlide() {
+            if (currentIndex > 0) {
+                loadSlide(currentIndex - 1);
+            }
+        }
+        
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+        
+        // Progress bar
+        function updateProgress() {
+            const progress = ((currentIndex + 1) / slides.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+        
+        // Generate thumbnails
+        function generateThumbnails() {
+            const sidebar = document.getElementById('thumbnailSidebar');
+            slides.forEach((slide, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'thumbnail';
+                thumb.textContent = slide.title;
+                thumb.onclick = () => loadSlide(index);
+                thumb.setAttribute('data-index', index);
+                sidebar.appendChild(thumb);
+            });
+        }
+        
+        function updateThumbnails() {
+            document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === currentIndex);
+            });
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case 'f':
+                case 'F':
+                    toggleFullscreen();
+                    break;
+                case 't':
+                case 'T':
+                    document.getElementById('thumbnailSidebar').classList.toggle('visible');
+                    break;
+                case '?':
+                    const help = document.getElementById('helpOverlay');
+                    help.classList.toggle('visible');
+                    setTimeout(() => help.classList.remove('visible'), 3000);
+                    break;
+                case 'Escape':
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen();
+                    }
+                    break;
+            }
+        });
+        
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextSlide();
+            if (touchEndX - touchStartX > 50) previousSlide();
+        });
+        
+        // Start presentation
+        init();
+    </script>
+</body>
+</html>
