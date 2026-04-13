@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Mo Town Storage - Risk Analysis</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Montserrat', sans-serif;
+        height: 720px;
+        width: 1280px;
+        color: #333;
+        overflow: hidden;
+    }
+    .slide-container {
+        width: 1280px;
+        height: 720px;
+        max-height: 720px;
+        position: relative;
+        background-color: #ffffff;
+        overflow: hidden;
+    }
+    .header-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1280px;
+        height: 8px;
+        background-color: #002244;
+    }
+    .accent-border {
+        border-bottom: 3px solid #ff9900;
+        width: 60px;
+        margin-top: 8px;
+    }
+    .risk-low {
+        background-color: #e6f4ea;
+        color: #137333;
+    }
+    .risk-medium {
+        background-color: #fef7e0;
+        color: #b06000;
+    }
+    .risk-high {
+        background-color: #fce8e6;
+        color: #c5221f;
+    }
+    .table-row:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+</style>
+</head>
+<body style="">
+<div class="slide-container">
+<!-- Top header bar -->
+<div class="header-bar" data-object="true" data-object-type="shape" style="position: absolute; top: 0; left: 0; width: 1280px; height: 8px; background-color: #002244; z-index: 1;"></div>
+<!-- Title section -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 30px; left: 64px; width: 400px; height: 70px; z-index: 10;">
+<h1 class="text-4xl font-bold text-gray-800">Risk Analysis</h1>
+<div class="accent-border"></div>
+</div>
+<!-- Left column: Risk table -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 120px; left: 64px; width: 540px; height: 500px; z-index: 10;">
+<div class="bg-white rounded-xl shadow-lg p-5 h-full">
+<h3 class="text-lg font-bold mb-3 text-blue-900">Risk Assessment Table</h3>
+<div class="overflow-hidden">
+<table class="min-w-full">
+<thead>
+<tr class="bg-gray-50 border-b">
+<th class="py-2 px-2 text-left text-xs font-semibold text-gray-600">Risk Factor</th>
+<th class="py-2 px-1 text-center text-xs font-semibold text-gray-600">Impact</th>
+<th class="py-2 px-1 text-center text-xs font-semibold text-gray-600">Probability</th>
+<th class="py-2 px-1 text-center text-xs font-semibold text-gray-600">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="table-row border-b">
+<td class="py-4 px-2 text-xs font-medium">Rental Rate Achievability</td>
+<td class="py-4 px-1 text-center">
+<span class="inline-flex rounded-full w-6 h-6 risk-medium items-center justify-center font-bold text-xs">4</span>
+</td>
+<td class="py-4 px-1 text-center">
+<span class="inline-flex rounded-full w-6 h-6 risk-medium items-center justify-center font-bold text-xs">3</span>
+</td>
+<td class="py-4 px-1 text-center"><span class="risk-medium px-2 py-1 rounded-md font-bold text-xs">12</span></td>
+</tr>
+<tr class="table-row border-b">
+<td class="py-4 px-2 text-xs font-medium">Occupancy Ramp-up</td>
+<td class="py-4 px-1 text-center">
+<span class="inline-flex rounded-full w-6 h-6 risk-medium items-center justify-center font-bold text-xs">3</span>
+</td>
+<td class="py-4 px-1 text-center">
+<span class="inline-flex rounded-full w-6 h-6 risk-medium items-center justify-center font-bold text-xs">4</span>
+</td>
+<td class="py-4 px-1 text-center"><span class="risk-medium px-2 py-1 rounded-md font-bold text-xs">12</span></td>
+</tr>
+<tr class="table-row border-b">
+<td class="py-4 px-2 text-xs font-medium">Competitive Response</td>
+<td class="py-4 px-1 text-center">
+<span class="inline-flex rounded-full w-6 h-6 risk-low items-center justify-center font-bold text-xs">2</span>
+</td>
+<td class="py-4 px-1 text-center">
+<span class="inline-flex rounded-full w-6 h-6 risk-low items-center justify-center font-bold text-xs">3</span>
+</td>
+<td class="py-4 px-1 text-center"><span class="risk-low px-2 py-1 rounded-md font-bold text-xs">6</span></td>
+</tr>
+<tr class="table-row">
+<td class="py-4 px-2 text-xs font-medium">Economic Trends</td>
+<td class="py-4 px-1 text-center">
+<span class="inline-flex rounded-full w-6 h-6 risk-low items-center justify-center font-bold text-xs">3</span>
+</td>
+<td class="py-4 px-1 text-center">
+<span class="inline-flex rounded-full w-6 h-6 risk-low items-center justify-center font-bold text-xs">2</span>
+</td>
+<td class="py-4 px-1 text-center"><span class="risk-low px-2 py-1 rounded-md font-bold text-xs">6</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-8 text-xs text-gray-500 flex items-center justify-between">
+<div class="flex items-center"><span class="inline-block w-2 h-2 rounded-full risk-low mr-1"></span> Low Risk (1-8)</div>
+<div class="flex items-center"><span class="inline-block w-2 h-2 rounded-full risk-medium mr-1"></span> Medium Risk (9-15)</div>
+<div class="flex items-center"><span class="inline-block w-2 h-2 rounded-full risk-high mr-1"></span> High Risk (16-25)</div>
+</div>
+</div>
+</div>
+<!-- Right column: Mitigation strategies -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 120px; left: 636px; width: 580px; height: 500px; z-index: 10;">
+<div class="bg-white rounded-xl shadow-lg p-5 mb-3">
+<h3 class="text-lg font-bold mb-3 text-blue-900">Risk Mitigation Strategies</h3>
+<div class="space-y-3">
+<div>
+<h4 class="font-bold text-blue-800 text-xs">Rental Rate Achievability</h4>
+<p class="text-xs text-gray-700 leading-relaxed">Strategic pricing structure with introductory offers and tiered amenities to maintain premium value perception while ensuring competitive rates.</p>
+</div>
+<div>
+<h4 class="font-bold text-blue-800 text-xs">Occupancy Ramp-up</h4>
+<p class="text-xs text-gray-700 leading-relaxed">Phased marketing campaign targeting Timber Pines residents, pre-leasing incentives, and referral programs to accelerate initial absorption.</p>
+</div>
+<div>
+<h4 class="font-bold text-blue-800 text-xs">Competitive Response</h4>
+<p class="text-xs text-gray-700 leading-relaxed">Differentiation through premium amenities and climate-controlled storage options unavailable at most competitor facilities in the immediate area.</p>
+</div>
+<div>
+<h4 class="font-bold text-blue-800 text-xs">Economic Trends</h4>
+<p class="text-xs text-gray-700 leading-relaxed">Storage industry has demonstrated resilience through economic cycles; Florida's strong demographic trends mitigate broader economic risks.</p>
+</div>
+</div>
+</div>
+<div class="bg-gray-50 rounded-xl p-4 border-l-4 border-blue-600">
+<h4 class="font-bold text-blue-900 mb-1 text-xs">Risk Assessment Conclusion</h4>
+<p class="text-xs text-gray-700 leading-relaxed">The project presents a balanced risk profile with no high-risk factors identified. The two medium-risk factors have established mitigation strategies that effectively address potential concerns.</p>
+</div>
+</div>
+<!-- Footer -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 680px; left: 0px; width: 1280px; height: 40px; z-index: 10;">
+<div class="w-full px-16 py-2 flex justify-between items-center border-t border-gray-100">
+<div class="text-xs text-gray-400">Mo Town Storage Feasibility Study • August 2025</div>
+<div class="text-xs text-blue-900 font-bold tracking-tight">Market Analysis &amp; Investment Assessment</div>
+</div>
+</div>
+</div>
+
+</body></html>
