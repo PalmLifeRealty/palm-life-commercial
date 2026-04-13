@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Facility Showcase</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            height: 100%;
+            width: 100%;
+            color: #333;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            max-height: 720px;
+            position: relative;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+        .header-bar {
+            height: 8px;
+            background-color: #002244;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+        .accent-border {
+            border-bottom: 3px solid #ff9900;
+            width: 60px;
+            margin-bottom: 8px;
+        }
+        .image-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #f9fafb;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .feature-tag {
+            background-color: rgba(0, 34, 68, 0.9);
+            color: white;
+            border-left: 3px solid #ff9900;
+            padding: 3px 8px;
+            position: absolute;
+            bottom: 60px;
+            left: 0;
+            font-size: 11px;
+            font-weight: 500;
+            border-radius: 0 4px 4px 0;
+            z-index: 10;
+        }
+        
+        /* Direct object styling */
+        .title-object {
+            position: absolute;
+            left: 64px;
+            top: 30px;
+            width: 1152px;
+            height: 80px;
+        }
+        
+        .gallery-object {
+            position: absolute;
+            left: 64px;
+            top: 120px;
+            width: 1152px;
+            height: 480px;
+        }
+        
+        .amenities-object {
+            position: absolute;
+            left: 64px;
+            top: 590px;
+            width: 1152px;
+            height: 85px;
+        }
+        
+        .footer-object {
+            position: absolute;
+            left: 0;
+            top: 690px;
+            width: 1280px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body style="">
+<div class="slide-container">
+<!-- Top header bar -->
+<div class="header-bar"></div>
+<!-- Title object -->
+<div class="title-object" data-object="true" data-object-type="textbox">
+<h1 class="text-3xl font-bold text-gray-800 mb-1">Facility Showcase</h1>
+<div class="accent-border"></div>
+<p class="text-base text-gray-600">Modern design meets premium amenities for discerning vehicle owners</p>
+</div>
+<!-- Image gallery grid object -->
+<div class="gallery-object" data-object="true" data-object-type="textbox">
+<div class="grid grid-cols-2 gap-4">
+<!-- Image 1: Interior Unit -->
+<div class="image-card relative">
+<img alt="Climate-Controlled Storage Unit" class="w-full h-40 object-cover" src="https://page.gensparksite.com/v1/base64_upload/a92667e03dcfd678d3d7a48b71f986b3" data-height-listener-added="true">
+<div class="feature-tag" style="bottom: 52px;">
+<i class="fas fa-temperature-low mr-1"></i>Climate Controlled
+            </div>
+<div class="p-2 bg-white h-[52px]">
+<h3 class="font-bold text-blue-900 text-xs">Climate-Controlled Storage Units</h3>
+<p class="text-[10px] mt-0.5 text-gray-700 leading-tight">Spacious interior with mezzanine level and private bathroom</p>
+</div>
+</div>
+<!-- Image 2: Covered Parking -->
+<div class="image-card relative">
+<img alt="Covered RV &amp; Boat Storage" class="w-full h-40 object-cover" src="https://page.gensparksite.com/v1/base64_upload/af273c57ef47f710475c18fcb380f875" data-height-listener-added="true">
+<div class="feature-tag" style="bottom: 52px;">
+<i class="fas fa-umbrella mr-1"></i>Weather Protected
+            </div>
+<div class="p-2 bg-white h-[52px]">
+<h3 class="font-bold text-blue-900 text-xs">Covered RV &amp; Boat Storage</h3>
+<p class="text-[10px] mt-0.5 text-gray-700 leading-tight">Weatherproof protection with generous clearance heights</p>
+</div>
+</div>
+<!-- Image 3: Washing Station -->
+<div class="image-card relative">
+<img alt="Vehicle Washing Station" class="w-full h-40 object-cover" src="https://page.gensparksite.com/v1/base64_upload/53f644f16553a7bde79ad6399f82567d" data-height-listener-added="true">
+<div class="feature-tag" style="bottom: 52px;">
+<i class="fas fa-tint mr-1"></i>Maintenance Ready
+            </div>
+<div class="p-2 bg-white h-[52px]">
+<h3 class="font-bold text-blue-900 text-xs">Premium Washing Stations</h3>
+<p class="text-[10px] mt-0.5 text-gray-700 leading-tight">High-pressure cleaning with dedicated drainage system</p>
+</div>
+</div>
+<!-- Image 4: Site Layout -->
+<div class="image-card relative">
+<img alt="Facility Overview" class="w-full h-40 object-cover" src="https://page.gensparksite.com/v1/base64_upload/b6ff9031e7b0055af9103341e478b55a" data-height-listener-added="true">
+<div class="feature-tag" style="bottom: 52px;">
+<i class="fas fa-shield-alt mr-1"></i>Secure &amp; Accessible
+            </div>
+<div class="p-2 bg-white h-[52px]">
+<h3 class="font-bold text-blue-900 text-xs">Professional Site Design</h3>
+<p class="text-[10px] mt-0.5 text-gray-700 leading-tight">Wide drive aisles, expert landscaping, and secure access</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Key Amenities object -->
+<div class="amenities-object bg-gray-50 rounded-lg p-3 shadow-sm border border-gray-100 flex flex-col justify-center" data-object="true" data-object-type="textbox">
+<h3 class="text-sm font-bold mb-1 text-blue-900">Premium Amenities</h3>
+<div class="grid grid-cols-3 gap-y-1 gap-x-4">
+<div class="flex items-center">
+<i class="fas fa-door-closed text-amber-500 text-[10px] w-4 mr-1"></i>
+<span class="text-[11px]">Private mezzanines</span>
+</div>
+<div class="flex items-center">
+<i class="fas fa-restroom text-amber-500 text-[10px] w-4 mr-1"></i>
+<span class="text-[11px]">In-unit bathrooms</span>
+</div>
+<div class="flex items-center">
+<i class="fas fa-bolt text-amber-500 text-[10px] w-4 mr-1"></i>
+<span class="text-[11px]">Electrical hookups</span>
+</div>
+<div class="flex items-center">
+<i class="fas fa-video text-amber-500 text-[10px] w-4 mr-1"></i>
+<span class="text-[11px]">24/7 surveillance</span>
+</div>
+<div class="flex items-center">
+<i class="fas fa-road text-amber-500 text-[10px] w-4 mr-1"></i>
+<span class="text-[11px]">Generous turning radii</span>
+</div>
+<div class="flex items-center">
+<i class="fas fa-key text-amber-500 text-[10px] w-4 mr-1"></i>
+<span class="text-[11px]">Owner-only access</span>
+</div>
+</div>
+</div>
+<!-- Footer object -->
+<div class="footer-object px-16 flex justify-between items-center bg-white border-t border-gray-100" data-object="true" data-object-type="textbox">
+<div class="text-[10px] text-gray-500 font-medium">Mo Town Storage • Spring Hill, FL</div>
+<div class="text-[10px] text-blue-900 font-bold">www.motownstorage.us</div>
+</div>
+</div>
+
+</body></html>
