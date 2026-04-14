@@ -19,6 +19,40 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css?v=4.3">
+    <style>
+        /* ── Financial Stat Cards ── */
+        .fin-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .fin-stat-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(74,155,174,0.25);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .fin-stat-card:hover { transform: translateY(-4px); border-color: rgba(74,155,174,0.5); }
+        .fin-stat-card.highlight-green { border-color: rgba(76,175,80,0.35); }
+        .fin-stat-card.highlight-green:hover { border-color: rgba(76,175,80,0.6); }
+        .fin-stat-icon { font-size: 1.6rem; color: #4A9BAE; margin-bottom: 0.75rem; }
+        .fin-stat-icon.green { color: #4CAF50; }
+        .fin-stat-value {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #e0e0e0;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .fin-stat-value.green { color: #4CAF50; }
+        .fin-stat-unit { font-size: 1.3rem; color: #4A9BAE; }
+        .fin-stat-card.highlight-green .fin-stat-unit { color: #4CAF50; }
+        .fin-stat-label { color: #c0c0c0; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .fin-stat-sub { color: #777; font-size: 0.75rem; }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -545,96 +579,281 @@
     <section id="financials" class="financials-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">INVESTMENT ANALYSIS</span>
-                <h2 class="section-title">Financial Snapshot</h2>
-                <p class="section-subtitle">Full underwriting available upon NDA execution</p>
+                <span class="section-badge">INVESTMENT PERFORMANCE</span>
+                <h2 class="section-title">Financial Overview</h2>
+                <p class="section-subtitle">Proforma based on 21 units at 70% occupancy · $500 ADR · Full underwriting upon NDA</p>
             </div>
-            
-            <div class="financial-grid">
-                <!-- Key Metrics -->
-                <div class="financial-metrics">
-                    <div class="metric-card" data-aos="fade-up">
-                        <div class="metric-icon"><i class="fas fa-chart-line"></i></div>
-                        <div class="metric-value">$12.6M</div>
-                        <div class="metric-label">Gross Sales Revenue</div>
+
+            <!-- Animated Key Metric Cards -->
+            <div class="fin-stats-grid">
+                <div class="fin-stat-card" data-aos="fade-up">
+                    <div class="fin-stat-icon"><i class="fas fa-coins"></i></div>
+                    <div class="fin-stat-value">
+                        $<span class="counter" data-target="9.8" data-decimals="1">0</span><span class="fin-stat-unit">M</span>
                     </div>
-                    
-                    <div class="metric-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="metric-icon"><i class="fas fa-dollar-sign"></i></div>
-                        <div class="metric-value">$600K</div>
-                        <div class="metric-label">Retail Sale Price/Unit</div>
-                    </div>
-                    
-                    <div class="metric-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="metric-icon"><i class="fas fa-landmark"></i></div>
-                        <div class="metric-value">$3.0M</div>
-                        <div class="metric-label">Land Offering Price</div>
-                    </div>
-                    
-                    <div class="metric-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="metric-icon"><i class="fas fa-calendar-alt"></i></div>
-                        <div class="metric-value">18-24 Mo</div>
-                        <div class="metric-label">Est. Build Timeline</div>
-                    </div>
-                    
-                    <div class="metric-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="metric-icon"><i class="fas fa-money-bill-wave"></i></div>
-                        <div class="metric-value">$400-600</div>
-                        <div class="metric-label">STR Daily Rate Range</div>
-                    </div>
-                    
-                    <div class="metric-card" data-aos="fade-up" data-aos-delay="500">
-                        <div class="metric-icon"><i class="fas fa-chart-bar"></i></div>
-                        <div class="metric-value">$2.68M / $2M</div>
-                        <div class="metric-label">Annual STR Revenue (Gross/NOI) - 21 Units</div>
-                    </div>
+                    <div class="fin-stat-label">Total Investment</div>
+                    <div class="fin-stat-sub">$7M Build &middot; $2.8M Land</div>
                 </div>
-                
-                <!-- Charts -->
-                <div class="financial-charts">
-                    <div class="chart-container" data-aos="fade-up">
-                        <h4>Development Timeline</h4>
-                        <canvas id="timelineChart"></canvas>
+                <div class="fin-stat-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="fin-stat-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="fin-stat-value">
+                        $<span class="counter" data-target="2.03" data-decimals="2">0</span><span class="fin-stat-unit">M</span>
                     </div>
-                    
-                    <div class="chart-container" data-aos="fade-up" data-aos-delay="100">
-                        <h4>Revenue Scenarios</h4>
-                        <canvas id="revenueChart"></canvas>
+                    <div class="fin-stat-label">Stabilized Annual NOI</div>
+                    <div class="fin-stat-sub">STR + Golf Cart Revenue</div>
+                </div>
+                <div class="fin-stat-card highlight-green" data-aos="fade-up" data-aos-delay="200">
+                    <div class="fin-stat-icon green"><i class="fas fa-percentage"></i></div>
+                    <div class="fin-stat-value green">
+                        <span class="counter" data-target="20.7" data-decimals="1">0</span><span class="fin-stat-unit">%</span>
                     </div>
+                    <div class="fin-stat-label">Return on Investment</div>
+                    <div class="fin-stat-sub">NOI &divide; $9.8M Total Investment</div>
+                </div>
+                <div class="fin-stat-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="fin-stat-icon"><i class="fas fa-building"></i></div>
+                    <div class="fin-stat-value">
+                        $<span class="counter" data-target="28.9" data-decimals="1">0</span><span class="fin-stat-unit">M</span>
+                    </div>
+                    <div class="fin-stat-label">Portfolio Value @ 7% Cap</div>
+                    <div class="fin-stat-sub">Stabilized NOI Capitalized</div>
                 </div>
             </div>
-            
-            <!-- Value-Add Services -->
-            <div class="value-add-section" data-aos="fade-up">
-                <h3 class="value-add-title">Value-Add Revenue Opportunity</h3>
-                <div class="value-add-content">
-                    <div class="value-add-item">
-                        <div class="value-add-icon"><i class="fas fa-golf-ball"></i></div>
-                        <div class="value-add-details">
-                            <h4>Golf Cart Rental Program</h4>
-                            <p class="value-add-description">Strategic value-add service generating significant incremental income on minimal capital investment. Golf carts are essential amenities for coastal STR guests, providing convenient beach access and local transportation.</p>
-                            <div class="value-add-metrics">
-                                <div class="value-metric">
-                                    <span class="metric-label-sm">Investment per Cart</span>
-                                    <span class="metric-value-sm">Low Capital</span>
-                                </div>
-                                <div class="value-metric">
-                                    <span class="metric-label-sm">Revenue Potential</span>
-                                    <span class="metric-value-sm">High Margin</span>
-                                </div>
-                                <div class="value-metric">
-                                    <span class="metric-label-sm">Guest Demand</span>
-                                    <span class="metric-value-sm">Very High</span>
-                                </div>
+
+            <!-- Charts -->
+            <div class="financial-charts" style="margin-bottom:3rem;">
+                <div class="chart-container" data-aos="fade-up">
+                    <h4>Revenue Mix</h4>
+                    <canvas id="noiBreakdownChart"></canvas>
+                </div>
+                <div class="chart-container" data-aos="fade-up" data-aos-delay="100">
+                    <h4>5-Year NOI Projection</h4>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Unit Economics Grid -->
+            <div data-aos="fade-up" style="margin-bottom:3rem;">
+                <h3 style="color:#4A9BAE; font-family:'Playfair Display',serif; margin-bottom:1.5rem; font-size:1.4rem; display:flex; align-items:center; gap:0.75rem;">
+                    <i class="fas fa-home"></i> Per-Unit Economics
+                </h3>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; margin-bottom:1.5rem;">
+                    <!-- Standard Units -->
+                    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(74,155,174,0.2); border-radius:14px; padding:1.8rem;">
+                        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.2rem;">
+                            <i class="fas fa-home" style="color:#4A9BAE; font-size:1.2rem;"></i>
+                            <div>
+                                <div style="color:#e0e0e0; font-weight:700; font-size:1rem;">Standard Units</div>
+                                <div style="color:#888; font-size:0.8rem;">19 of 21 Units &middot; 1,377 SF</div>
                             </div>
-                            <p class="value-add-note"><strong>Key Benefit:</strong> Golf cart rentals significantly boost per-unit NOI while enhancing guest experience and property differentiation in the coastal STR market.</p>
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem;">
+                            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:0.8rem; text-align:center;">
+                                <div style="color:#888; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.05em;">Gross/Year</div>
+                                <div style="color:#e0e0e0; font-size:1.1rem; font-weight:700; margin-top:0.25rem;">$127,750</div>
+                            </div>
+                            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:0.8rem; text-align:center;">
+                                <div style="color:#888; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.05em;">NOI/Year</div>
+                                <div style="color:#4CAF50; font-size:1.1rem; font-weight:700; margin-top:0.25rem;">$86,051</div>
+                            </div>
+                            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:0.8rem; text-align:center;">
+                                <div style="color:#888; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.05em;">Avg Daily Rate</div>
+                                <div style="color:#e0e0e0; font-size:1.1rem; font-weight:700; margin-top:0.25rem;">$500</div>
+                            </div>
+                            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:0.8rem; text-align:center;">
+                                <div style="color:#888; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.05em;">Occupancy</div>
+                                <div style="color:#e0e0e0; font-size:1.1rem; font-weight:700; margin-top:0.25rem;">70%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Premium Front Units -->
+                    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(212,175,55,0.4); border-radius:14px; padding:1.8rem; position:relative;">
+                        <div style="position:absolute; top:-0.6rem; right:1.2rem; background:#d4af37; color:#1a1a1a; font-size:0.65rem; font-weight:700; padding:0.25rem 0.75rem; border-radius:20px; letter-spacing:0.08em;">PREMIUM</div>
+                        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.2rem;">
+                            <i class="fas fa-star" style="color:#d4af37; font-size:1.2rem;"></i>
+                            <div>
+                                <div style="color:#e0e0e0; font-weight:700; font-size:1rem;">Premium Front Units</div>
+                                <div style="color:#888; font-size:0.8rem;">2 of 21 Units &middot; 1,445 SF</div>
+                            </div>
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem;">
+                            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:0.8rem; text-align:center;">
+                                <div style="color:#888; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.05em;">Gross/Year</div>
+                                <div style="color:#e0e0e0; font-size:1.1rem; font-weight:700; margin-top:0.25rem;">$127,750</div>
+                            </div>
+                            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:0.8rem; text-align:center;">
+                                <div style="color:#888; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.05em;">NOI/Year</div>
+                                <div style="color:#4CAF50; font-size:1.1rem; font-weight:700; margin-top:0.25rem;">$86,051</div>
+                            </div>
+                            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:0.8rem; text-align:center;">
+                                <div style="color:#888; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.05em;">Premium SF</div>
+                                <div style="color:#d4af37; font-size:1.1rem; font-weight:700; margin-top:0.25rem;">+68 SF</div>
+                            </div>
+                            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:0.8rem; text-align:center;">
+                                <div style="color:#888; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.05em;">Occupancy</div>
+                                <div style="color:#e0e0e0; font-size:1.1rem; font-weight:700; margin-top:0.25rem;">70%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Rental Assumptions -->
+                    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:1.8rem;">
+                        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.2rem;">
+                            <i class="fas fa-calculator" style="color:#4A9BAE; font-size:1.2rem;"></i>
+                            <div>
+                                <div style="color:#e0e0e0; font-weight:700; font-size:1rem;">Rental Assumptions</div>
+                                <div style="color:#888; font-size:0.8rem;">Pro-forma basis &middot; Hampton Inn benchmark</div>
+                            </div>
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                            <div style="display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <span style="color:#a0a0a0; font-size:0.85rem;">ADR Range</span>
+                                <span style="color:#e0e0e0; font-weight:600; font-size:0.85rem;">$400 – $600 / night</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <span style="color:#a0a0a0; font-size:0.85rem;">Average Daily Rate</span>
+                                <span style="color:#e0e0e0; font-weight:600; font-size:0.85rem;">$500 / night</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <span style="color:#a0a0a0; font-size:0.85rem;">Low Season PSF</span>
+                                <span style="color:#e0e0e0; font-weight:600; font-size:0.85rem;">$150 / SF</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <span style="color:#a0a0a0; font-size:0.85rem;">High Season PSF</span>
+                                <span style="color:#e0e0e0; font-weight:600; font-size:0.85rem;">$250 / SF</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; padding:0.5rem 0;">
+                                <span style="color:#a0a0a0; font-size:0.85rem;">Expense Ratio</span>
+                                <span style="color:#e07070; font-weight:600; font-size:0.85rem;">32.6% of Gross</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
+            <!-- Proforma Income & Expense Summary -->
+            <div data-aos="fade-up" style="background:rgba(255,255,255,0.03); border:1px solid rgba(74,155,174,0.2); border-radius:16px; padding:2.5rem; margin-bottom:3rem;">
+                <h3 style="color:#4A9BAE; font-family:'Playfair Display',serif; margin-bottom:2rem; font-size:1.4rem; display:flex; align-items:center; gap:0.75rem;">
+                    <i class="fas fa-calculator"></i> Proforma Income &amp; Expense Summary
+                </h3>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem;">
+                    <div>
+                        <h4 style="color:#a0a0a0; font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:0.5rem;">Revenue</h4>
+                        <div style="display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <span style="color:#c0c0c0;">Gross STR Revenue (21 units)</span>
+                            <span style="color:#e0e0e0; font-weight:600;">$2,682,750</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <span style="color:#c0c0c0; padding-left:1rem;">&#8627; Per Unit (70% occ &middot; $500 ADR)</span>
+                            <span style="color:#a0a0a0;">$127,750</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <span style="color:#c0c0c0;">Golf Cart Rental (10 carts &times; $60/day)</span>
+                            <span style="color:#e0e0e0; font-weight:600;">$219,000</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:0.9rem 0; margin-top:0.5rem; border-top:2px solid rgba(74,155,174,0.4);">
+                            <span style="color:#4A9BAE; font-weight:700;">Total Revenue</span>
+                            <span style="color:#4A9BAE; font-weight:700;">$2,901,750</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="color:#a0a0a0; font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:0.5rem;">Operating Expenses</h4>
+                        <div style="display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <span style="color:#c0c0c0;">Management (15%)</span>
+                            <span style="color:#e07070;">($402,413)</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <span style="color:#c0c0c0;">Utilities</span>
+                            <span style="color:#e07070;">($134,138)</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <span style="color:#c0c0c0;">Reserves (5%)</span>
+                            <span style="color:#e07070;">($134,138)</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <span style="color:#c0c0c0;">Property Tax</span>
+                            <span style="color:#e07070;">($93,000)</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <span style="color:#c0c0c0;">Maintenance (3%)</span>
+                            <span style="color:#e07070;">($80,483)</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <span style="color:#c0c0c0;">Insurance ($1,500/unit)</span>
+                            <span style="color:#e07070;">($31,500)</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:0.9rem 0; border-top:2px solid rgba(255,255,255,0.1);">
+                            <span style="color:#e07070; font-weight:700;">Total Expenses</span>
+                            <span style="color:#e07070; font-weight:700;">($875,670)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- NOI Summary Bar -->
+                <div style="margin-top:2rem; padding:1.5rem 2rem; background:rgba(74,155,174,0.08); border-radius:12px; border-left:4px solid #4A9BAE; display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; text-align:center;">
+                    <div>
+                        <div style="color:#a0a0a0; font-size:0.8rem; margin-bottom:0.3rem;">STR Net Operating Income</div>
+                        <div style="color:#4CAF50; font-size:1.5rem; font-weight:700;">$1,807,080</div>
+                    </div>
+                    <div style="border-left:1px solid rgba(255,255,255,0.1); border-right:1px solid rgba(255,255,255,0.1);">
+                        <div style="color:#a0a0a0; font-size:0.8rem; margin-bottom:0.3rem;">+ Golf Cart NOI</div>
+                        <div style="color:#4CAF50; font-size:1.5rem; font-weight:700;">$219,000</div>
+                    </div>
+                    <div>
+                        <div style="color:#a0a0a0; font-size:0.8rem; margin-bottom:0.3rem;">Total NOI</div>
+                        <div style="color:#4CAF50; font-size:1.8rem; font-weight:800;">$2,026,080</div>
+                    </div>
+                </div>
+                <!-- Return Summary -->
+                <div style="margin-top:1rem; padding:1.2rem 2rem; background:rgba(76,175,80,0.06); border-radius:12px; border-left:4px solid #4CAF50; display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; text-align:center;">
+                    <div>
+                        <div style="color:#a0a0a0; font-size:0.8rem; margin-bottom:0.3rem;">Total Investment</div>
+                        <div style="color:#e0e0e0; font-size:1.3rem; font-weight:700;">$9,800,000</div>
+                    </div>
+                    <div style="border-left:1px solid rgba(255,255,255,0.1); border-right:1px solid rgba(255,255,255,0.1);">
+                        <div style="color:#a0a0a0; font-size:0.8rem; margin-bottom:0.3rem;">Return on Investment</div>
+                        <div style="color:#4CAF50; font-size:1.3rem; font-weight:700;">20.67%</div>
+                    </div>
+                    <div>
+                        <div style="color:#a0a0a0; font-size:0.8rem; margin-bottom:0.3rem;">Portfolio Value @ 7% Cap</div>
+                        <div style="color:#e0e0e0; font-size:1.3rem; font-weight:700;">$28,944,000</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Value-Add: Golf Cart -->
+            <div class="value-add-section" data-aos="fade-up">
+                <h3 class="value-add-title">Value-Add Revenue Opportunity</h3>
+                <div class="value-add-content">
+                    <div class="value-add-item">
+                        <div class="value-add-icon"><i class="fas fa-shuttle-van"></i></div>
+                        <div class="value-add-details">
+                            <h4>Golf Cart Rental Program</h4>
+                            <p class="value-add-description">10 carts at $60/day generate $219,000 in annual revenue on a $100,000 investment &mdash; a 119% first-year ROI. Golf carts are a high-demand amenity for coastal STR guests visiting Honeymoon Island, downtown Dunedin, and the Pinellas Trail.</p>
+                            <div class="value-add-metrics">
+                                <div class="value-metric">
+                                    <span class="metric-label-sm">Total Cart Investment</span>
+                                    <span class="metric-value-sm">$100,000</span>
+                                </div>
+                                <div class="value-metric">
+                                    <span class="metric-label-sm">Daily Rate</span>
+                                    <span class="metric-value-sm">$60 / Cart</span>
+                                </div>
+                                <div class="value-metric">
+                                    <span class="metric-label-sm">Annual Revenue</span>
+                                    <span class="metric-value-sm">$219,000</span>
+                                </div>
+                                <div class="value-metric">
+                                    <span class="metric-label-sm">First-Year ROI</span>
+                                    <span class="metric-value-sm" style="color:#4CAF50;">119%</span>
+                                </div>
+                            </div>
+                            <p class="value-add-note"><strong>Key Benefit:</strong> Pure incremental income on top of STR NOI &mdash; adds $219K/year with minimal overhead, pushing total portfolio NOI to $2.03M and portfolio value to $28.9M at a 7% cap rate.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="financial-cta">
-                <a href="downloads/Azul-Ave-STR-Proforma.xlsx" download class="cta-button">Download Vacation Home Pro-Forma</a>
+                <a href="https://pub-545064860bf846d48d5ea228c218592b.r2.dev/Azul%20Ave/Azul-Ave-STR-Proforma.xlsx" download="Azul-Ave-STR-Proforma.xlsx" class="cta-button">Download Full Pro-Forma</a>
             </div>
         </div>
     </section>
