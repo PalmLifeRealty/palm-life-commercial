@@ -317,18 +317,28 @@
 </head>
 <body>
 
-    <!-- Self-contained Nav (no dependency on main.js or style.css nav classes) -->
-    <nav style="position:sticky;top:0;z-index:999;background:#002244;box-shadow:0 2px 12px rgba(0,0,0,0.3);">
-        <div style="max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px;">
-            <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-                <i class="fas fa-warehouse" style="color:#ff9900;font-size:20px;"></i>
-                <span style="font-family:'Inter',sans-serif;font-weight:800;font-size:14px;letter-spacing:0.1em;color:#fff;">MOTOWN LUXURY STORAGE</span>
-            </a>
-            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-                <a href="index.html#executive-summary" style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);text-decoration:none;padding:8px 14px;border-radius:4px;transition:color 0.2s;" onmouseover="this.style.color='#ff9900'" onmouseout="this.style.color='rgba(255,255,255,0.85)'">Overview</a>
-                <a href="index.html#financials" style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);text-decoration:none;padding:8px 14px;border-radius:4px;transition:color 0.2s;" onmouseover="this.style.color='#ff9900'" onmouseout="this.style.color='rgba(255,255,255,0.85)'">Financials</a>
-                <a href="index.html#contact" style="font-family:'Inter',sans-serif;font-size:14px;font-weight:700;color:#002244;background:#ff9900;text-decoration:none;padding:8px 18px;border-radius:4px;transition:background 0.2s;" onmouseover="this.style.background='#e68a00'" onmouseout="this.style.background='#ff9900'">Contact</a>
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-warehouse"></i>
+                <span>MOTOWN LUXURY STORAGE</span>
             </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html#hero" class="nav-link">Overview</a></li>
+                <li><a href="index.html#executive-summary" class="nav-link">Executive Summary</a></li>
+                <li><a href="index.html#highlights" class="nav-link">Highlights</a></li>
+                <li><a href="index.html#property" class="nav-link">Property</a></li>
+                <li><a href="index.html#market" class="nav-link">Market</a></li>
+                <li><a href="index.html#location" class="nav-link">Location</a></li>
+                <li><a href="index.html#financials" class="nav-link">Financials</a></li>
+                <li><a href="index.html#contact" class="nav-link contact-btn">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -453,5 +463,22 @@
     </footer>
 
 
+    <!-- Navbar scroll + mobile toggle (mirrors main.js navbar logic) -->
+    <script>
+        // Sticky scroll style
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        // Mobile hamburger toggle
+        const toggle = document.querySelector('.mobile-menu-toggle');
+        const menu   = document.querySelector('.nav-menu');
+        if (toggle && menu) {
+            toggle.addEventListener('click', () => {
+                menu.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
+        }
+    </script>
 </body>
 </html>
