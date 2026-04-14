@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initVideoBackground();
     initNavigation();
     initScrollAnimations();
+    initCounterAnimation();
     initExitStrategyToggle();
     initCharts();
     initContactForm();
@@ -208,9 +209,50 @@ function initExitStrategyToggle() {
     });
 }
 
+// ===== COUNTER ANIMATION =====
+function initCounterAnimation() {
+    const counters = document.querySelectorAll('.counter[data-target]');
+    if (!counters.length) return;
+
+    const animateCounter = (el) => {
+        const target = parseFloat(el.getAttribute('data-target'));
+        const decimals = parseInt(el.getAttribute('data-decimals') || '0');
+        const duration = 1800;
+        const startTime = performance.now();
+
+        const step = (now) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = eased * target;
+            el.textContent = current.toFixed(decimals);
+            if (progress < 1) requestAnimationFrame(step);
+            else el.textContent = target.toFixed(decimals);
+        };
+        requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.animated) {
+                entry.target.dataset.animated = 'true';
+                animateCounter(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    counters.forEach(el => observer.observe(el));
+}
+
 // ===== CHARTS =====
 function initCharts() {
-    // Timeline Chart
+    const chartDefaults = {
+        color: '#a0a0a0',
+        gridColor: 'rgba(255,255,255,0.05)',
+    };
+
+    // ── Timeline Chart (unchanged) ──
     const timelineCtx = document.getElementById('timelineChart');
     if (timelineCtx) {
         new Chart(timelineCtx, {
@@ -221,19 +263,13 @@ function initCharts() {
                     label: 'Months',
                     data: [12, 18, 12, 6, 3],
                     backgroundColor: [
-                        'rgba(76, 175, 80, 0.9)',  // Green for complete
+                        'rgba(76, 175, 80, 0.9)',
                         'rgba(74, 155, 174, 0.6)',
                         'rgba(74, 155, 174, 0.4)',
                         'rgba(74, 155, 174, 0.3)',
                         'rgba(74, 155, 174, 0.2)'
                     ],
-                    borderColor: [
-                        '#4CAF50',  // Green border for complete
-                        '#4A9BAE',
-                        '#4A9BAE',
-                        '#4A9BAE',
-                        '#4A9BAE'
-                    ],
+                    borderColor: ['#4CAF50','#4A9BAE','#4A9BAE','#4A9BAE','#4A9BAE'],
                     borderWidth: 2,
                     borderRadius: 8
                 }]
@@ -241,75 +277,107 @@ function initCharts() {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    title: {
-                        display: false
-                    }
-                },
+                plugins: { legend: { display: false } },
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.05)'
-                        },
-                        ticks: {
-                            color: '#a0a0a0'
-                        }
-                    },
-                    x: {
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.05)'
-                        },
-                        ticks: {
-                            color: '#a0a0a0'
-                        }
-                    }
+                    y: { beginAtZero: true, grid: { color: chartDefaults.gridColor }, ticks: { color: chartDefaults.color } },
+                    x: { grid: { color: chartDefaults.gridColor }, ticks: { color: chartDefaults.color } }
                 }
             }
         });
     }
-    
-    // Revenue Chart
+
+    // ── Revenue Mix Donut Chart (from Excel: STR $2,682,750 + Golf Cart $219,000) ──
+    const donutCtx = document.getElementById('noiBreakdownChart');
+    if (donutCtx) {
+        new Chart(donutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['STR Revenue (21 units)', 'Golf Cart Rentals (10 carts)'],
+                datasets: [{
+                    data: [2682750, 219000],
+                    backgroundColor: ['rgba(74,155,174,0.85)', 'rgba(76,175,80,0.85)'],
+                    borderColor: ['#4A9BAE', '#4CAF50'],
+                    borderWidth: 2,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#c0c0c0',
+                            font: { size: 12 },
+                            usePointStyle: true,
+                            padding: 18
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                const val = ctx.parsed;
+                                const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                                const pct = ((val / total) * 100).toFixed(1);
+                                return ` $${val.toLocaleString()} (${pct}%)`;
+                            }
+                        }
+                    }
+                }
+            },
+            plugins: [{
+                id: 'centerLabel',
+                beforeDraw(chart) {
+                    const { width, height, ctx } = chart;
+                    ctx.save();
+                    ctx.font = 'bold 1.1rem Inter, sans-serif';
+                    ctx.fillStyle = '#e0e0e0';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText('$2.9M', width / 2, height / 2 - 10);
+                    ctx.font = '0.7rem Inter, sans-serif';
+                    ctx.fillStyle = '#888';
+                    ctx.fillText('Total Revenue', width / 2, height / 2 + 12);
+                    ctx.restore();
+                }
+            }]
+        });
+    }
+
+    // ── 5-Year NOI Projection Bar Chart (from Excel data, stabilized Year 3) ──
     const revenueCtx = document.getElementById('revenueChart');
     if (revenueCtx) {
+        // Year 1: ramp-up (partial operations during construction wind-down)
+        // Year 2: lease-up (~75% of stabilized)
+        // Year 3: stabilized ($1,807,080 STR + $219,000 golf cart)
+        // Year 4/5: 3% annual ADR growth applied to gross revenue
+        const strNOI   = [600000, 1355310, 1807080, 1862292, 1919161];
+        const cartNOI  = [0,      109500,  219000,  225570,  232337];
+
         new Chart(revenueCtx, {
-            type: 'line',
+            type: 'bar',
             data: {
-                labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                labels: ['Year 1', 'Year 2', 'Year 3\n(Stabilized)', 'Year 4', 'Year 5'],
                 datasets: [
                     {
-                        label: 'Build-Out Costs',
-                        data: [4400000, 8800000, 8800000, 8800000, 8800000],
-                        borderColor: '#d4af37',
-                        backgroundColor: 'rgba(212, 175, 55, 0.05)',
-                        borderWidth: 2,
-                        borderDash: [5, 5],
-                        fill: false,
-                        tension: 0.4,
-                        pointRadius: 4,
-                        pointBackgroundColor: '#d4af37'
-                    },
-                    {
-                        label: 'STR Hold NOI',
-                        data: [1000000, 1600000, 2000000, 2000000, 2000000],
+                        label: 'STR NOI',
+                        data: strNOI,
+                        backgroundColor: 'rgba(74,155,174,0.75)',
                         borderColor: '#4A9BAE',
-                        backgroundColor: 'rgba(74, 155, 174, 0.1)',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.4
+                        borderWidth: 1.5,
+                        borderRadius: { topLeft: 0, topRight: 0, bottomLeft: 6, bottomRight: 6 },
+                        stack: 'noi'
                     },
                     {
-                        label: 'Fee-Simple Sellout (Net)',
-                        data: [0, 5123000, 11251800, null, null],
-                        borderColor: '#e74c3c',
-                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.4,
-                        spanGaps: false
+                        label: 'Golf Cart NOI',
+                        data: cartNOI,
+                        backgroundColor: 'rgba(76,175,80,0.75)',
+                        borderColor: '#4CAF50',
+                        borderWidth: 1.5,
+                        borderRadius: { topLeft: 6, topRight: 6, bottomLeft: 0, bottomRight: 0 },
+                        stack: 'noi'
                     }
                 ]
             },
@@ -318,27 +386,23 @@ function initCharts() {
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        display: true,
+                        position: 'bottom',
                         labels: {
-                            color: '#e0e0e0',
-                            font: {
-                                size: 12
-                            },
+                            color: '#c0c0c0',
+                            font: { size: 12 },
                             usePointStyle: true,
-                            padding: 15
+                            padding: 18
                         }
                     },
                     tooltip: {
                         callbacks: {
-                            label: function(context) {
-                                let label = context.dataset.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed.y !== null) {
-                                    label += '$' + (context.parsed.y / 1000000).toFixed(2) + 'M';
-                                }
-                                return label;
+                            label: function(ctx) {
+                                const val = ctx.parsed.y;
+                                return ` ${ctx.dataset.label}: $${(val / 1000).toFixed(0)}K`;
+                            },
+                            footer: function(items) {
+                                const total = items.reduce((s, i) => s + i.parsed.y, 0);
+                                return `Total NOI: $${(total / 1000000).toFixed(2)}M`;
                             }
                         }
                     }
@@ -346,23 +410,17 @@ function initCharts() {
                 scales: {
                     y: {
                         beginAtZero: true,
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.05)'
-                        },
+                        stacked: true,
+                        grid: { color: chartDefaults.gridColor },
                         ticks: {
-                            color: '#a0a0a0',
-                            callback: function(value) {
-                                return '$' + (value / 1000000).toFixed(1) + 'M';
-                            }
+                            color: chartDefaults.color,
+                            callback: v => '$' + (v / 1000000).toFixed(1) + 'M'
                         }
                     },
                     x: {
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.05)'
-                        },
-                        ticks: {
-                            color: '#a0a0a0'
-                        }
+                        stacked: true,
+                        grid: { color: chartDefaults.gridColor },
+                        ticks: { color: chartDefaults.color }
                     }
                 }
             }
