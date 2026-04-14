@@ -40,6 +40,95 @@
             from { opacity: 0; }
             to   { opacity: 1; }
         }
+
+        /* ── Choice Picker ── */
+        #feasibilityPicker {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px 36px 36px;
+            max-width: 480px;
+            width: 90vw;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        #feasibilityPicker .picker-logo {
+            color: #ff9900;
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        #feasibilityPicker h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #002244;
+            margin-bottom: 6px;
+        }
+        #feasibilityPicker p {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 28px;
+        }
+        .picker-options {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .picker-card {
+            flex: 1;
+            min-width: 160px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 24px 16px 20px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .picker-card:hover {
+            border-color: #ff9900;
+            background: #fff8f0;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(255,153,0,0.2);
+        }
+        .picker-card i {
+            font-size: 28px;
+            color: #002244;
+        }
+        .picker-card:hover i { color: #ff9900; }
+        .picker-card strong {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #002244;
+        }
+        .picker-card span {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: #888;
+            line-height: 1.4;
+        }
+        .picker-card.pdf-card { }
+        .picker-close-row {
+            margin-top: 22px;
+        }
+        .picker-cancel {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 13px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: color 0.2s;
+        }
+        .picker-cancel:hover { color: #555; }
+
+        /* ── Slide viewer ── */
         .feasibility-modal-inner {
             position: relative;
             width: 96vw;
@@ -68,9 +157,7 @@
             align-items: center;
             gap: 8px;
         }
-        .feasibility-modal-bar span i {
-            color: #ff9900;
-        }
+        .feasibility-modal-bar span i { color: #ff9900; }
         .feasibility-modal-close {
             background: none;
             border: 2px solid rgba(255,255,255,0.3);
@@ -1197,14 +1284,40 @@
             }, 500);
         });
     </script>
+    <!-- ── Feasibility Study Modal ── -->
     <div id="feasibilityModal" role="dialog" aria-modal="true" aria-label="Market Feasibility Study">
-        <div class="feasibility-modal-inner">
+
+        <!-- Step 1: Choice Picker -->
+        <div id="feasibilityPicker">
+            <div class="picker-logo"><i class="fas fa-chart-bar"></i></div>
+            <h2>Mo Town Storage — Feasibility Study</h2>
+            <p>How would you like to view the market feasibility study?</p>
+            <div class="picker-options">
+                <button class="picker-card" onclick="launchSlides()">
+                    <i class="fas fa-desktop"></i>
+                    <strong>Interactive Slides</strong>
+                    <span>Best on laptop &amp; desktop — full slide deck with navigation</span>
+                </button>
+                <a class="picker-card pdf-card" href="slides/Motown_Feasibility_Study_4-14-2026.pdf" target="_blank" onclick="closeFeasibilityModal()">
+                    <i class="fas fa-file-pdf"></i>
+                    <strong>Download PDF</strong>
+                    <span>Best on mobile &amp; tablet — tap to open or save the full study</span>
+                </a>
+            </div>
+            <div class="picker-close-row">
+                <button class="picker-cancel" onclick="closeFeasibilityModal()">✕ &nbsp;Cancel</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Slide Viewer (hidden until launched) -->
+        <div class="feasibility-modal-inner" id="feasibilityViewer" style="display:none;">
             <div class="feasibility-modal-bar">
                 <span><i class="fas fa-chart-bar"></i> MOTOWN LUXURY STORAGE — MARKET FEASIBILITY STUDY</span>
                 <button class="feasibility-modal-close" onclick="closeFeasibilityModal()" aria-label="Close presentation">&#x2715;</button>
             </div>
             <iframe id="feasibilityFrame" src="" title="Market Feasibility Study Presentation" allowfullscreen></iframe>
         </div>
+
     </div>
 
     <!-- Custom JavaScript -->
@@ -1212,26 +1325,46 @@
 
     <script>
         function openFeasibilityModal() {
-            const modal = document.getElementById('feasibilityModal');
-            const frame = document.getElementById('feasibilityFrame');
-            if (!frame.src || frame.src === window.location.href) {
-                frame.src = 'feasibility.html';
-            }
+            const modal    = document.getElementById('feasibilityModal');
+            const picker   = document.getElementById('feasibilityPicker');
+            const viewer   = document.getElementById('feasibilityViewer');
+            // Always show the picker first
+            picker.style.display = 'block';
+            viewer.style.display = 'none';
             modal.classList.add('open');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeFeasibilityModal() {
-            document.getElementById('feasibilityModal').classList.remove('open');
-            document.body.style.overflow = '';
+        function launchSlides() {
+            const picker = document.getElementById('feasibilityPicker');
+            const viewer = document.getElementById('feasibilityViewer');
+            const frame  = document.getElementById('feasibilityFrame');
+            picker.style.display = 'none';
+            viewer.style.display = 'flex';
+            if (!frame.src || frame.src === window.location.href) {
+                frame.src = 'feasibility.html';
+            }
         }
 
-        // Close on backdrop click
+        function closeFeasibilityModal() {
+            const modal  = document.getElementById('feasibilityModal');
+            const picker = document.getElementById('feasibilityPicker');
+            const viewer = document.getElementById('feasibilityViewer');
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+            // Reset to picker for next open
+            setTimeout(function() {
+                picker.style.display = 'block';
+                viewer.style.display = 'none';
+            }, 300);
+        }
+
+        // Close on backdrop click (only when picker is showing)
         document.getElementById('feasibilityModal').addEventListener('click', function(e) {
             if (e.target === this) closeFeasibilityModal();
         });
 
-        // Close on Escape key
+        // Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && document.getElementById('feasibilityModal').classList.contains('open')) {
                 closeFeasibilityModal();
