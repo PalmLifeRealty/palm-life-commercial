@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You — Motown Luxury Storage Investment Inquiry</title>
+    <meta name="description" content="Thank you for your interest in Motown Luxury Storage. We have received your inquiry and will be in touch within 24-48 hours.">
+    <!-- Prevent search engine indexing of thank you page -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Shared site styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ── Page layout ── */
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Hero-style confirmation banner ── */
+        .thanks-hero {
+            background: linear-gradient(135deg, #001a33 0%, #002244 50%, #003366 100%);
+            padding: 120px 24px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .thanks-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('images/image1.jpg') center/cover no-repeat;
+            opacity: 0.12;
+        }
+        .thanks-hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .thanks-badge {
+            display: inline-block;
+            background: #ff9900;
+            color: #002244;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            padding: 6px 18px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+        .thanks-check {
+            width: 80px;
+            height: 80px;
+            background: #ff9900;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            box-shadow: 0 0 0 16px rgba(255,153,0,0.15);
+        }
+        .thanks-check i {
+            font-size: 36px;
+            color: #002244;
+        }
+        .thanks-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+        .thanks-hero h1 span { color: #ff9900; }
+        .thanks-hero p {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            color: rgba(255,255,255,0.82);
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* ── Main content card ── */
+        .thanks-content {
+            flex: 1;
+            background: #f8f8f6;
+            padding: 64px 24px 80px;
+        }
+        .thanks-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        @media (max-width: 700px) {
+            .thanks-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── Card shared styles ── */
+        .thanks-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 36px 32px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            border-top: 4px solid #002244;
+        }
+        .thanks-card.accent { border-top-color: #ff9900; }
+        .thanks-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #002244;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .thanks-card h2 i {
+            font-size: 20px;
+            color: #ff9900;
+        }
+
+        /* ── What happens next ── */
+        .next-steps {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .next-steps li {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: #002244;
+            color: #ff9900;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            margin-top: 2px;
+        }
+        .step-text strong {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #002244;
+            margin-bottom: 3px;
+        }
+        .step-text span {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* ── NDA callout box ── */
+        .nda-box {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8eef5 100%);
+            border: 1px solid #c8d8e8;
+            border-left: 4px solid #ff9900;
+            border-radius: 8px;
+            padding: 20px 22px;
+            margin-top: 24px;
+        }
+        .nda-box p {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .nda-box strong { color: #002244; }
+
+        /* ── Direct contact ── */
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .contact-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .contact-icon {
+            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            background: #f0f4f8;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-icon i { color: #002244; font-size: 16px; }
+        .contact-detail strong {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 3px;
+        }
+        .contact-detail a,
+        .contact-detail span {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: #002244;
+            font-weight: 600;
+            text-decoration: none;
+            line-height: 1.4;
+        }
+        .contact-detail a:hover { color: #ff9900; }
+
+        /* ── CTA buttons ── */
+        .thanks-actions {
+            max-width: 1000px;
+            margin: 40px auto 0;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #002244 0%, #003366 100%);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(0,34,68,0.25);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #ff9900 0%, #e68a00 100%);
+            color: #002244;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255,153,0,0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #002244;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid #002244;
+            transition: all 0.3s;
+        }
+        .btn-outline:hover {
+            border-color: #ff9900;
+            color: #ff9900;
+            transform: translateY(-2px);
+        }
+
+        /* ── Footer (minimal) ── */
+        .thanks-footer {
+            background: #001a33;
+            padding: 28px 24px;
+            text-align: center;
+        }
+        .thanks-footer p {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+            margin: 0;
+            line-height: 1.6;
+        }
+        .thanks-footer a {
+            color: rgba(255,153,0,0.8);
+            text-decoration: none;
+        }
+        .thanks-footer a:hover { color: #ff9900; }
+    </style>
+</head>
+<body>
+
+    <!-- Minimal Nav -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-warehouse"></i>
+                <span>MOTOWN LUXURY STORAGE</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#hero" class="nav-link">Overview</a></li>
+                <li><a href="index.html#financials" class="nav-link">Financials</a></li>
+                <li><a href="index.html#contact" class="nav-link contact-btn">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="thanks-hero">
+        <div class="thanks-hero-inner">
+            <div class="thanks-badge">Inquiry Received</div>
+            <div class="thanks-check">
+                <i class="fas fa-check"></i>
+            </div>
+            <h1>Thank You for Your <span>Interest</span></h1>
+            <p>We have received your investment inquiry for Motown Luxury Storage and our team will be in touch within <strong style="color:#ff9900;">24–48 hours</strong>.</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="thanks-content">
+        <div class="thanks-grid">
+
+            <!-- What happens next -->
+            <div class="thanks-card">
+                <h2><i class="fas fa-clipboard-list"></i> What Happens Next</h2>
+                <ul class="next-steps">
+                    <li>
+                        <div class="step-num">1</div>
+                        <div class="step-text">
+                            <strong>Inquiry Reviewed</strong>
+                            <span>Our team reviews your submission and confirms your accredited investor status.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-num">2</div>
+                        <div class="step-text">
+                            <strong>NDA Sent Within 24–48 Hours</strong>
+                            <span>We will email you a Non-Disclosure Agreement. Signing the NDA is our standard first step before sharing detailed financial materials.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-num">3</div>
+                        <div class="step-text">
+                            <strong>Full Investment Package</strong>
+                            <span>Upon NDA execution, you will receive the complete offering materials including financial projections, construction plans, and due diligence documents.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-num">4</div>
+                        <div class="step-text">
+                            <strong>Site Visit & Q&amp;A</strong>
+                            <span>We invite serious investors to schedule a site visit and a direct call with the development team.</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="nda-box">
+                    <p><strong>Regarding the NDA:</strong> This is a private placement opportunity. The Non-Disclosure Agreement protects both parties and allows us to share proprietary financial data, site plans, and market research in confidence. It is standard practice for institutional-quality investment opportunities of this nature.</p>
+                </div>
+            </div>
+
+            <!-- Direct contact -->
+            <div class="thanks-card accent">
+                <h2><i class="fas fa-headset"></i> Prefer to Talk Now?</h2>
+                <p style="font-family:'Inter',sans-serif;font-size:15px;color:#555;line-height:1.6;margin-bottom:28px;">
+                    You are welcome to reach us directly. Our team is available to answer questions about the opportunity, the investment structure, or the NDA process.
+                </p>
+                <ul class="contact-list">
+                    <li>
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-detail">
+                            <strong>Direct Phone</strong>
+                            <a href="tel:+18888774040">1-888-877-4040</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-detail">
+                            <strong>Email</strong>
+                            <a href="mailto:walter@palmliferealty.com">walter@palmliferealty.com</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-icon"><i class="fas fa-globe"></i></div>
+                        <div class="contact-detail">
+                            <strong>Project Website</strong>
+                            <a href="https://www.motownstorage.us" target="_blank">www.motownstorage.us</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-detail">
+                            <strong>Project Location</strong>
+                            <span>Trenton Avenue &amp; US Highway 19<br>Spring Hill, FL 34609</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- CTA buttons -->
+        <div class="thanks-actions">
+            <a href="index.html" class="btn-primary">
+                <i class="fas fa-arrow-left"></i>
+                Back to Investment Overview
+            </a>
+            <a href="https://pub-545064860bf846d48d5ea228c218592b.r2.dev/Motown/Motown%20Feasibility%20Study%204-14-2026.pdf" target="_blank" class="btn-outline">
+                <i class="fas fa-file-pdf"></i>
+                View Feasibility Study PDF
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="thanks-footer">
+        <p>
+            &copy; 2026 Motown Luxury Storage &nbsp;|&nbsp; Spring Hill, Florida &nbsp;|&nbsp;
+            <a href="https://www.motownstorage.us" target="_blank">www.motownstorage.us</a>
+            &nbsp;|&nbsp; <a href="tel:+18888774040">1-888-877-4040</a>
+        </p>
+        <p style="margin-top:8px;">
+            This page is intended for accredited investors only. This is not a solicitation for securities. All investment information is confidential and subject to NDA.
+        </p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
