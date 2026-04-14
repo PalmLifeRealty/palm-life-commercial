@@ -1298,11 +1298,11 @@
                     <strong>Interactive Slides</strong>
                     <span>Best on laptop &amp; desktop — full slide deck with navigation</span>
                 </button>
-                <a class="picker-card pdf-card" href="slides/Motown_Feasibility_Study_4-14-2026.pdf" target="_blank" onclick="closeFeasibilityModal()">
+                <button class="picker-card pdf-card" onclick="openPDF()">
                     <i class="fas fa-file-pdf"></i>
                     <strong>Download PDF</strong>
                     <span>Best on mobile &amp; tablet — tap to open or save the full study</span>
-                </a>
+                </button>
             </div>
             <div class="picker-close-row">
                 <button class="picker-cancel" onclick="closeFeasibilityModal()">✕ &nbsp;Cancel</button>
@@ -1324,6 +1324,11 @@
     <script src="js/main.js"></script>
 
     <script>
+        function openPDF() {
+            window.open('slides/Motown_Feasibility_Study_4-14-2026.pdf', '_blank');
+            closeFeasibilityModal();
+        }
+
         function openFeasibilityModal() {
             const modal    = document.getElementById('feasibilityModal');
             const picker   = document.getElementById('feasibilityPicker');
