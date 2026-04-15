@@ -15,1057 +15,7 @@
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
-<style>
-/* ============================================================
-   OUTLOOK WAY — INVESTOR PRESENTATION
-   Deep Navy · Antique Gold · Coastal Luxury
-   ============================================================ */
-
-:root {
-  --gold:        #B8983F;
-  --gold-light:  #D4AF5A;
-  --gold-dim:    rgba(184,152,63,0.18);
-  --gold-rule:   rgba(184,152,63,0.35);
-  --navy:        #0B1929;
-  --navy-mid:    #112238;
-  --navy-card:   #0F1E30;
-  --navy-border: rgba(255,255,255,0.07);
-  --text:        #D8DFEA;
-  --text-muted:  #7A8FA8;
-  --text-dim:    #4A607A;
-  --white:       #FFFFFF;
-  --radius:      16px;
-  --radius-lg:   24px;
-}
-
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-html { scroll-behavior:smooth; scroll-padding-top:80px; }
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--navy);
-  color: var(--text);
-  overflow-x: hidden;
-  line-height: 1.65;
-}
-
-/* ── Typography ── */
-.serif { font-family: 'Cormorant Garamond', Georgia, serif; }
-
-h1,h2,h3,h4 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 500;
-  line-height: 1.15;
-  color: var(--white);
-}
-
-h1 { font-size: clamp(3.2rem, 8vw, 7rem); letter-spacing: 0.04em; }
-h2 { font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: 0.02em; }
-h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
-h4 { font-size: 1.25rem; font-weight: 600; }
-
-em { font-style: italic; color: var(--gold-light); }
-
-a { color: inherit; text-decoration: none; }
-
-.container { max-width: 1340px; margin: 0 auto; padding: 0 2rem; }
-
-section { padding: 110px 0; position: relative; }
-
-/* ── Utility ── */
-.eyebrow {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.gold-rule {
-  width: 48px; height: 2px;
-  background: var(--gold);
-  margin: 1.25rem 0;
-}
-
-.badge {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.4rem 1rem;
-  border: 1px solid var(--gold-rule);
-  border-radius: 50px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  background: var(--gold-dim);
-}
-
-.btn {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.9rem 2rem;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-decoration: none;
-  border: none;
-}
-.btn-gold {
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-  color: var(--navy);
-  box-shadow: 0 6px 28px rgba(184,152,63,0.35);
-}
-.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(184,152,63,0.5); }
-
-.btn-outline {
-  background: transparent;
-  color: var(--white);
-  border: 1.5px solid rgba(255,255,255,0.22);
-}
-.btn-outline:hover { border-color: var(--gold); color: var(--gold-light); background: var(--gold-dim); }
-
-/* ── Noise texture overlay ── */
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
-}
-
-/* ============================================================
-   NAVIGATION
-   ============================================================ */
-.navbar {
-  position: fixed; top:0; left:0; right:0; z-index:1000;
-  padding: 1.25rem 0;
-  background: rgba(11,25,41,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--navy-border);
-  transition: all 0.3s ease;
-}
-.navbar.scrolled {
-  padding: 0.8rem 0;
-  background: rgba(11,25,41,0.98);
-  box-shadow: 0 4px 40px rgba(0,0,0,0.5);
-}
-
-.nav-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  max-width: 1340px; margin: 0 auto; padding: 0 2rem;
-}
-
-.nav-brand {
-  display: flex; flex-direction: column; line-height: 1;
-}
-.nav-brand-top {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.3em;
-  text-transform: uppercase; color: var(--gold);
-}
-.nav-brand-project {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.45rem; font-weight: 600; letter-spacing: 0.06em;
-  color: var(--white);
-}
-
-.nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
-.nav-links a {
-  font-size: 0.85rem; font-weight: 500; color: var(--text-muted);
-  transition: color 0.2s; position: relative; padding: 0.3rem 0;
-}
-.nav-links a::after {
-  content:''; position:absolute; bottom:-2px; left:0; width:0; height:1.5px;
-  background: var(--gold); transition: width 0.3s;
-}
-.nav-links a:hover { color: var(--white); }
-.nav-links a:hover::after { width:100%; }
-.nav-links .nav-cta {
-  padding: 0.55rem 1.4rem;
-  border: 1.5px solid var(--gold-rule);
-  border-radius: 50px;
-  color: var(--gold-light) !important;
-  background: var(--gold-dim);
-}
-.nav-links .nav-cta:hover { background: var(--gold); color: var(--navy) !important; }
-.nav-links .nav-cta::after { display:none; }
-
-.hamburger { display:none; background:none; border:none; cursor:pointer; flex-direction:column; gap:5px; }
-.hamburger span { width:24px; height:2px; background:var(--text); display:block; transition:all 0.3s; }
-
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero {
-  min-height: 100vh;
-  position: relative;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-  padding-top: 80px;
-}
-
-.hero-video {
-  position: absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover;
-  z-index:0;
-}
-
-.hero-overlay {
-  position: absolute; inset:0; z-index:1;
-  background: linear-gradient(
-    165deg,
-    rgba(11,25,41,0.88) 0%,
-    rgba(11,25,41,0.55) 45%,
-    rgba(11,25,41,0.80) 100%
-  );
-}
-
-/* Gold vignette sides */
-.hero-overlay::after {
-  content:'';
-  position:absolute; inset:0;
-  background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 40%, rgba(11,25,41,0.6) 100%);
-}
-
-.hero-body {
-  position:relative; z-index:2;
-  text-align:center;
-  max-width: 1000px;
-  padding: 0 2rem;
-}
-
-.hero-eyebrow {
-  display: inline-flex; align-items:center; gap: 0.75rem;
-  font-size: 0.72rem; font-weight:700; letter-spacing:0.25em;
-  text-transform:uppercase; color: var(--gold-light);
-  margin-bottom: 1.5rem;
-  animation: fadeUp 0.8s ease both;
-}
-.hero-eyebrow span { width:32px; height:1px; background: var(--gold); display:block; }
-
-.hero-title {
-  font-size: clamp(3.5rem, 9vw, 8rem);
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 0.2em;
-  text-shadow: 0 6px 40px rgba(0,0,0,0.8);
-  animation: fadeUp 0.8s ease 0.15s both;
-}
-
-.hero-address {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(255,255,255,0.65);
-  margin-bottom: 2.5rem;
-  letter-spacing: 0.08em;
-  animation: fadeUp 0.8s ease 0.28s both;
-}
-
-.hero-tags {
-  display: flex; flex-wrap:wrap; justify-content:center; gap: 0.75rem;
-  margin-bottom: 3.5rem;
-  animation: fadeUp 0.8s ease 0.4s both;
-}
-
-.hero-tag {
-  padding: 0.45rem 1.1rem;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 50px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.8);
-  background: rgba(255,255,255,0.05);
-}
-.hero-tag.gold {
-  border-color: var(--gold-rule);
-  color: var(--gold-light);
-  background: var(--gold-dim);
-}
-
-.hero-stats-bar {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  margin-bottom: 3rem;
-  border: 1px solid var(--navy-border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(10px);
-  animation: fadeUp 0.8s ease 0.55s both;
-}
-
-.hstat {
-  padding: 1.5rem 1rem;
-  text-align:center;
-  border-right: 1px solid var(--navy-border);
-}
-.hstat:last-child { border-right:none; }
-
-.hstat-val {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.2rem;
-  font-weight: 600;
-  color: var(--white);
-  display: block;
-  line-height:1;
-}
-.hstat-lbl {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  display: block;
-  margin-top: 0.4rem;
-}
-
-.hero-ctas {
-  display: flex; gap: 1rem; justify-content:center;
-  flex-wrap:wrap;
-  animation: fadeUp 0.8s ease 0.7s both;
-}
-
-.scroll-cue {
-  position: absolute; bottom: 2.5rem; left:50%; transform:translateX(-50%);
-  display:flex; flex-direction:column; align-items:center; gap:0.5rem;
-  z-index:2;
-  animation: bounce 2.5s infinite 1.5s;
-}
-.scroll-cue span { width:1px; height:40px; background: linear-gradient(to bottom, var(--gold), transparent); }
-.scroll-cue small { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); }
-
-/* ============================================================
-   PROPERTY OVERVIEW
-   ============================================================ */
-.overview { background: var(--navy-mid); }
-
-.overview-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: start;
-}
-
-.overview-left h2 { margin-bottom: 1.25rem; }
-.overview-left p { color: var(--text-muted); font-size: 1.05rem; line-height:1.8; margin-bottom:1.25rem; }
-
-.program-cards {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-  margin-top: 2.5rem;
-}
-
-.prog-card {
-  background: var(--navy-card);
-  border: 1px solid var(--navy-border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  transition: border-color 0.3s, transform 0.3s;
-}
-.prog-card:hover {
-  border-color: var(--gold-rule);
-  transform: translateY(-3px);
-}
-.prog-card .prog-icon {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  background: var(--gold-dim);
-  display: flex; align-items:center; justify-content:center;
-  margin-bottom: 0.9rem;
-}
-.prog-card .prog-icon i { color: var(--gold); font-size: 0.95rem; }
-.prog-card h4 { font-size: 1rem; margin-bottom:0.3rem; color:var(--white); font-family:'Inter',sans-serif; }
-.prog-card p { font-size:0.85rem; color:var(--text-muted); line-height:1.55; }
-
-.overview-right {
-  display: flex; flex-direction:column; gap: 1rem;
-}
-
-.spec-item {
-  display: flex; align-items:center; gap: 1rem;
-  padding: 1.1rem 1.3rem;
-  background: var(--navy-card);
-  border: 1px solid var(--navy-border);
-  border-radius: var(--radius);
-  transition: border-color 0.25s;
-}
-.spec-item:hover { border-color: var(--gold-rule); }
-.spec-icon {
-  width:36px; height:36px; border-radius:8px;
-  background: var(--gold-dim);
-  display:flex; align-items:center; justify-content:center; flex-shrink:0;
-}
-.spec-icon i { color:var(--gold); font-size:0.85rem; }
-.spec-label { font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); }
-.spec-val { font-size:1rem; font-weight:600; color:var(--white); }
-
-.status-banner {
-  margin-top: 1.5rem;
-  padding: 1.25rem 1.5rem;
-  background: linear-gradient(135deg, rgba(184,152,63,0.12), rgba(184,152,63,0.04));
-  border: 1px solid var(--gold-rule);
-  border-radius: var(--radius);
-  display: flex; align-items:center; gap:1rem;
-}
-.status-banner i { color:var(--gold); font-size:1.3rem; flex-shrink:0; }
-.status-banner strong { display:block; color:var(--gold-light); font-size:0.85rem; letter-spacing:0.05em; }
-.status-banner span { font-size:0.8rem; color:var(--text-muted); }
-
-/* ============================================================
-   LOCATION
-   ============================================================ */
-.location { background: var(--navy); }
-
-.location-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items:start;
-}
-
-.map-placeholder {
-  aspect-ratio: 4/3;
-  background: var(--navy-card);
-  border: 1px solid var(--navy-border);
-  border-radius: var(--radius-lg);
-  overflow:hidden;
-  position:relative;
-}
-.map-placeholder iframe {
-  width:100%; height:100%; border:none;
-}
-.map-placeholder-inner {
-  position:absolute; inset:0;
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem;
-  color:var(--text-dim);
-}
-.map-placeholder-inner i { font-size:3rem; color:var(--gold-rule); }
-
-.proximity-grid {
-  display: grid; grid-template-columns:1fr 1fr; gap:0.75rem;
-  margin-top:2rem;
-}
-
-.prox-item {
-  display:flex; align-items:center; gap:0.75rem;
-  padding:0.9rem 1rem;
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:12px;
-  font-size:0.88rem;
-}
-.prox-item i { color:var(--gold); font-size:0.85rem; width:16px; text-align:center; flex-shrink:0; }
-.prox-dist { font-size:0.72rem; color:var(--gold-light); font-weight:700; margin-left:auto; }
-
-.location-bullets { margin-top:2rem; display:flex; flex-direction:column; gap:0.85rem; }
-.loc-bullet {
-  display:flex; align-items:flex-start; gap:0.85rem;
-  padding:1rem 1.2rem;
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:12px;
-}
-.loc-bullet i { color:var(--gold); margin-top:2px; flex-shrink:0; }
-.loc-bullet strong { display:block; font-size:0.88rem; color:var(--white); margin-bottom:0.2rem; }
-.loc-bullet span { font-size:0.82rem; color:var(--text-muted); line-height:1.5; }
-
-/* ============================================================
-   VISUAL GALLERY PLACEHOLDER
-   ============================================================ */
-.gallery-section { background: var(--navy-mid); padding: 80px 0; }
-
-.gallery-head { text-align:center; margin-bottom:3rem; }
-.gallery-head p { color:var(--text-muted); margin-top:0.75rem; }
-
-.gallery-grid {
-  display:grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 280px 280px;
-  gap:1rem;
-}
-
-.gallery-cell {
-  background: var(--navy-card);
-  border: 1px solid var(--navy-border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  display:flex; align-items:center; justify-content:center;
-  flex-direction:column; gap:0.75rem;
-  color:var(--text-dim);
-  font-size:0.8rem;
-  position:relative;
-  transition: border-color 0.3s;
-}
-.gallery-cell:hover { border-color: var(--gold-rule); }
-.gallery-cell.span-2 { grid-row: span 2; }
-
-.gallery-cell img {
-  width:100%; height:100%; object-fit:cover;
-  display:block; position:absolute; inset:0;
-}
-
-.gallery-cell-label {
-  position:absolute; bottom:0; left:0; right:0;
-  padding:1rem 1.25rem;
-  background: linear-gradient(to top, rgba(11,25,41,0.9) 0%, transparent 100%);
-  font-size:0.75rem; font-weight:600; letter-spacing:0.1em;
-  text-transform:uppercase; color:var(--gold-light);
-}
-
-.gallery-cell-placeholder {
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:0.75rem; color:var(--text-dim);
-  position:absolute; inset:0;
-}
-.gallery-cell-placeholder i { font-size:2rem; color:var(--gold-dim); color:rgba(184,152,63,0.3); }
-.gallery-cell-placeholder span { font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; }
-
-/* ============================================================
-   CONSTRUCTION & SPECS
-   ============================================================ */
-.construction { background: var(--navy); }
-
-.construction-intro {
-  display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; margin-bottom:5rem;
-}
-.construction-intro .visual-block {
-  aspect-ratio:1;
-  background: var(--navy-card);
-  border: 1px solid var(--navy-border);
-  border-radius: var(--radius-lg);
-  display:flex; align-items:center; justify-content:center;
-  flex-direction:column; gap:1rem;
-  color: var(--text-dim);
-  position:relative; overflow:hidden;
-}
-.construction-intro .visual-block img {
-  width:100%; height:100%; object-fit:cover; display:block; position:absolute; inset:0;
-  border-radius: var(--radius-lg);
-}
-.construction-intro .visual-block-label {
-  position:absolute; bottom:1rem; left:1rem; right:1rem;
-  background:rgba(11,25,41,0.88);
-  padding:0.75rem 1rem;
-  border-radius:10px;
-  font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
-  color:var(--gold-light);
-}
-
-.icf-badge-row {
-  display:flex; flex-wrap:wrap; gap:0.75rem; margin:1.75rem 0;
-}
-
-.icf-badge {
-  display:flex; align-items:center; gap:0.5rem;
-  padding:0.5rem 1rem;
-  border:1px solid var(--gold-rule);
-  border-radius:50px;
-  font-size:0.78rem; font-weight:600; letter-spacing:0.06em;
-  color:var(--gold-light); background:var(--gold-dim);
-}
-
-.spec-grid {
-  display:grid; grid-template-columns: repeat(3,1fr); gap:1rem;
-}
-
-.spec-card {
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:var(--radius);
-  padding:1.75rem 1.5rem;
-  transition:border-color 0.3s, transform 0.3s;
-}
-.spec-card:hover { border-color:var(--gold-rule); transform:translateY(-3px); }
-.spec-card-num {
-  font-family:'Cormorant Garamond',serif;
-  font-size:2.5rem; font-weight:600;
-  color:var(--gold); line-height:1; margin-bottom:0.5rem;
-}
-.spec-card h4 { font-family:'Inter',sans-serif; font-size:0.9rem; margin-bottom:0.5rem; }
-.spec-card p { font-size:0.82rem; color:var(--text-muted); line-height:1.55; }
-
-.levels-strip {
-  margin-top:3rem;
-  display:grid; grid-template-columns: repeat(4,1fr); gap:0;
-  border:1px solid var(--navy-border); border-radius:var(--radius);
-  overflow:hidden;
-}
-.level-item {
-  padding:1.5rem 1.25rem;
-  border-right:1px solid var(--navy-border);
-  background:var(--navy-card);
-  transition:background 0.3s;
-}
-.level-item:last-child { border-right:none; }
-.level-item:hover { background: rgba(184,152,63,0.06); }
-.level-num {
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.8rem; font-weight:600; color:var(--gold);
-  line-height:1; margin-bottom:0.4rem;
-}
-.level-name { font-size:0.82rem; font-weight:700; color:var(--white); margin-bottom:0.3rem; }
-.level-desc { font-size:0.78rem; color:var(--text-muted); line-height:1.5; }
-
-/* ============================================================
-   FINANCIAL ANALYSIS
-   ============================================================ */
-.financials { background: var(--navy-mid); }
-
-.exit-toggle {
-  display:flex; justify-content:center; margin-bottom:3rem;
-}
-.exit-tabs {
-  display:flex;
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:50px;
-  padding:5px;
-  gap:4px;
-}
-.exit-tab {
-  padding:0.65rem 1.75rem;
-  border-radius:50px;
-  font-size:0.85rem; font-weight:600; letter-spacing:0.05em;
-  cursor:pointer; transition:all 0.3s;
-  background:transparent; border:none; color:var(--text-muted);
-}
-.exit-tab.active { background:var(--gold); color:var(--navy); }
-
-.exit-panel { display:none; }
-.exit-panel.active { display:block; animation: fadeIn 0.4s ease; }
-
-/* ── Sell-Out Panel ── */
-.sellout-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:3rem; align-items:start; }
-
-.sellout-table { width:100%; border-collapse:collapse; }
-.sellout-table th {
-  text-align:left; font-size:0.72rem; font-weight:700; letter-spacing:0.14em;
-  text-transform:uppercase; color:var(--gold); padding:0.6rem 1rem;
-  border-bottom:1px solid var(--gold-rule); background:var(--gold-dim);
-}
-.sellout-table td {
-  padding:0.85rem 1rem;
-  font-size:0.9rem;
-  border-bottom:1px solid var(--navy-border);
-  color:var(--text);
-}
-.sellout-table td:last-child { text-align:right; font-weight:600; color:var(--white); }
-.sellout-table .subtotal td { background:rgba(255,255,255,0.03); font-weight:600; }
-.sellout-table .total-row td { background:var(--gold-dim); font-weight:700; font-size:1rem; color:var(--gold-light); }
-
-.profit-box {
-  padding:2rem;
-  background:linear-gradient(135deg, rgba(184,152,63,0.15), rgba(184,152,63,0.04));
-  border:1px solid var(--gold-rule);
-  border-radius:var(--radius-lg);
-  margin-bottom:1rem;
-}
-.profit-box .pval {
-  font-family:'Cormorant Garamond',serif;
-  font-size:3.5rem; font-weight:600; color:var(--gold-light); line-height:1;
-}
-.profit-box .plbl { font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-muted); margin-top:0.5rem; }
-
-.roi-strip { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
-.roi-item {
-  padding:1.1rem;
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:12px;
-  text-align:center;
-}
-.roi-val { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:600; color:var(--white); }
-.roi-lbl { font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-top:0.25rem; }
-
-/* ── Hold Panel ── */
-.noi-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:1.5rem; margin-bottom:2.5rem; }
-
-.noi-card {
-  padding:1.75rem 1.5rem;
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:var(--radius);
-  transition:border-color 0.3s;
-}
-.noi-card:hover { border-color:var(--gold-rule); }
-.noi-card .noi-source {
-  font-size:0.72rem; font-weight:700; letter-spacing:0.15em;
-  text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem;
-}
-.noi-card .noi-val {
-  font-family:'Cormorant Garamond',serif;
-  font-size:2.2rem; font-weight:600; color:var(--white); line-height:1;
-}
-.noi-card .noi-sub { font-size:0.8rem; color:var(--text-muted); margin-top:0.4rem; line-height:1.5; }
-
-.noi-total {
-  display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:2.5rem;
-}
-.noi-total-box {
-  padding:2rem;
-  border-radius:var(--radius-lg);
-  text-align:center;
-}
-.noi-total-box.primary {
-  background:linear-gradient(135deg, rgba(184,152,63,0.15), rgba(184,152,63,0.04));
-  border:1px solid var(--gold-rule);
-}
-.noi-total-box.secondary {
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-}
-.noi-total-box .tb-val {
-  font-family:'Cormorant Garamond',serif;
-  font-size:3rem; font-weight:600;
-  color:var(--gold-light); line-height:1;
-}
-.noi-total-box.secondary .tb-val { color:var(--white); }
-.noi-total-box .tb-lbl {
-  font-size:0.72rem; font-weight:700; letter-spacing:0.15em;
-  text-transform:uppercase; color:var(--text-muted); margin-top:0.6rem;
-}
-
-.chart-wrap {
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:var(--radius);
-  padding:2rem;
-}
-.chart-wrap h4 { font-family:'Inter',sans-serif; margin-bottom:1.5rem; font-size:0.95rem; }
-.chart-canvas-wrap { height:260px; }
-
-/* ── Total Cost Table (shared) ── */
-.cost-breakdown {
-  margin-top:2.5rem;
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:var(--radius);
-  overflow:hidden;
-}
-.cost-breakdown table { width:100%; border-collapse:collapse; }
-.cost-breakdown table th {
-  text-align:left; padding:0.8rem 1.25rem;
-  font-size:0.72rem; font-weight:700; letter-spacing:0.14em;
-  text-transform:uppercase; color:var(--gold);
-  background:var(--gold-dim);
-  border-bottom:1px solid var(--gold-rule);
-}
-.cost-breakdown table td {
-  padding:0.8rem 1.25rem;
-  border-bottom:1px solid var(--navy-border);
-  font-size:0.88rem; color:var(--text);
-}
-.cost-breakdown table td:last-child { text-align:right; font-weight:600; color:var(--white); }
-.cost-breakdown table .total-row td {
-  background:var(--gold-dim); font-weight:700; font-size:0.95rem; color:var(--gold-light);
-  border:none;
-}
-.cost-note {
-  padding:0.75rem 1.25rem;
-  font-size:0.75rem; color:var(--text-dim);
-  border-top:1px solid var(--navy-border);
-}
-
-/* ============================================================
-   COMPS / MARKET DATA
-   ============================================================ */
-.market { background: var(--navy); }
-
-.market-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-bottom:3rem; }
-
-.metric-card {
-  padding:2rem 1.5rem;
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:var(--radius);
-  text-align:center;
-  transition:border-color 0.3s;
-}
-.metric-card:hover { border-color:var(--gold-rule); }
-.metric-val {
-  font-family:'Cormorant Garamond',serif;
-  font-size:3rem; font-weight:600;
-  color:var(--gold-light); line-height:1; margin-bottom:0.4rem;
-}
-.metric-lbl { font-size:0.72rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-muted); }
-.metric-note { font-size:0.78rem; color:var(--text-muted); margin-top:0.6rem; line-height:1.5; }
-
-.comps-table-wrap {
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:var(--radius);
-  overflow:hidden;
-  overflow-x:auto;
-}
-.comps-table { width:100%; border-collapse:collapse; min-width:700px; }
-.comps-table thead th {
-  padding:0.75rem 1rem;
-  text-align:left; font-size:0.7rem; font-weight:700; letter-spacing:0.14em;
-  text-transform:uppercase; color:var(--gold);
-  background:var(--gold-dim); border-bottom:1px solid var(--gold-rule);
-  white-space:nowrap;
-}
-.comps-table tbody td {
-  padding:0.85rem 1rem;
-  border-bottom:1px solid var(--navy-border);
-  font-size:0.85rem; color:var(--text);
-  white-space:nowrap;
-}
-.comps-table .subject-row td {
-  background:linear-gradient(135deg, rgba(184,152,63,0.1), rgba(184,152,63,0.03));
-  color:var(--gold-light); font-weight:700;
-}
-.comp-adj { color:#6EC96E; font-weight:600; }
-.comp-ind { color:var(--gold-light); font-weight:700; }
-
-.reconciled-box {
-  margin-top:2rem;
-  padding:2rem 2.5rem;
-  background:linear-gradient(135deg, rgba(184,152,63,0.14), rgba(184,152,63,0.04));
-  border:1px solid var(--gold-rule);
-  border-radius:var(--radius-lg);
-  display:flex; align-items:center; justify-content:space-between; gap:2rem;
-  flex-wrap:wrap;
-}
-.reconciled-box h3 { font-size:1.1rem; color:var(--text-muted); font-family:'Inter',sans-serif; font-weight:500; margin-bottom:0.25rem; }
-.rec-val {
-  font-family:'Cormorant Garamond',serif;
-  font-size:3.5rem; font-weight:600; color:var(--gold-light); line-height:1;
-}
-.rec-note { font-size:0.8rem; color:var(--text-muted); margin-top:0.4rem; }
-
-/* ============================================================
-   TIMELINE
-   ============================================================ */
-.timeline-section { background: var(--navy-mid); }
-
-.timeline-steps { display:grid; grid-template-columns: repeat(5,1fr); gap:0; position:relative; }
-
-.timeline-steps::before {
-  content:'';
-  position:absolute;
-  top:30px; left:10%; right:10%; height:2px;
-  background: linear-gradient(90deg, var(--navy-border), var(--gold-rule), var(--navy-border));
-  z-index:0;
-}
-
-.tl-step {
-  position:relative; z-index:1;
-  display:flex; flex-direction:column; align-items:center;
-  text-align:center; padding:0 1rem;
-}
-.tl-dot {
-  width:60px; height:60px; border-radius:50%;
-  background:var(--navy-card);
-  border:2px solid var(--navy-border);
-  display:flex; align-items:center; justify-content:center;
-  margin-bottom:1.25rem;
-  transition:border-color 0.3s, background 0.3s;
-}
-.tl-step.done .tl-dot { border-color:var(--gold); background:var(--gold-dim); }
-.tl-step.done .tl-dot i { color:var(--gold); }
-.tl-dot i { color:var(--text-dim); font-size:1.1rem; }
-.tl-label { font-size:0.85rem; font-weight:700; color:var(--white); margin-bottom:0.3rem; }
-.tl-date { font-size:0.72rem; color:var(--gold); font-weight:600; letter-spacing:0.08em; margin-bottom:0.4rem; }
-.tl-note { font-size:0.75rem; color:var(--text-muted); line-height:1.5; }
-
-.phasing-cards { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:4rem; }
-
-.phase-card {
-  padding:2rem;
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:var(--radius);
-  transition:border-color 0.3s;
-}
-.phase-card:hover { border-color:var(--gold-rule); }
-.phase-num {
-  font-family:'Cormorant Garamond',serif;
-  font-size:3.5rem; font-weight:600; color:var(--gold-dim);
-  line-height:1; margin-bottom:0.5rem;
-  color:rgba(184,152,63,0.25);
-}
-.phase-card h4 { font-family:'Inter',sans-serif; margin-bottom:0.6rem; }
-.phase-card p { font-size:0.85rem; color:var(--text-muted); line-height:1.65; }
-
-/* ============================================================
-   CONTACT / CTA
-   ============================================================ */
-.contact-section { background: var(--navy); }
-
-.cta-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
-
-.cta-left h2 { margin-bottom:1rem; }
-.cta-left > p { color:var(--text-muted); font-size:1.05rem; margin-bottom:2rem; }
-
-.cta-list { list-style:none; display:flex; flex-direction:column; gap:0.65rem; margin-bottom:2rem; }
-.cta-list li {
-  display:flex; align-items:center; gap:0.75rem;
-  font-size:0.9rem; color:var(--text);
-}
-.cta-list li i { color:var(--gold); font-size:0.8rem; }
-
-.contact-card {
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:var(--radius-lg);
-  padding:2.5rem;
-}
-.contact-card h3 { margin-bottom:0.4rem; }
-.contact-card > p { font-size:0.85rem; color:var(--text-muted); margin-bottom:2rem; }
-
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-.form-group { margin-bottom:1rem; }
-.form-group label {
-  display:block; font-size:0.75rem; font-weight:700; letter-spacing:0.1em;
-  text-transform:uppercase; color:var(--text-muted); margin-bottom:0.4rem;
-}
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width:100%; padding:0.75rem 1rem;
-  background:rgba(255,255,255,0.04);
-  border:1px solid var(--navy-border);
-  border-radius:10px;
-  color:var(--white);
-  font-family:'Inter',sans-serif;
-  font-size:0.9rem;
-  transition:border-color 0.25s;
-  outline:none;
-}
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus { border-color:var(--gold); }
-.form-group input::placeholder,
-.form-group textarea::placeholder { color:var(--text-dim); }
-.form-group select option { background:var(--navy-mid); }
-
-.btn-block { width:100%; justify-content:center; margin-top:1rem; }
-
-.form-privacy {
-  display:flex; align-items:center; gap:0.5rem;
-  font-size:0.76rem; color:var(--text-muted); margin-top:0.75rem;
-}
-.form-privacy i { color:var(--gold-rule); }
-
-.form-success {
-  display:none; text-align:center; padding:2rem;
-}
-.form-success i { font-size:3rem; color:var(--gold); margin-bottom:1rem; display:block; }
-.form-success h4 { margin-bottom:0.5rem; }
-.form-success p { color:var(--text-muted); font-size:0.9rem; }
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-.footer {
-  background: var(--navy-mid);
-  border-top:1px solid var(--navy-border);
-  padding:3rem 0 2rem;
-}
-
-.footer-inner {
-  display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;
-}
-.footer-brand { font-family:'Cormorant Garamond',serif; }
-.footer-brand-name { font-size:1.4rem; font-weight:600; color:var(--white); }
-.footer-brand-sub { font-size:0.75rem; color:var(--text-dim); }
-.footer-back {
-  display:inline-flex; align-items:center; gap:0.5rem;
-  font-size:0.82rem; font-weight:600; color:var(--text-muted);
-  border:1px solid var(--navy-border);
-  padding:0.55rem 1.2rem; border-radius:50px;
-  transition:all 0.25s;
-}
-.footer-back:hover { color:var(--gold); border-color:var(--gold-rule); }
-.footer-disclaimer {
-  font-size:0.72rem; color:var(--text-dim); line-height:1.6;
-  text-align:center; margin-top:1.5rem;
-  padding-top:1.5rem; border-top:1px solid var(--navy-border);
-}
-
-/* ============================================================
-   ANIMATIONS
-   ============================================================ */
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(24px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-@keyframes fadeIn {
-  from { opacity:0; }
-  to   { opacity:1; }
-}
-@keyframes bounce {
-  0%,100% { transform: translateX(-50%) translateY(0); }
-  50%      { transform: translateX(-50%) translateY(8px); }
-}
-
-[data-reveal] {
-  opacity:0; transform:translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-[data-reveal].revealed { opacity:1; transform:translateY(0); }
-[data-reveal-delay="1"] { transition-delay:0.12s; }
-[data-reveal-delay="2"] { transition-delay:0.24s; }
-[data-reveal-delay="3"] { transition-delay:0.36s; }
-[data-reveal-delay="4"] { transition-delay:0.48s; }
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-@media (max-width:900px) {
-  .nav-links { display:none; }
-  .hamburger { display:flex; }
-  .nav-links.open { display:flex; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:var(--navy); padding:1.5rem 2rem; border-top:1px solid var(--navy-border); gap:1rem; }
-
-  .hero-stats-bar { grid-template-columns:1fr 1fr; }
-  .overview-grid { grid-template-columns:1fr; gap:3rem; }
-  .location-grid { grid-template-columns:1fr; gap:2.5rem; }
-  .gallery-grid { grid-template-columns:1fr 1fr; }
-  .gallery-cell.span-2 { grid-column:span 2; }
-  .construction-intro { grid-template-columns:1fr; gap:3rem; }
-  .spec-grid { grid-template-columns:1fr 1fr; }
-  .levels-strip { grid-template-columns:1fr 1fr; }
-  .sellout-grid { grid-template-columns:1fr; gap:2.5rem; }
-  .noi-grid { grid-template-columns:1fr; }
-  .noi-total { grid-template-columns:1fr; }
-  .timeline-steps { grid-template-columns:1fr; }
-  .timeline-steps::before { display:none; }
-  .tl-step { flex-direction:row; text-align:left; gap:1.25rem; }
-  .tl-dot { flex-shrink:0; }
-  .phasing-cards { grid-template-columns:1fr; }
-  .cta-grid { grid-template-columns:1fr; gap:3rem; }
-  .market-metrics { grid-template-columns:1fr 1fr; }
-  .program-cards { grid-template-columns:1fr; }
-  .proximity-grid { grid-template-columns:1fr; }
-}
-
-@media (max-width:600px) {
-  h1 { font-size:3rem; }
-  section { padding:80px 0; }
-  .hero-stats-bar { grid-template-columns:1fr 1fr; }
-  .hstat { padding:1rem 0.5rem; }
-  .hstat-val { font-size:1.6rem; }
-  .spec-grid { grid-template-columns:1fr; }
-  .market-metrics { grid-template-columns:1fr; }
-  .form-row { grid-template-columns:1fr; }
-  .gallery-grid { grid-template-columns:1fr; grid-template-rows:auto; }
-  .gallery-cell.span-2 { grid-column:span 1; }
-}
-</style>
+  <link rel="stylesheet" href="css/265-causeway.css" />
 </head>
 <body>
 
@@ -1576,8 +526,8 @@ body::before {
             <tbody>
               <tr>
                 <td>12 Luxury Townhomes</td>
-                <td>$1.80M avg × 12</td>
-                <td>$21,600,000</td>
+                <td>$1.375M avg × 12</td>
+                <td>$16,500,000</td>
               </tr>
               <tr>
                 <td>Boutique Hotel (7 keys)</td>
@@ -1591,7 +541,7 @@ body::before {
               </tr>
               <tr class="subtotal">
                 <td colspan="2"><strong>Gross Projected Revenue</strong></td>
-                <td><strong>$28,482,000</strong></td>
+                <td><strong>$23,382,000</strong></td>
               </tr>
             </tbody>
           </table>
@@ -1611,13 +561,13 @@ body::before {
               </tr>
               <tr>
                 <td>Hotel &amp; Retail Construction</td>
-                <td>Placeholder — confirm w/ GC</td>
-                <td style="color:var(--text-muted);">TBD</td>
+                <td>Hotel $1.8M · Retail $600k</td>
+                <td>$2,400,000</td>
               </tr>
               <tr>
-                <td>Soft Costs / Financing</td>
-                <td>Placeholder</td>
-                <td style="color:var(--text-muted);">TBD</td>
+                <td>Soft Costs</td>
+                <td>Impact &amp; Utility Tie-ins</td>
+                <td>$300,000</td>
               </tr>
               <tr>
                 <td>Marketing &amp; Sales (3%)</td>
@@ -1625,27 +575,27 @@ body::before {
                 <td>$648,000</td>
               </tr>
               <tr class="subtotal">
-                <td colspan="2"><strong>Townhome Cost Basis (Confirmed)</strong></td>
-                <td><strong>$12,408,000+</strong></td>
+                <td colspan="2"><strong>Total Cost Basis</strong></td>
+                <td><strong>$15,108,000</strong></td>
               </tr>
             </tbody>
           </table>
 
           <p style="font-size:0.75rem;color:var(--text-dim);margin-top:0.75rem;padding:0.75rem 1rem;background:var(--navy-card);border-radius:8px;border-left:2px solid var(--gold-rule);">
-            Hotel and retail construction costs TBD pending GC scope. Land = $2.7M per owner basis. Townhome budget confirmed by FLO Construction Company at $755,000/unit all-in including site work.
+            Land = $2.7M per owner basis. Townhome construction confirmed by FLO Construction at $755,000/unit all-in including site work. Hotel &amp; retail construction and soft costs are current estimates pending final GC scope.
           </p>
         </div>
 
         <div>
           <div class="profit-box">
             <div class="plbl">Indicated Gross Profit</div>
-            <div class="pval">$16M+</div>
-            <p style="color:var(--text-muted);font-size:0.82rem;margin-top:0.75rem;">On townhome component alone vs. confirmed cost basis. Total project profit increases with hotel and retail components.</p>
+            <div class="pval">$8.27M</div>
+            <p style="color:var(--text-muted);font-size:0.82rem;margin-top:0.75rem;">Gross revenue $23,382,000 minus total cost basis $15,108,000. Hotel and retail components add NOI-generating assets above and beyond the residential sellout.</p>
           </div>
 
           <div class="roi-strip">
             <div class="roi-item">
-              <div class="roi-val">$1.80M</div>
+              <div class="roi-val">$1.375M</div>
               <div class="roi-lbl">Target Price / Unit</div>
             </div>
             <div class="roi-item">
@@ -1680,9 +630,64 @@ body::before {
 
       <div class="noi-grid">
         <div class="noi-card">
-          <div class="noi-source"><i class="fas fa-home" style="margin-right:0.4rem;"></i>Townhome Rentals (12 Units)</div>
-          <div class="noi-val">$1,379,641</div>
-          <div class="noi-sub">Stabilized annual NOI · Short-term rental model<br />Gross: $1,777,641 · Expenses: $398,000<br />Based on Mira Vista comparable STR rates</div>
+          <div class="noi-source"><i class="fas fa-home" style="margin-right:0.4rem;"></i>Townhome STR (21 Units)</div>
+          <div class="noi-val">$1,807,080</div>
+          <div class="noi-sub" style="margin-top:0.6rem;">
+            <!-- Per-unit breakdown table -->
+            <table style="width:100%;border-collapse:collapse;font-size:0.76rem;margin-bottom:0.75rem;">
+              <thead>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
+                  <th style="text-align:left;padding:0.3rem 0.25rem;color:#7A8FA8;font-weight:600;letter-spacing:0.08em;">Unit</th>
+                  <th style="text-align:right;padding:0.3rem 0.25rem;color:#7A8FA8;font-weight:600;">Nightly Avg</th>
+                  <th style="text-align:right;padding:0.3rem 0.25rem;color:#7A8FA8;font-weight:600;">Annual Gross</th>
+                  <th style="text-align:right;padding:0.3rem 0.25rem;color:#7A8FA8;font-weight:600;">70% Occ.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                  <td style="padding:0.28rem 0.25rem;color:#D8DFEA;">Unit 1 <span style="color:#7A8FA8;">(1,445 SF)</span></td>
+                  <td style="text-align:right;color:#D8DFEA;">$500</td>
+                  <td style="text-align:right;color:#D8DFEA;">$182,500</td>
+                  <td style="text-align:right;color:#B8983F;">$127,750</td>
+                </tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                  <td style="padding:0.28rem 0.25rem;color:#D8DFEA;">Unit 2 <span style="color:#7A8FA8;">(1,445 SF)</span></td>
+                  <td style="text-align:right;color:#D8DFEA;">$500</td>
+                  <td style="text-align:right;color:#D8DFEA;">$182,500</td>
+                  <td style="text-align:right;color:#B8983F;">$127,750</td>
+                </tr>
+                <tr>
+                  <td style="padding:0.28rem 0.25rem;color:#7A8FA8;font-style:italic;">Units 3–21 <span style="color:#7A8FA8;">(1,377 SF ea.)</span></td>
+                  <td style="text-align:right;color:#7A8FA8;">$500</td>
+                  <td style="text-align:right;color:#7A8FA8;">$182,500 ea.</td>
+                  <td style="text-align:right;color:#B8983F;">$127,750 ea.</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- Vacancy callout -->
+            <div style="display:flex;gap:0.5rem;align-items:center;background:rgba(184,152,63,0.1);border:1px solid rgba(184,152,63,0.25);border-radius:8px;padding:0.5rem 0.75rem;margin-bottom:0.6rem;">
+              <i class="fas fa-calendar-times" style="color:#B8983F;font-size:0.8rem;flex-shrink:0;"></i>
+              <span style="font-size:0.75rem;color:#D8DFEA;"><strong style="color:#B8983F;">30% Vacancy Applied</strong> — 70% occupancy · $400 low / $600 high / $500 avg nightly</span>
+            </div>
+            <!-- Expenses -->
+            <div style="font-size:0.75rem;color:#7A8FA8;line-height:1.7;border-top:1px solid rgba(255,255,255,0.06);padding-top:0.6rem;">
+              <div style="display:flex;justify-content:space-between;"><span>Gross Revenue (21 units)</span><span style="color:#D8DFEA;">$2,682,750</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Property Tax</span><span>($93,000)</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Insurance ($1,500/unit)</span><span>($31,500)</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Utilities</span><span>($134,138)</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Management (15%)</span><span>($402,413)</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Maintenance (3%)</span><span>($80,483)</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Reserves (5%)</span><span>($134,138)</span></div>
+              <div style="display:flex;justify-content:space-between;font-weight:700;color:#D8DFEA;border-top:1px solid rgba(255,255,255,0.08);margin-top:0.3rem;padding-top:0.3rem;"><span>Total Expenses</span><span>($875,670)</span></div>
+            </div>
+            <!-- Golf Cart -->
+            <div style="margin-top:0.6rem;padding:0.5rem 0.75rem;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid rgba(255,255,255,0.06);font-size:0.75rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="color:#7A8FA8;"><i class="fas fa-car" style="margin-right:0.4rem;color:#B8983F;"></i>Golf Cart Rentals (10 carts · $60/day)</span>
+                <span style="color:#B8983F;font-weight:700;">+ $219,000</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="noi-card">
           <div class="noi-source"><i class="fas fa-concierge-bell" style="margin-right:0.4rem;"></i>Boutique Hotel (7 Keys)</div>
@@ -1698,11 +703,11 @@ body::before {
 
       <div class="noi-total">
         <div class="noi-total-box primary">
-          <div class="tb-val">$1,861,374</div>
+          <div class="tb-val">$2,297,812</div>
           <div class="tb-lbl">Total Stabilized NOI — Annual</div>
         </div>
         <div class="noi-total-box secondary">
-          <div class="tb-val">$26,591,051</div>
+          <div class="tb-val">$32,825,886</div>
           <div class="tb-lbl">Stabilized Asset Value · 7% Cap Rate</div>
         </div>
       </div>
@@ -1721,19 +726,19 @@ body::before {
         </div>
         <div style="padding:1.5rem;background:var(--navy-card);border:1px solid var(--navy-border);border-radius:var(--radius);">
           <h4 style="font-family:'Inter',sans-serif;font-size:0.9rem;margin-bottom:0.75rem;">Townhome STR Assumptions</h4>
-          <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.65;">Nightly rates $450–$812.50 depending on unit type and position. 30% vacancy applied. Benchmarked against Mira Vista Unit 1 performance. Premium end-unit and rear-unit adjustments applied. 12 units total gross: $1,777,641/yr.</p>
+          <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.65;">21 units · $400 low / $600 high / $500 avg nightly. <strong style="color:var(--white);">30% vacancy applied</strong> (70% occupancy). Total gross $2,682,750 before expenses. Expenses: property tax, insurance ($1,500/unit), utilities, management 15%, maintenance 3%, reserves 5% — total $875,670. Supplemented by golf cart rental program (10 carts · $219,000/yr).</p>
         </div>
       </div>
 
       <!-- Rate of Return call-out -->
       <div style="margin-top:1.5rem;padding:2rem;background:linear-gradient(135deg,rgba(184,152,63,0.12),rgba(184,152,63,0.04));border:1px solid var(--gold-rule);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
         <div>
-          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;">Rate of Return on $14M Build + Land</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:600;color:var(--gold-light);line-height:1;">13.30%</div>
-          <div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.4rem;">Cash-on-cash return at stabilization · Per original proforma basis</div>
+          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;">Total Stabilized NOI — All Revenue Streams</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:600;color:var(--gold-light);line-height:1;">$2,297,812</div>
+          <div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.4rem;">Townhome STR $1,807,080 · Golf Carts $219,000 · Hotel $270,432 · Retail $211,300</div>
         </div>
         <div style="flex:1;min-width:220px;padding:1.5rem;background:var(--navy-card);border:1px solid var(--navy-border);border-radius:var(--radius);">
-          <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.65;">Hold scenario generates $1.86M+ annually in stabilized NOI across all three revenue streams. At a 7% cap rate, the fully stabilized asset supports a value of $26.6M — creating significant equity above total project cost.</p>
+          <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.65;">At a 7% cap rate, the fully stabilized asset supports a value of <strong style="color:var(--white);">$32.8M</strong> — creating significant equity above the $15.1M total project cost basis. Townhome STR proforma benchmarked against Azul Ave comparable operating performance with 30% vacancy applied.</p>
         </div>
       </div>
 
@@ -1753,21 +758,17 @@ body::before {
           <tr><td>Land Acquisition</td><td>Owner Basis</td><td>$2,700,000</td></tr>
           <tr><td>Site Work (per unit × 12)</td><td>Grading, utilities, paving, landscaping</td><td>$1,800,000</td></tr>
           <tr><td>Townhome Construction (per unit × 12)</td><td>$605,000/unit all-in vertical</td><td>$7,260,000</td></tr>
-          <tr><td>Hotel Construction (7 keys)</td><td>Placeholder — GC scope pending</td><td style="color:var(--text-dim);">TBD</td></tr>
-          <tr><td>Retail Buildout</td><td>Placeholder — GC scope pending</td><td style="color:var(--text-dim);">TBD</td></tr>
-          <tr><td>Soft Costs &amp; Contingency</td><td>Est. 15% of hard costs</td><td style="color:var(--text-dim);">TBD</td></tr>
+          <tr><td>Hotel &amp; Retail Construction</td><td>Hotel $1.8M · Retail $600k</td><td>$2,400,000</td></tr>
+          <tr><td>Soft Costs</td><td>Impact &amp; Utility Tie-ins</td><td>$300,000</td></tr>
+          <tr><td>Marketing &amp; Sales (3%)</td><td>On townhome proceeds</td><td>$648,000</td></tr>
           <tr class="total-row">
-            <td colspan="2">Confirmed Cost Basis — 12 Townhomes + Land</td>
-            <td>$11,760,000</td>
-          </tr>
-          <tr class="total-row">
-            <td colspan="2">Full Project Total Cost (Including Hotel &amp; Retail)</td>
-            <td>TBD — Full GC Budget</td>
+            <td colspan="2">Total Project Cost Basis</td>
+            <td>$15,108,000</td>
           </tr>
         </tbody>
       </table>
       <div class="cost-note">
-        Construction costs confirmed by FLO Construction Company. Land value reflects $2.7M owner basis per residual analysis. Hotel/retail construction costs to be provided in full due diligence package.
+        Construction costs confirmed by FLO Construction Company. Land value reflects $2.7M owner basis. Hotel/retail construction and soft costs reflect current estimates pending final GC scope confirmation.
       </div>
     </div>
 
@@ -2050,7 +1051,7 @@ body::before {
         <div class="footer-brand-name">Outlook Way · 265 Causeway Blvd</div>
         <div class="footer-brand-sub">A Palm Life Commercial Exclusive Offering · Dunedin, Florida</div>
       </div>
-      <a href="index.html" class="footer-back">
+      <a href="../index.html" class="footer-back">
         <i class="fas fa-arrow-left"></i> Back to All Opportunities
       </a>
     </div>
@@ -2061,141 +1062,7 @@ body::before {
 </footer>
 
 
-<script>
-/* ============================================================
-   OUTLOOK WAY — JAVASCRIPT
-   ============================================================ */
-document.addEventListener('DOMContentLoaded', () => {
-  initVideo();
-  initNav();
-  initReveal();
-  initExitTabs();
-  initCharts();
-  initForm();
-});
-
-/* ── Video ── */
-function initVideo() {
-  const v = document.getElementById('heroVideo');
-  if (!v) return;
-  v.load();
-  const p = v.play();
-  if (p !== undefined) {
-    p.catch(() => {
-      const play = () => { v.play(); document.removeEventListener('click', play); };
-      document.addEventListener('click', play, { once: true });
-    });
-  }
-}
-
-/* ── Navigation ── */
-function initNav() {
-  const nav = document.getElementById('navbar');
-  const toggle = document.getElementById('navToggle');
-  const links = document.getElementById('navLinks');
-
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 80);
-  });
-
-  toggle?.addEventListener('click', () => {
-    links.classList.toggle('open');
-  });
-
-  document.querySelectorAll('.nav-link').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
-  });
-}
-
-/* ── Reveal on scroll ── */
-function initReveal() {
-  const els = document.querySelectorAll('[data-reveal]');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  els.forEach(el => obs.observe(el));
-}
-
-/* ── Exit strategy tabs ── */
-function initExitTabs() {
-  const tabs = document.querySelectorAll('.exit-tab');
-  const panels = document.querySelectorAll('.exit-panel');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById(tab.dataset.target).classList.add('active');
-    });
-  });
-}
-
-/* ── Charts ── */
-function initCharts() {
-  const noiCtx = document.getElementById('noiChart');
-  if (!noiCtx) return;
-
-  new Chart(noiCtx, {
-    type: 'bar',
-    data: {
-      labels: ['Townhome STR (12 units)', 'Boutique Hotel (7 keys)', 'Retail + Hotel Lobby'],
-      datasets: [{
-        label: 'Annual NOI',
-        data: [1379641, 270432, 211300],
-        backgroundColor: [
-          'rgba(184,152,63,0.75)',
-          'rgba(184,152,63,0.5)',
-          'rgba(184,152,63,0.3)',
-        ],
-        borderColor: ['#B8983F', '#B8983F', '#B8983F'],
-        borderWidth: 2,
-        borderRadius: 8,
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: ctx => ' $' + ctx.raw.toLocaleString() + ' NOI'
-          }
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          grid: { color: 'rgba(255,255,255,0.05)' },
-          ticks: {
-            color: '#7A8FA8',
-            callback: v => '$' + (v/1000).toFixed(0) + 'K'
-          }
-        },
-        x: {
-          grid: { display: false },
-          ticks: { color: '#7A8FA8', font: { size: 11 } }
-        }
-      }
-    }
-  });
-}
-
-/* ── Form ── */
-function initForm() {
-  const form = document.getElementById('contactForm');
-  if (!form) return;
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    document.getElementById('btnLabel').style.display = 'none';
-    document.getElementById('btnSpin').style.display = 'inline-flex';
-    setTimeout(() => {
-      form.style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    }, 1400);
-  });
-}
-</script>
+<script src="js/265-causeway.js"></script>
 
 </body>
 </html>
