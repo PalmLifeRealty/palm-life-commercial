@@ -74,16 +74,17 @@ function initCharts() {
   new Chart(noiCtx, {
     type: 'bar',
     data: {
-      labels: ['Townhome STR (12 units)', 'Boutique Hotel (7 keys)', 'Retail + Hotel Lobby'],
+      labels: ['Townhome STR (21 units)', 'Golf Cart Rentals (10 carts)', 'Boutique Hotel (7 keys)', 'Retail + Hotel Lobby'],
       datasets: [{
         label: 'Annual NOI',
-        data: [1379641, 270432, 211300],
+        data: [1807080, 219000, 270432, 211300],
         backgroundColor: [
-          'rgba(184,152,63,0.75)',
-          'rgba(184,152,63,0.5)',
-          'rgba(184,152,63,0.3)',
+          'rgba(184,152,63,0.80)',
+          'rgba(184,152,63,0.55)',
+          'rgba(184,152,63,0.38)',
+          'rgba(184,152,63,0.22)',
         ],
-        borderColor: ['#B8983F', '#B8983F', '#B8983F'],
+        borderColor: ['#B8983F', '#B8983F', '#B8983F', '#B8983F'],
         borderWidth: 2,
         borderRadius: 8,
       }]
