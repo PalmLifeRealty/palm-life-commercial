@@ -298,31 +298,46 @@
     <div class="gallery-grid" data-reveal data-reveal-delay="1">
 
       <!-- Large hero: Aerial Site Plan -->
-      <div class="gallery-cell span-2">
+      <div class="gallery-cell span-2"
+           data-lightbox
+           data-src="https://pub-545064860bf846d48d5ea228c218592b.r2.dev/Outlook-Way/Site%20Plan%20w%20Solar.jpg"
+           data-caption="Aerial Site Plan — 12 TH + Hotel + Retail">
         <img src="https://pub-545064860bf846d48d5ea228c218592b.r2.dev/Outlook-Way/Site%20Plan%20w%20Solar.jpg" alt="Aerial Site Plan — 12 TH + Hotel + Retail" />
         <div class="gallery-cell-label">Aerial Site Plan — 12 TH + Hotel + Retail</div>
       </div>
 
       <!-- Southwest Elevation -->
-      <div class="gallery-cell">
+      <div class="gallery-cell"
+           data-lightbox
+           data-src="https://pub-545064860bf846d48d5ea228c218592b.r2.dev/Outlook-Way/View%20SouthWest.jpg"
+           data-caption="Southwest Elevation">
         <img src="https://pub-545064860bf846d48d5ea228c218592b.r2.dev/Outlook-Way/View%20SouthWest.jpg" alt="Southwest Elevation" />
         <div class="gallery-cell-label">Southwest Elevation</div>
       </div>
 
       <!-- Southeast Elevation -->
-      <div class="gallery-cell">
+      <div class="gallery-cell"
+           data-lightbox
+           data-src="https://pub-545064860bf846d48d5ea228c218592b.r2.dev/Outlook-Way/View%20SouthEast.jpg"
+           data-caption="Southeast Elevation">
         <img src="https://pub-545064860bf846d48d5ea228c218592b.r2.dev/Outlook-Way/View%20SouthEast.jpg" alt="Southeast Elevation" />
         <div class="gallery-cell-label">Southeast Elevation</div>
       </div>
 
       <!-- Front Townhome Elevations -->
-      <div class="gallery-cell">
+      <div class="gallery-cell"
+           data-lightbox
+           data-src="https://pub-545064860bf846d48d5ea228c218592b.r2.dev/Outlook-Way/Symetry%20-%20Roof%20Elements.jpg"
+           data-caption="Front Townhome Elevations">
         <img src="https://pub-545064860bf846d48d5ea228c218592b.r2.dev/Outlook-Way/Symetry%20-%20Roof%20Elements.jpg" alt="Front Townhome Elevations" />
         <div class="gallery-cell-label">Front Townhome Elevations</div>
       </div>
 
       <!-- Resort Style Pool -->
-      <div class="gallery-cell">
+      <div class="gallery-cell"
+           data-lightbox
+           data-src="https://pub-545064860bf846d48d5ea228c218592b.r2.dev/Outlook-Way/View%20of%20Pool%20East.jpg"
+           data-caption="Resort Style Pool">
         <img src="https://pub-545064860bf846d48d5ea228c218592b.r2.dev/Outlook-Way/View%20of%20Pool%20East.jpg" alt="Resort Style Pool" />
         <div class="gallery-cell-label">Resort Style Pool</div>
       </div>
@@ -1170,6 +1185,18 @@
   </div>
 </footer>
 
+
+<!-- ════════════ LIGHTBOX ════════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lightbox-inner">
+    <span class="lightbox-counter" id="lightboxCounter"></span>
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
 
 <script src="js/265-causeway.js"></script>
 
