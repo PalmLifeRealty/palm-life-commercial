@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initExitTabs();
   initCharts();
   initForm();
+  initLightbox();
 });
 
 /* ── Video ── */
@@ -129,5 +130,53 @@ function initForm() {
       form.style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
     }, 1400);
+  });
+}
+
+/* ── Lightbox ── */
+function initLightbox() {
+  const cells    = [...document.querySelectorAll('[data-lightbox]')];
+  const lb       = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lightboxImg');
+  const lbCap    = document.getElementById('lightboxCaption');
+  const lbCount  = document.getElementById('lightboxCounter');
+  const lbClose  = document.getElementById('lightboxClose');
+  const lbPrev   = document.getElementById('lightboxPrev');
+  const lbNext   = document.getElementById('lightboxNext');
+  if (!cells.length || !lb) return;
+
+  let current = 0;
+
+  function open(index) {
+    current = (index + cells.length) % cells.length;
+    const cell = cells[current];
+    lbImg.src = cell.dataset.src;
+    lbImg.alt = cell.dataset.caption || '';
+    lbCap.textContent = cell.dataset.caption || '';
+    lbCount.textContent = `${current + 1} / ${cells.length}`;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { lbImg.src = ''; }, 300);
+  }
+
+  cells.forEach((cell, i) => cell.addEventListener('click', () => open(i)));
+  lbClose.addEventListener('click', close);
+  lbPrev.addEventListener('click', (e) => { e.stopPropagation(); open(current - 1); });
+  lbNext.addEventListener('click', (e) => { e.stopPropagation(); open(current + 1); });
+
+  // Click backdrop to close
+  lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+
+  // Keyboard: arrow keys + escape
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     close();
+    if (e.key === 'ArrowLeft')  open(current - 1);
+    if (e.key === 'ArrowRight') open(current + 1);
   });
 }
