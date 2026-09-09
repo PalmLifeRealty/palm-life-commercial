@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Palm Life Commercial visual media program for the Grant St Partnership hotel portfolio.">
+<title>Grant St Media Program</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --ground:#F2F4F1;
+  --surface:#FFFFFF;
+  --surface-2:#E9EDE8;
+  --ink:#12211E;
+  --muted:#576661;
+  --faint:#8A9792;
+  --tide:#0E4B45;
+  --tide-soft:#D8E5E2;
+  --brass:#A8762F;
+  --brass-soft:#EFE2CC;
+  --rule:#CFD8D3;
+  --rule-strong:#A9B7B1;
+  --slot-fill:#E5EAE6;
+  --slot-line:#B3C1BB;
+  --band-bg:#0E4B45;
+  --band-ink:#EAF2F0;
+  --band-muted:#A3C0BA;
+  --band-rule:rgba(255,255,255,.18);
+  --band-num:#E7C58A;
+  --shadow:0 1px 2px rgba(18,33,30,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0A1413;
+    --surface:#111E1C;
+    --surface-2:#162523;
+    --ink:#E6EDEA;
+    --muted:#9AAAA5;
+    --faint:#6C7C77;
+    --tide:#4FA396;
+    --tide-soft:#15302C;
+    --brass:#D3A25C;
+    --brass-soft:#2A2317;
+    --rule:#233532;
+    --rule-strong:#365049;
+    --slot-fill:#152322;
+    --slot-line:#2F4744;
+    --band-bg:#132523;
+    --band-ink:#E6EDEA;
+    --band-muted:#96A9A4;
+    --band-rule:#28403C;
+    --band-num:#D3A25C;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0A1413;
+  --surface:#111E1C;
+  --surface-2:#162523;
+  --ink:#E6EDEA;
+  --muted:#9AAAA5;
+  --faint:#6C7C77;
+  --tide:#4FA396;
+  --tide-soft:#15302C;
+  --brass:#D3A25C;
+  --brass-soft:#2A2317;
+  --rule:#233532;
+  --rule-strong:#365049;
+  --slot-fill:#152322;
+  --slot-line:#2F4744;
+  --band-bg:#132523;
+  --band-ink:#E6EDEA;
+  --band-muted:#96A9A4;
+  --band-rule:#28403C;
+  --band-num:#D3A25C;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:400}
+p{margin:0}
+a{color:var(--tide)}
+
+.wrap{max-width:1080px;margin-left:auto;margin-right:auto;padding-left:32px;padding-right:32px}
+.narrow{max-width:660px}
+
+/* ---------- top rail ---------- */
+.rail{
+  border-bottom:1px solid var(--rule);
+  background:var(--surface);
+}
+.rail-in{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 24px;
+  padding-top:16px;padding-bottom:16px;
+}
+.mark{
+  font-family:"Libre Caslon Display",Georgia,serif;
+  font-size:19px;letter-spacing:.01em;color:var(--ink);
+}
+.mark em{font-style:normal;color:var(--tide)}
+.rail-meta{
+  margin-left:auto;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);
+}
+
+/* ---------- hero ---------- */
+.hero{padding-top:88px;padding-bottom:76px;border-bottom:1px solid var(--rule)}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);
+  display:block;margin-bottom:28px;
+}
+h1{
+  font-family:"Libre Caslon Display",Georgia,serif;
+  font-size:clamp(38px,5.4vw,62px);
+  line-height:1.06;letter-spacing:-.012em;
+  max-width:16ch;
+}
+.hero-sub{
+  margin-top:26px;max-width:56ch;font-size:18px;color:var(--muted);font-weight:300;line-height:1.62;
+}
+.hero-facts{
+  margin-top:48px;display:flex;flex-wrap:wrap;gap:0;
+  border-top:1px solid var(--rule);
+}
+.fact{
+  flex:1 1 180px;padding:20px 24px 0 0;border-right:1px solid var(--rule);margin-right:24px;
+}
+.fact:last-child{border-right:0;margin-right:0}
+.fact dt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:7px;
+}
+.fact dd{margin:0;font-size:15px;color:var(--ink);line-height:1.45}
+
+/* ---------- generic section ---------- */
+section{padding:76px 0}
+.sec-head{margin-bottom:44px}
+.sec-num{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.14em;color:var(--brass);display:block;margin-bottom:14px;
+}
+h2{
+  font-family:"Libre Caslon Display",Georgia,serif;
+  font-size:clamp(27px,3.2vw,36px);line-height:1.18;letter-spacing:-.008em;max-width:22ch;
+}
+.sec-lede{margin-top:18px;max-width:62ch;color:var(--muted);font-size:16.5px;font-weight:300}
+
+/* ---------- band ---------- */
+.band{background:var(--band-bg);color:var(--band-ink)}
+.band h2{color:var(--band-ink)}
+.band .sec-lede{color:var(--band-muted)}
+.band .sec-num{color:var(--band-num)}
+
+/* ---------- role list ---------- */
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(212px,1fr));gap:0 28px;
+  border-top:1px solid var(--band-rule)}
+.role{padding:24px 0;border-bottom:1px solid var(--band-rule)}
+.role h3{
+  font-size:14.5px;font-weight:600;letter-spacing:.005em;margin-bottom:8px;color:var(--band-ink);
+}
+.role p{font-size:14px;color:var(--band-muted);font-weight:300;line-height:1.55}
+
+/* ---------- problem columns ---------- */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 40px}
+.col{padding-top:22px;border-top:2px solid var(--rule-strong)}
+.col h3{font-size:15px;font-weight:600;margin-bottom:9px}
+.col p{color:var(--muted);font-size:15px;font-weight:300;line-height:1.6}
+
+/* ---------- stages + deliverables ---------- */
+.stage-label{
+  display:flex;align-items:baseline;gap:16px;
+  margin:56px 0 4px;padding-bottom:12px;border-bottom:2px solid var(--ink);
+}
+.stage-label:first-of-type{margin-top:0}
+.stage-label .n{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.12em;color:var(--brass);
+}
+.stage-label .t{
+  font-size:12.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+}
+.stage-label .d{
+  margin-left:auto;font-size:12.5px;color:var(--faint);font-weight:300;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;letter-spacing:.02em;
+}
+
+.item{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:36px;
+  padding:34px 0;border-bottom:1px solid var(--rule);align-items:start;
+}
+.item-body h3{
+  font-family:"Libre Caslon Display",Georgia,serif;
+  font-size:23px;line-height:1.2;margin-bottom:12px;
+}
+.item-body p{color:var(--muted);font-size:15px;font-weight:300;line-height:1.6;max-width:44ch}
+.specs{
+  margin:18px 0 0;padding:0;list-style:none;
+  display:flex;flex-wrap:wrap;gap:6px;
+}
+.specs li{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.03em;color:var(--muted);
+  border:1px solid var(--rule);border-radius:2px;padding:3px 8px;background:var(--surface);
+}
+
+/* ---------- placeholder slots ---------- */
+.slot{
+  border:1.5px dashed var(--slot-line);
+  background:var(--slot-fill);
+  border-radius:2px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:7px;text-align:center;padding:16px;min-height:0;
+}
+.slot .k{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--brass);
+}
+.slot .l{font-size:13px;color:var(--muted);font-weight:400;line-height:1.4;max-width:26ch}
+.slot .r{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;color:var(--faint);
+}
+.ratio-16{aspect-ratio:16/9}
+.ratio-9{aspect-ratio:9/16}
+.ratio-43{aspect-ratio:4/3}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.grid3 .slot{aspect-ratio:1/1;padding:8px;gap:4px}
+.grid3 .slot .l{font-size:11px;line-height:1.3}
+.vert3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.vert3 .slot{aspect-ratio:9/16;padding:8px;gap:4px}
+.vert3 .slot .l{font-size:11px;line-height:1.3}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.strip .slot{aspect-ratio:2/3;padding:6px}
+.strip .slot .l{font-size:10px;line-height:1.25}
+.slot-note{
+  margin-top:9px;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;color:var(--faint);letter-spacing:.02em;
+}
+
+/* ---------- sample work links ---------- */
+.samples{margin-top:16px;padding-top:13px;border-top:1px solid var(--rule)}
+.samples-k{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--brass);
+  display:block;margin-bottom:9px;
+}
+.samples-row{display:flex;flex-wrap:wrap;gap:7px}
+.samples-row a{
+  font-size:12.5px;text-decoration:none;color:var(--tide);
+  border:1px solid var(--rule);border-radius:2px;padding:5px 11px;
+  background:var(--surface);line-height:1.3;
+}
+.samples-row a::after{content:" \2197";color:var(--faint);font-size:11px}
+.samples-row a:hover{border-color:var(--tide);background:var(--tide-soft)}
+
+/* ---------- rollout ---------- */
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+.phase{
+  background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--tide);
+  padding:26px 26px 28px;box-shadow:var(--shadow);
+}
+.phase.p2{border-top-color:var(--brass)}
+.phase .pk{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:10px;
+}
+.phase h3{font-family:"Libre Caslon Display",Georgia,serif;font-size:24px;line-height:1.15;margin-bottom:4px;color:var(--ink)}
+.phase .sub{font-size:13px;color:var(--muted);font-weight:300;margin-bottom:16px}
+.phase ul{margin:0;padding-left:17px}
+.phase li{font-size:14.5px;color:var(--muted);font-weight:300;line-height:1.55;margin-bottom:5px}
+
+/* ---------- investment ---------- */
+.inv{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 44px;
+  border-top:2px solid var(--ink)}
+.inv-col{padding:26px 0 4px}
+.inv-col + .inv-col{border-top:1px solid var(--rule)}
+@media(min-width:701px){.inv-col + .inv-col{border-top:0;border-left:1px solid var(--rule);padding-left:44px}}
+.inv-k{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:14px;
+}
+.amount{
+  font-family:"Libre Caslon Display",Georgia,serif;font-size:46px;line-height:1;
+  letter-spacing:-.01em;font-variant-numeric:tabular-nums;
+}
+.amount span{font-size:16px;font-family:"IBM Plex Sans",sans-serif;color:var(--muted);letter-spacing:0}
+.inv-desc{margin-top:14px;font-size:14.5px;color:var(--muted);font-weight:300;max-width:38ch;line-height:1.6}
+.lines{margin-top:18px;border-top:1px solid var(--rule)}
+.line{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--rule);
+  font-size:14px;color:var(--muted);font-weight:300}
+.line b{font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.inc{
+  margin-top:34px;background:var(--brass-soft);border-left:3px solid var(--brass);
+  padding:18px 22px;max-width:62ch;
+}
+.inc p{font-size:14.5px;color:var(--ink);font-weight:300;line-height:1.6}
+.inc b{font-weight:600}
+
+/* ---------- timeline ---------- */
+.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;
+  border-top:2px solid var(--rule-strong)}
+.tl-step{padding:20px 20px 4px 0;border-right:1px solid var(--rule)}
+.tl-step:last-child{border-right:0}
+.tl-step .w{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--brass);margin-bottom:8px}
+.tl-step h3{font-size:14.5px;font-weight:600;margin-bottom:6px}
+.tl-step p{font-size:13.5px;color:var(--muted);font-weight:300;line-height:1.5}
+
+/* ---------- assumptions ---------- */
+.assume{columns:2;column-gap:44px;max-width:820px}
+.assume li{font-size:14.5px;color:var(--muted);font-weight:300;line-height:1.55;margin-bottom:9px;
+  break-inside:avoid}
+@media(max-width:700px){.assume{columns:1}}
+
+/* ---------- contact ---------- */
+.contacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:28px;margin-top:36px}
+.card{border-top:2px solid var(--brass);padding-top:18px}
+.card .nm{font-size:16px;font-weight:600;margin-bottom:3px;color:var(--band-ink)}
+.card .ti{font-size:13px;color:var(--band-muted);margin-bottom:10px}
+.card a{font-size:14px;text-decoration:none;color:var(--band-ink);
+  border-bottom:1px solid var(--band-num);word-break:break-word;padding-bottom:1px}
+.card a:hover{color:var(--band-num)}
+
+footer{border-top:1px solid var(--rule);background:var(--surface);padding:30px 0 40px}
+.foot{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:baseline;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--faint)}
+.foot .sp{margin-left:auto}
+
+a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+@media(max-width:760px){
+  .wrap{padding-left:22px;padding-right:22px}
+  .item{grid-template-columns:1fr;gap:22px}
+  .hero{padding:60px 0 52px}
+  section{padding:56px 0}
+  .fact{border-right:0;margin-right:0;flex:1 1 100%;padding-right:0}
+  .strip{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+<style>
+html{color-scheme:light dark}
+body{margin:0}
+img{max-width:100%}
+</style>
+</head>
+<body>
+
+
+<header class="rail">
+  <div class="wrap rail-in">
+    <div class="mark">Palm Life <em>Commercial</em></div>
+    <div class="rail-meta">Prepared for Grant St Partnership &nbsp;·&nbsp; 09.09.26</div>
+  </div>
+</header>
+
+<div class="wrap hero">
+  <span class="eyebrow">Visual Media Program · Hotel Portfolio</span>
+  <h1>One media program across the whole portfolio.</h1>
+  <p class="hero-sub">Palm Life Commercial proposes to serve as the Grant St Partnership's visual media provider &mdash; acting as production coordinator and single point of liaison across The J Hotel Dunedin, the Grant St Inn, and any property the partnership adds. One standard, one asset library, one contact.</p>
+
+  <dl class="hero-facts">
+    <div class="fact">
+      <dt>Portfolio</dt>
+      <dd>2 hotels &mdash; The J Hotel Dunedin (Ascend Collection) and the Grant St Inn</dd>
+    </div>
+    <div class="fact">
+      <dt>PLR Role</dt>
+      <dd>Production coordinator &amp; partnership liaison</dd>
+    </div>
+    <div class="fact">
+      <dt>Structure</dt>
+      <dd>Property-by-property production plus a shared monthly content program</dd>
+    </div>
+  </dl>
+</div>
+
+<section class="wrap">
+  <div class="sec-head narrow">
+    <span class="sec-num">I. THE CASE</span>
+    <h2>Media bought property-by-property never adds up to a portfolio.</h2>
+    <p class="sec-lede">Both hotels sit in the same market, draw the same guest, and compete for the same booking. Commissioned separately, they end up with libraries that don't match and spend that doesn't compound.</p>
+  </div>
+  <div class="cols">
+    <div class="col">
+      <h3>Inconsistent standards</h3>
+      <p>Different photographers, different light, different edit. Room shots that can't sit next to each other on a brand page or an OTA listing without looking like two different companies.</p>
+    </div>
+    <div class="col">
+      <h3>Duplicated destination spend</h3>
+      <p>Dunedin footage &mdash; the causeway, downtown, the marina, Honeymoon Island &mdash; sells both properties equally. Shooting it twice pays for it twice.</p>
+    </div>
+    <div class="col">
+      <h3>No owner-side control</h3>
+      <p>Without a coordinator, the partnership manages vendors directly: scheduling, access, revisions, licensing, and deployment across every channel, per property, forever.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head narrow">
+      <span class="sec-num">II. OUR ROLE</span>
+      <h2>Palm Life Commercial as production coordinator and liaison.</h2>
+      <p class="sec-lede">The partnership approves scope and receives finished assets. Everything between those two points is ours to run.</p>
+    </div>
+    <div class="roles">
+      <div class="role">
+        <h3>Scope &amp; shot list</h3>
+        <p>Property-by-property shot lists built around what actually converts a booking, reviewed with ownership before anyone arrives on site.</p>
+      </div>
+      <div class="role">
+        <h3>Vendor selection &amp; management</h3>
+        <p>We source, contract and direct the production crews, and we hold them to the standard. One agreement, held by PLR.</p>
+      </div>
+      <div class="role">
+        <h3>Access coordination</h3>
+        <p>Rooms held out of inventory, staging, housekeeping timing and shoot windows planned around occupancy so revenue isn't disrupted.</p>
+      </div>
+      <div class="role">
+        <h3>Brand compliance</h3>
+        <p>Assets built to meet Choice Hotels and Ascend Collection image standards alongside each property's own identity.</p>
+      </div>
+      <div class="role">
+        <h3>Quality control &amp; revisions</h3>
+        <p>We review every deliverable before it reaches ownership and run the revision rounds. The partnership sees finished work, not drafts.</p>
+      </div>
+      <div class="role">
+        <h3>Asset library &amp; licensing</h3>
+        <p>One organized, named, rights-cleared library the partnership owns outright &mdash; usable for brand.com, OTAs, print and sales collateral.</p>
+      </div>
+      <div class="role">
+        <h3>Channel deployment</h3>
+        <p>Assets loaded where they earn: brand.com, Choice/Ascend listings, OTA galleries, Google Business Profile, Reels, TikTok and Shorts.</p>
+      </div>
+      <div class="role">
+        <h3>Single point of contact</h3>
+        <p>The partnership talks to Palm Life Commercial. Not to a photographer, a drone operator, a 3D tech and an editor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head narrow">
+    <span class="sec-num">III. THE PROGRAM</span>
+    <h2>What gets produced, per property.</h2>
+    <p class="sec-lede">Three stages: everything captured on site, everything finished from that capture, and the ongoing program that keeps the library working after the crew leaves. The frames below are placeholders &mdash; live examples drop into each one.</p>
+  </div>
+
+  <!-- ================= STAGE 01 ================= -->
+  <div class="stage-label">
+    <span class="n">01</span>
+    <span class="t">Capture</span>
+    <span class="d">On site &mdash; one coordinated production period</span>
+  </div>
+
+  <!-- PLACEHOLDER: replace the three .slot divs with <img> tags of interior/room stills -->
+  <div class="item">
+    <div class="item-body">
+      <h3>Hotel Photography</h3>
+      <p>Full professional coverage of all four room variations, the lobby, exterior, amenities and common areas &mdash; the core set that carries brand.com, every OTA gallery and all print collateral.</p>
+      <ul class="specs">
+        <li>4 room variations</li><li>Lobby + exterior</li><li>Amenities</li><li>Common areas</li><li>High-res + web-optimized</li>
+      </ul>
+    </div>
+    <div>
+      <div class="grid3">
+        <div class="slot"><span class="k">Example</span><span class="l">King guest room</span></div>
+        <div class="slot"><span class="k">Example</span><span class="l">Lobby &amp; arrival</span></div>
+        <div class="slot"><span class="k">Example</span><span class="l">Pool deck</span></div>
+      </div>
+      <p class="slot-note">Placeholder &mdash; swap for 3 stills, 2400&times;2400 min.</p>
+      <div class="samples">
+        <span class="samples-k">The standard &mdash; recent property galleries</span>
+        <div class="samples-row">
+          <a href="https://view.spiro.media/2120_euclid_terrace-2089" target="_blank" rel="noopener">Euclid Terrace gallery</a>
+          <a href="https://view.spiro.media/2055_s_shade_ave-4131" target="_blank" rel="noopener">S. Shade Ave gallery</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLACEHOLDER: replace .slot with a 16:9 aerial still -->
+  <div class="item">
+    <div class="item-body">
+      <h3>Aerial &amp; Drone Photography</h3>
+      <p>Elevated coverage that establishes the property in its setting &mdash; footprint, parking, approach, and proximity to the water and to downtown. The context a ground-level camera can't give a prospective guest.</p>
+      <ul class="specs">
+        <li>Exterior &amp; footprint</li><li>Site layout</li><li>Location context</li><li>FAA-compliant</li>
+      </ul>
+    </div>
+    <div>
+      <div class="slot ratio-16"><span class="k">Example</span><span class="l">Aerial establishing frame &mdash; property and coastline</span><span class="r">16:9</span></div>
+      <p class="slot-note">Placeholder &mdash; swap for aerial still, 3840&times;2160.</p>
+    </div>
+  </div>
+
+  <!-- PLACEHOLDER: replace the three .slot divs with destination stills -->
+  <div class="item">
+    <div class="item-body">
+      <h3>Dunedin Destination Photography</h3>
+      <p>Selected nearby attractions and destination highlights, shot once and shared across both properties. Guests book a trip, not a room &mdash; this is the half of the story the property itself can't tell.</p>
+      <ul class="specs">
+        <li>Shared across portfolio</li><li>Downtown &amp; Main St</li><li>Waterfront</li><li>Nearby attractions</li>
+      </ul>
+    </div>
+    <div>
+      <div class="grid3">
+        <div class="slot"><span class="k">Example</span><span class="l">Downtown Dunedin</span></div>
+        <div class="slot"><span class="k">Example</span><span class="l">Marina &amp; causeway</span></div>
+        <div class="slot"><span class="k">Example</span><span class="l">Honeymoon Island</span></div>
+      </div>
+      <p class="slot-note">Placeholder &mdash; swap for 3 destination stills.</p>
+    </div>
+  </div>
+
+  <!-- ================= STAGE 02 ================= -->
+  <div class="stage-label">
+    <span class="n">02</span>
+    <span class="t">Finished Assets</span>
+    <span class="d">Delivered from the coordinated capture</span>
+  </div>
+
+  <!-- PLACEHOLDER: replace .slot with the website film embed or <video> -->
+  <div class="item">
+    <div class="item-body">
+      <h3>Hotel Website Film</h3>
+      <p>One professionally produced hotel film built for brand.com and digital marketing &mdash; exterior, rooms, lobby, amenities, lifestyle detail, nearby Dunedin and aerial, cut into a single piece.</p>
+      <ul class="specs">
+        <li>Website hero</li><li>Aerial included</li><li>Destination footage</li><li>1 revision round</li>
+      </ul>
+    </div>
+    <div>
+      <div class="slot ratio-16"><span class="k">Video slot</span><span class="l">Hotel website film</span><span class="r">16:9 &mdash; embed or MP4</span></div>
+      <p class="slot-note">Placeholder &mdash; replace with player embed.</p>
+      <div class="samples">
+        <span class="samples-k">The standard &mdash; finished website films</span>
+        <div class="samples-row">
+          <a href="https://dl.dropboxusercontent.com/scl/fi/z9zftz5ik0lljaorchyv3/4315-Reflections-Pkwy-Sarasota-FL-34233-USA-Value-Cut-V1-Topaz.mp4?rlkey=tmx7zfj2k8ajxn55a3nbosjax&amp;raw=1" target="_blank" rel="noopener">Cinematic cut &mdash; Sarasota</a>
+          <a href="https://dl.dropboxusercontent.com/scl/fi/tonfxcg02dutaf9w1u0ev/Punta-Gorda-FL-USA-Branding-Cut-V1-Topaz-1.mp4?rlkey=haqlq35j85i0zccxzfj6h7ro5&amp;raw=1" target="_blank" rel="noopener">Branding cut &mdash; Punta Gorda</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLACEHOLDER: replace .slot with the vertical social film -->
+  <div class="item">
+    <div class="item-body">
+      <h3>Dedicated Social Media Film</h3>
+      <p>A separate social-first cut &mdash; not a trim of the website film. Paced, framed and captioned for vertical feeds, covering the hotel experience, rooms, amenities and the destination around them.</p>
+      <ul class="specs">
+        <li>Vertical 9:16</li><li>Separately edited</li><li>Caption-ready</li><li>Reels / TikTok / Shorts</li>
+      </ul>
+    </div>
+    <div>
+      <div class="vert3">
+        <div class="slot"><span class="k">Video</span><span class="l">Social film</span></div>
+        <div class="slot"><span class="k">Alt cut</span><span class="l">15s version</span></div>
+        <div class="slot"><span class="k">Alt cut</span><span class="l">30s version</span></div>
+      </div>
+      <p class="slot-note">Placeholder &mdash; swap for vertical video embeds, 1080&times;1920.</p>
+      <div class="samples">
+        <span class="samples-k">The standard &mdash; social reel cuts</span>
+        <div class="samples-row">
+          <a href="https://dl.dropboxusercontent.com/scl/fi/rjfnmrcvq88bool7y8co8/Charlot-Real-Estate-Media5755-Bluestar-Ct-Bradenton-FL-34211-Groovy-Cut-v2-topaz.mp4?rlkey=3mbp2j6gq1t0512g8n8vhd2m7&amp;raw=1" target="_blank" rel="noopener">Reel &mdash; Bradenton</a>
+          <a href="https://dl.dropboxusercontent.com/scl/fi/pq39fph17mvgtq3mdwuk3/26251-Copiapo-Cir-Punta-Gorda-FL-Groovy-Cut-Client-Revision-V2-Topaz.mp4?rlkey=t81c67y2wonue1bnbe0d9kb6h&amp;raw=1" target="_blank" rel="noopener">Reel &mdash; Punta Gorda</a>
+          <a href="https://dl.dropboxusercontent.com/scl/fi/v9yl7z8669z1v4vfr7sic/111-Corte-Del-Asolo-Venice-FL-34285-USA-Value-Cut-V1-Topaz-1.mp4?rlkey=zagpdh88oud8jro6456bc4uvu&amp;raw=1" target="_blank" rel="noopener">Reel &mdash; Venice</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLACEHOLDER: replace .slot divs with clip thumbnails -->
+  <div class="item">
+    <div class="item-body">
+      <h3>Extended Content Library</h3>
+      <p>Additional captured clips of the hotel, rooms, amenities, details, the surrounding destination and nearby attractions. This is the reserve that makes the ongoing program possible without returning to site every month.</p>
+      <ul class="specs">
+        <li>Raw + graded clips</li><li>Repurposable</li><li>Feeds monthly content</li><li>Owned by partnership</li>
+      </ul>
+    </div>
+    <div>
+      <div class="strip">
+        <div class="slot"><span class="l">Clip 01</span></div>
+        <div class="slot"><span class="l">Clip 02</span></div>
+        <div class="slot"><span class="l">Clip 03</span></div>
+        <div class="slot"><span class="l">Clip 04</span></div>
+      </div>
+      <p class="slot-note">Placeholder &mdash; swap for library clip thumbnails.</p>
+    </div>
+  </div>
+
+  <!-- ================= STAGE 03 ================= -->
+  <div class="stage-label">
+    <span class="n">03</span>
+    <span class="t">Ongoing</span>
+    <span class="d">Monthly &mdash; two-month minimum</span>
+  </div>
+
+  <!-- PLACEHOLDER: replace .slot divs with recent published posts -->
+  <div class="item">
+    <div class="item-body">
+      <h3>Weekly Social Content</h3>
+      <p>One professionally edited video post per week, cut from the content library captured during production and posted directly to the hotel's channels &mdash; Instagram Reels, TikTok and YouTube Shorts. Content selection, editing, formatting and posting are handled on our side; the partnership approves the calendar.</p>
+      <ul class="specs">
+        <li>4 posts / month</li><li>Instagram Reels</li><li>TikTok</li><li>YouTube Shorts</li><li>Posted for you</li>
+      </ul>
+    </div>
+    <div>
+      <div class="vert3">
+        <div class="slot"><span class="k">Week 1</span><span class="l">Room feature</span></div>
+        <div class="slot"><span class="k">Week 2</span><span class="l">Destination</span></div>
+        <div class="slot"><span class="k">Week 3</span><span class="l">Amenity</span></div>
+      </div>
+      <p class="slot-note">Placeholder &mdash; swap for live post embeds.</p>
+    </div>
+  </div>
+
+  <!-- PLACEHOLDER: replace .slot with a dashboard screenshot or reporting graphic -->
+  <div class="item">
+    <div class="item-body">
+      <h3>Library Management &amp; Reporting</h3>
+      <p>Assets stay organized, named and accessible, the content calendar is maintained a month ahead, and the partnership receives a monthly note on what shipped, where it posted and how it performed.</p>
+      <ul class="specs">
+        <li>Library upkeep</li><li>Content calendar</li><li>Monthly recap</li><li>Channel deployment</li>
+      </ul>
+    </div>
+    <div>
+      <div class="slot ratio-43"><span class="k">Example</span><span class="l">Monthly delivery &amp; deployment recap</span><span class="r">Screenshot or PDF preview</span></div>
+      <p class="slot-note">Placeholder &mdash; swap for a sample monthly recap.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head narrow">
+      <span class="sec-num">IV. ROLLOUT</span>
+      <h2>The J Hotel proves the standard. The Grant St Inn matches it.</h2>
+      <p class="sec-lede">Running one property first keeps the partnership's initial commitment small and gives both sides a finished library to judge before the second property is scheduled.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="phases">
+      <div class="phase">
+        <div class="pk">Phase One &mdash; Pilot</div>
+        <h3>The J Hotel Dunedin</h3>
+        <p class="sub">Ascend Collection · Approx. 5 weeks from approval</p>
+        <ul>
+          <li>Full program as scoped above</li>
+          <li>Destination library captured once, shared portfolio-wide</li>
+          <li>Sets the standard both properties are held to</li>
+          <li>Ongoing program begins at delivery</li>
+        </ul>
+      </div>
+      <div class="phase p2">
+        <div class="pk">Phase Two &mdash; Expansion</div>
+        <h3>The Grant St Inn</h3>
+        <p class="sub">Scheduled on the partnership's approval of Phase One</p>
+        <ul>
+          <li>Matching scope, adjusted to the property's room count and amenities</li>
+          <li>Reuses the shared Dunedin destination library &mdash; no duplicate capture</li>
+          <li>Same crew, same standard, same delivery format</li>
+          <li>Rolls into a combined portfolio content program</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head narrow">
+    <span class="sec-num">V. INVESTMENT</span>
+    <h2>Priced per property, all-in.</h2>
+    <p class="sec-lede">One number covers production and Palm Life Commercial's coordination, quality control and deployment. No per-vendor invoicing, no separate management fee.</p>
+  </div>
+
+  <div class="inv">
+    <div class="inv-col">
+      <div class="inv-k">Initial Production &mdash; per property</div>
+      <div class="amount">$5,400</div>
+      <p class="inv-desc">All photography, aerial and destination coverage, both films and the extended content library &mdash; plus full PLR production coordination, quality control and liaison.</p>
+      <div class="lines">
+        <div class="line"><span>Hotel, aerial &amp; destination photography</span><b>Included</b></div>
+        <div class="line"><span>Website film + dedicated social film</span><b>Included</b></div>
+        <div class="line"><span>Extended content library</span><b>Included</b></div>
+        <div class="line"><span>PLR coordination, QC &amp; deployment</span><b>Included</b></div>
+        <div class="line"><span>One revision round per finished film</span><b>Included</b></div>
+      </div>
+    </div>
+    <div class="inv-col">
+      <div class="inv-k">Ongoing Monthly &mdash; per property</div>
+      <div class="amount">$600<span> / month</span></div>
+      <p class="inv-desc">Begins on delivery of Phase One. Two-month minimum on the content program; month-to-month after that.</p>
+      <div class="lines">
+        <div class="line"><span>Weekly social content &mdash; 4 posts</span><b>$600 / mo</b></div>
+        <div class="line"><span>Posted to Reels, TikTok &amp; Shorts</span><b>Included</b></div>
+        <div class="line"><span>Library upkeep &amp; content calendar</span><b>Included</b></div>
+        <div class="line"><span>Monthly delivery &amp; performance recap</span><b>Included</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inc">
+    <p><b>Portfolio commitment.</b> If the partnership commits to both properties at signing, Phase Two production is held at the Phase One rate of $5,400 with no escalation, and the shared Dunedin destination library is not re-billed &mdash; bringing the portfolio to $10,800 in production and $1,200 per month once both properties are live.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head narrow">
+    <span class="sec-num">VI. TIMELINE</span>
+    <h2>Approximately five weeks from approval to delivery.</h2>
+    <p class="sec-lede">Indicative schedule for Phase One. Final production dates are coordinated with the partnership and property management around occupancy.</p>
+  </div>
+  <div class="tl">
+    <div class="tl-step">
+      <div class="w">Week 1</div>
+      <h3>Scope &amp; shot list</h3>
+      <p>Property walk, shot list built and approved, room variations and access windows confirmed.</p>
+    </div>
+    <div class="tl-step">
+      <div class="w">Week 2</div>
+      <h3>Production</h3>
+      <p>One coordinated capture period: stills, aerial, film and destination coverage.</p>
+    </div>
+    <div class="tl-step">
+      <div class="w">Weeks 3&ndash;4</div>
+      <h3>Post &amp; review</h3>
+      <p>Edit, grade and colour. PLR quality control, then one revision round per finished film.</p>
+    </div>
+    <div class="tl-step">
+      <div class="w">Week 5</div>
+      <h3>Delivery &amp; deployment</h3>
+      <p>Organized library handed over, assets loaded to brand.com, OTA galleries and social channels.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head narrow">
+    <span class="sec-num">VII. SCOPE</span>
+    <h2>What the pricing assumes.</h2>
+    <p class="sec-lede">Any significant addition or change to the agreed scope is discussed and approved before additional cost is incurred.</p>
+  </div>
+  <ul class="assume">
+    <li>Access to four agreed room variations, held out of inventory for the shoot window</li>
+    <li>Access to the lobby, exterior and agreed hotel amenities</li>
+    <li>Reasonable access to selected nearby Dunedin attractions</li>
+    <li>Drone operation subject to weather, FAA requirements and airspace restrictions</li>
+    <li>One coordinated primary production period per property</li>
+    <li>Standard editing requirements; one revision round per primary finished video</li>
+    <li>Access to the hotel's social media accounts for scheduling and posting</li>
+    <li>Rooms presented staged and housekeeping-ready at the agreed call time</li>
+    <li>Finished assets are owned by the partnership, with PLR retaining portfolio-use rights</li>
+    <li>Ongoing content program carries a two-month minimum term</li>
+    <li>Phase Two scope confirmed after a walk of the Grant St Inn</li>
+  </ul>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head narrow">
+      <span class="sec-num">VIII. NEXT STEPS</span>
+      <h2>Approve Phase One and we schedule the walk.</h2>
+      <p class="sec-lede">On approval, we build the shot list with property management, confirm the shoot window against occupancy, and hold the crew. The partnership's next touchpoint after that is finished work.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="contacts">
+      <div class="card">
+        <div class="nm">Walter Penachio</div>
+        <div class="ti">Palm Life Realty / Palm Life Commercial</div>
+        <a href="mailto:walter@palmliferealty.com">walter@palmliferealty.com</a>
+      </div>
+      <div class="card">
+        <div class="nm">Lauren Green</div>
+        <div class="ti">Palm Life Realty</div>
+        <a href="mailto:lauren@palmliferealty.com">lauren@palmliferealty.com</a>
+      </div>
+      <div class="card">
+        <div class="nm">Palm Life Commercial</div>
+        <div class="ti">Advisory · Development · Investment Sales</div>
+        <a href="https://www.palmlifecommercial.com">palmlifecommercial.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>Palm Life Commercial</span>
+    <span>Visual Media Program &mdash; Grant St Partnership</span>
+    <span class="sp">v. 09.09.26 &nbsp;·&nbsp; Confidential</span>
+  </div>
+</footer>
+
+</body>
+</html>
